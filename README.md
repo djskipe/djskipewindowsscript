@@ -16,7 +16,7 @@ This script automates the activation of Windows and Office, as well as the insta
 
 ### 💻 Software Installation Packages:
 
-- Custom Edition by DJ Skipe: A complete set of productivity and utility tools, including:
+- Custom Edition by dj skipe: A complete set of productivity and utility tools, including:
   - 🗂 7zip  
   - 🌐 Brave  
   - 💬 Discord  
