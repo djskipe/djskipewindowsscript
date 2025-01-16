@@ -136,13 +136,27 @@ echo:       ______________________________________________________________
 echo:
 set /p editionChoice="      Scegli un'edizione di Office 365 [1-5,0]: "
 
-if "%editionChoice%"=="1" start microsoft-edge:https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=O365ProPlusRetail&platform=x64&language=it-it&version=O16GA
-if "%editionChoice%"=="2" start microsoft-edge:https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=O365BusinessRetail&platform=x64&language=it-it&version=O16GA
-if "%editionChoice%"=="3" start microsoft-edge:https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=O365EduCloudRetail&platform=x64&language=it-it&version=O16GA
-if "%editionChoice%"=="4" start microsoft-edge:https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=O365HomePremRetail&platform=x64&language=it-it&version=O16GA
-if "%editionChoice%"=="5" start microsoft-edge:https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=O365SmallBusPremRetail&platform=x64&language=it-it&version=O16GA
-if "%editionChoice%"=="0" goto :DownOffice
-goto :Office365
+if "%editionChoice%"=="1" (
+    start "" "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=O365ProPlusRetail^&platform=x64^&language=it-it^&version=O16GA"
+    goto Office365
+)
+if "%editionChoice%"=="2" (
+    start "" "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=O365BusinessRetail^&platform=x64^&language=it-it^&version=O16GA"
+    goto Office365
+)
+if "%editionChoice%"=="3" (
+    start "" "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=O365EduCloudRetail^&platform=x64^&language=it-it^&version=O16GA"
+    goto Office365
+)
+if "%editionChoice%"=="4" (
+    start "" "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=O365HomePremRetail^&platform=x64^&language=it-it^&version=O16GA"
+    goto Office365
+)
+if "%editionChoice%"=="5" (
+    start "" "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=O365SmallBusPremRetail^&platform=x64^&language=it-it^&version=O16GA"
+    goto Office365
+)
+if "%editionChoice%"=="0" goto DownOffice
 
 :Office2024
 cls
