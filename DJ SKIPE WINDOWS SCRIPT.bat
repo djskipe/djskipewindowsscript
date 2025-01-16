@@ -141,19 +141,19 @@ if "%editionChoice%"=="1" (
     goto Office365
 )
 if "%editionChoice%"=="2" (
-    start "" "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=O365BusinessRetail^&platform=x64^&language=it-it^&version=O16GA"
+    start "" "https://officecdn.microsoft.com/db/492350F6-3A01-4F97-B9C0-C7C6DDF67D60/media/it-IT/O365Business.img"
     goto Office365
 )
 if "%editionChoice%"=="3" (
-    start "" "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=O365EduCloudRetail^&platform=x64^&language=it-it^&version=O16GA"
+    start "" "https://officecdn.microsoft.com/db/492350F6-3A01-4F97-B9C0-C7C6DDF67D60/media/it-IT/O365Education.img"
     goto Office365
 )
 if "%editionChoice%"=="4" (
-    start "" "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=O365HomePremRetail^&platform=x64^&language=it-it^&version=O16GA"
+    start "" "https://officecdn.microsoft.com/db/492350F6-3A01-4F97-B9C0-C7C6DDF67D60/media/it-IT/"
     goto Office365
 )
 if "%editionChoice%"=="5" (
-    start "" "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=O365SmallBusPremRetail^&platform=x64^&language=it-it^&version=O16GA"
+    start "" "https://officecdn.microsoft.com/db/492350F6-3A01-4F97-B9C0-C7C6DDF67D60/media/it-IT/"
     goto Office365
 )
 if "%editionChoice%"=="0" goto DownOffice
@@ -165,17 +165,31 @@ echo:       ______________________________________________________________
 echo:
 echo:                   SELEZIONA EDIZIONE DI OFFICE 2024
 echo:
-echo:             [1] Standard
+echo:             [1] Professional Plus
 echo:             [2] Professional
-echo:             [3] Home and Student
+echo:             [3] Home
+echo:             [4] Home and Business
 echo:             [0] Torna al menu precedente
 echo:       ______________________________________________________________
 echo:
 set /p editionChoice="      Scegli un'edizione di Office 2024 [1-3,0]: "
 
-if "%editionChoice%"=="1" start microsoft-edge:https://example.com/office2024-standard
-if "%editionChoice%"=="2" start microsoft-edge:https://example.com/office2024-professional
-if "%editionChoice%"=="3" start microsoft-edge:https://example.com/office2024-home-student
+if "%editionChoice%"=="1" (
+    start "" "https://officecdn.microsoft.com/db/492350F6-3A01-4F97-B9C0-C7C6DDF67D60/media/it-IT/ProPlus2024Retail.img"
+    goto Office2024
+)
+if "%editionChoice%"=="2" (
+    start "" "https://officecdn.microsoft.com/db/492350F6-3A01-4F97-B9C0-C7C6DDF67D60/media/it-IT/Professional2024Retail.img"
+    goto Office2024
+)
+if "%editionChoice%"=="3" (
+    start "" "https://officecdn.microsoft.com/db/492350F6-3A01-4F97-B9C0-C7C6DDF67D60/media/it-IT/Home2024Retail.img"
+    goto Office2024
+)
+if "%editionChoice%"=="4" (
+    start "" "https://officecdn.microsoft.com/db/492350F6-3A01-4F97-B9C0-C7C6DDF67D60/media/it-IT/HomeBusiness2024Retail.img"
+    goto Office2024
+)
 if "%editionChoice%"=="0" goto :DownOffice
 goto :Office2024
 
@@ -186,17 +200,31 @@ echo:       ______________________________________________________________
 echo:
 echo:                   SELEZIONA EDIZIONE DI OFFICE 2021
 echo:
-echo:             [1] Standard
+echo:             [1] Professional Plus
 echo:             [2] Professional
 echo:             [3] Home and Student
+echo:             [4] Home and Business
 echo:             [0] Torna al menu precedente
 echo:       ______________________________________________________________
 echo:
-set /p editionChoice="      Scegli un'edizione di Office 2021 [1-3,0]: "
+set /p editionChoice="      Scegli un'edizione di Office 2021 [1-4,0]: "
 
-if "%editionChoice%"=="1" start microsoft-edge:https://example.com/office2021-standard
-if "%editionChoice%"=="2" start microsoft-edge:https://example.com/office2021-professional
-if "%editionChoice%"=="3" start microsoft-edge:https://example.com/office2021-home-student
+if "%editionChoice%"=="1" (
+    start "" "https://officecdn.microsoft.com/db/492350F6-3A01-4F97-B9C0-C7C6DDF67D60/media/it-IT/ProPlus2021Retail.img"
+    goto Office2021
+)
+if "%editionChoice%"=="2" (
+    start "" "https://officecdn.microsoft.com/db/492350F6-3A01-4F97-B9C0-C7C6DDF67D60/media/it-IT/Professional2021Retail.img"
+    goto Office2021
+)
+if "%editionChoice%"=="3" (
+    start "" "https://officecdn.microsoft.com/db/492350F6-3A01-4F97-B9C0-C7C6DDF67D60/media/it-IT/HomeStudent2021Retail.img"
+    goto Office2021
+)
+if "%editionChoice%"=="4" (
+    start "" "https://officecdn.microsoft.com/db/492350F6-3A01-4F97-B9C0-C7C6DDF67D60/media/it-IT/HomeBusiness2021Retail.img"
+    goto Office2021
+)
 if "%editionChoice%"=="0" goto :DownOffice
 goto :Office2021
 
@@ -207,17 +235,31 @@ echo:       ______________________________________________________________
 echo:
 echo:                   SELEZIONA EDIZIONE DI OFFICE 2019
 echo:
-echo:             [1] Standard
+echo:             [1] Professional Plus
 echo:             [2] Professional
 echo:             [3] Home and Student
+echo:             [4] Home and Business
 echo:             [0] Torna al menu precedente
 echo:       ______________________________________________________________
 echo:
-set /p editionChoice="      Scegli un'edizione di Office 2019 [1-3,0]: "
+set /p editionChoice="      Scegli un'edizione di Office 2019 [1-4,0]: "
 
-if "%editionChoice%"=="1" start microsoft-edge:https://example.com/office2019-standard
-if "%editionChoice%"=="2" start microsoft-edge:https://example.com/office2019-professional
-if "%editionChoice%"=="3" start microsoft-edge:https://example.com/office2019-home-student
+if "%editionChoice%"=="1" (
+    start "" "https://officecdn.microsoft.com/db/492350F6-3A01-4F97-B9C0-C7C6DDF67D60/media/it-IT/ProPlus2019Retail.img"
+    goto Office2019
+)
+if "%editionChoice%"=="2" (
+    start "" "https://officecdn.microsoft.com/db/492350F6-3A01-4F97-B9C0-C7C6DDF67D60/media/it-IT/Professional2019Retail.img"
+    goto Office2019
+)
+if "%editionChoice%"=="3" (
+    start "" "https://officecdn.microsoft.com/db/492350F6-3A01-4F97-B9C0-C7C6DDF67D60/media/it-IT/HomeStudent2019Retail.img"
+    goto Office2019
+)
+if "%editionChoice%"=="4" (
+    start "" "https://officecdn.microsoft.com/db/492350F6-3A01-4F97-B9C0-C7C6DDF67D60/media/it-IT/HomeBusiness2019Retail.img"
+    goto Office2019
+)
 if "%editionChoice%"=="0" goto :DownOffice
 goto :Office2019
 
@@ -235,7 +277,7 @@ echo:             [4] Home and Business
 echo:             [0] Torna al menu precedente
 echo:       ______________________________________________________________
 echo:
-set /p editionChoice="      Scegli un'edizione di Office 2016 [1-3,0]: "
+set /p editionChoice="      Scegli un'edizione di Office 2016 [1-4,0]: "
 if "%editionChoice%"=="1" (
     start "" "https://drive.massgrave.dev/SW_DVD5_Office_Professional_Plus_2016_64Bit_Italian_MLF_X20-42442.ISO"
     goto Office2016
