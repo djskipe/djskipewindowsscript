@@ -131,7 +131,7 @@ echo:             [2] Business
 echo:             [3] Education
 echo:             [4] Home
 echo:             [5] Small Business
-echo:             [0] Torna al menu precedente
+echo:             [0] Torna al menu precedente c
 echo:       ______________________________________________________________
 echo:
 set /p editionChoice="      Scegli un'edizione di Office 365 [1-5,0]: "
