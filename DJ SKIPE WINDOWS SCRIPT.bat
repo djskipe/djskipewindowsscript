@@ -20,6 +20,7 @@ echo:             [2] Installa Software Custom Edition by dj skipe
 echo:             [3] Installa Software Base 
 echo:             [4] Scarica e Avvia Office Tool Plus
 echo:             [5] Attiva Windows e Office
+echo:             [6] Scarica Microsoft Office
 echo:             [0] Esci
 echo:       ______________________________________________________________
 echo:
@@ -30,6 +31,7 @@ if "%choice%"=="2" goto :InstallBaseSoftwareCustomEdition
 if "%choice%"=="3" goto :InstallBase
 if "%choice%"=="4" goto :RunOfficeToolPlus
 if "%choice%"=="5" goto :ActivateWindows
+if "%choice%"=="6" goto :DownOffice
 if "%choice%"=="0" goto :Exit
 goto :MainMenu
 
@@ -88,6 +90,164 @@ echo Attivazione di Windows in corso...
 powershell -Command "Start-Process powershell -ArgumentList '-NoProfile -Command irm https://get.activated.win | iex; echo 1 | Out-Host' -Verb RunAs"
 pause
 goto :MainMenu
+
+
+:DownOffice
+cls
+echo:
+echo:       ______________________________________________________________
+echo:
+echo:                   SELEZIONA VERSIONE DI OFFICE DA SCARICARE
+echo:
+echo:             [1] Office 365
+echo:             [2] Office 2024
+echo:             [3] Office 2021
+echo:             [4] Office 2019
+echo:             [5] Office 2016
+echo:             [6] Office 2013
+echo:             [0] Torna al menu principale
+echo:       ______________________________________________________________
+echo:
+set /p officeChoice="      Scegli una versione di Office [1-6,0]: "
+
+if "%officeChoice%"=="1" goto :Office365
+if "%officeChoice%"=="2" goto :Office2024
+if "%officeChoice%"=="3" goto :Office2021
+if "%officeChoice%"=="4" goto :Office2019
+if "%officeChoice%"=="5" goto :Office2016
+if "%officeChoice%"=="6" goto :Office2013
+if "%officeChoice%"=="0" goto :MainMenu
+goto :DownOffice
+
+:Office365
+cls
+echo:
+echo:       ______________________________________________________________
+echo:
+echo:                   SELEZIONA EDIZIONE DI OFFICE 365
+echo:
+echo:             [1] Pro Plus
+echo:             [2] Business
+echo:             [3] Education
+echo:             [4] Home
+echo:             [5] Small Business
+echo:             [0] Torna al menu precedente
+echo:       ______________________________________________________________
+echo:
+set /p editionChoice="      Scegli un'edizione di Office 365 [1-5,0]: "
+
+if "%editionChoice%"=="1" start microsoft-edge:https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=O365ProPlusRetail&platform=x64&language=it-it&version=O16GA
+if "%editionChoice%"=="2" start microsoft-edge:https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=O365BusinessRetail&platform=x64&language=it-it&version=O16GA
+if "%editionChoice%"=="3" start microsoft-edge:https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=O365EduCloudRetail&platform=x64&language=it-it&version=O16GA
+if "%editionChoice%"=="4" start microsoft-edge:https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=O365HomePremRetail&platform=x64&language=it-it&version=O16GA
+if "%editionChoice%"=="5" start microsoft-edge:https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=O365SmallBusPremRetail&platform=x64&language=it-it&version=O16GA
+if "%editionChoice%"=="0" goto :DownOffice
+goto :Office365
+
+:Office2024
+cls
+echo:
+echo:       ______________________________________________________________
+echo:
+echo:                   SELEZIONA EDIZIONE DI OFFICE 2024
+echo:
+echo:             [1] Standard
+echo:             [2] Professional
+echo:             [3] Home and Student
+echo:             [0] Torna al menu precedente
+echo:       ______________________________________________________________
+echo:
+set /p editionChoice="      Scegli un'edizione di Office 2024 [1-3,0]: "
+
+if "%editionChoice%"=="1" start microsoft-edge:https://example.com/office2024-standard
+if "%editionChoice%"=="2" start microsoft-edge:https://example.com/office2024-professional
+if "%editionChoice%"=="3" start microsoft-edge:https://example.com/office2024-home-student
+if "%editionChoice%"=="0" goto :DownOffice
+goto :Office2024
+
+:Office2021
+cls
+echo:
+echo:       ______________________________________________________________
+echo:
+echo:                   SELEZIONA EDIZIONE DI OFFICE 2021
+echo:
+echo:             [1] Standard
+echo:             [2] Professional
+echo:             [3] Home and Student
+echo:             [0] Torna al menu precedente
+echo:       ______________________________________________________________
+echo:
+set /p editionChoice="      Scegli un'edizione di Office 2021 [1-3,0]: "
+
+if "%editionChoice%"=="1" start microsoft-edge:https://example.com/office2021-standard
+if "%editionChoice%"=="2" start microsoft-edge:https://example.com/office2021-professional
+if "%editionChoice%"=="3" start microsoft-edge:https://example.com/office2021-home-student
+if "%editionChoice%"=="0" goto :DownOffice
+goto :Office2021
+
+:Office2019
+cls
+echo:
+echo:       ______________________________________________________________
+echo:
+echo:                   SELEZIONA EDIZIONE DI OFFICE 2019
+echo:
+echo:             [1] Standard
+echo:             [2] Professional
+echo:             [3] Home and Student
+echo:             [0] Torna al menu precedente
+echo:       ______________________________________________________________
+echo:
+set /p editionChoice="      Scegli un'edizione di Office 2019 [1-3,0]: "
+
+if "%editionChoice%"=="1" start microsoft-edge:https://example.com/office2019-standard
+if "%editionChoice%"=="2" start microsoft-edge:https://example.com/office2019-professional
+if "%editionChoice%"=="3" start microsoft-edge:https://example.com/office2019-home-student
+if "%editionChoice%"=="0" goto :DownOffice
+goto :Office2019
+
+:Office2016
+cls
+echo:
+echo:       ______________________________________________________________
+echo:
+echo:                   SELEZIONA EDIZIONE DI OFFICE 2016
+echo:
+echo:             [1] Standard
+echo:             [2] Professional
+echo:             [3] Home and Student
+echo:             [0] Torna al menu precedente
+echo:       ______________________________________________________________
+echo:
+set /p editionChoice="      Scegli un'edizione di Office 2016 [1-3,0]: "
+
+if "%editionChoice%"=="1" start microsoft-edge:https://example.com/office2016-standard
+if "%editionChoice%"=="2" start microsoft-edge:https://example.com/office2016-professional
+if "%editionChoice%"=="3" start microsoft-edge:https://example.com/office2016-home-student
+if "%editionChoice%"=="0" goto :DownOffice
+goto :Office2016
+
+:Office2013
+cls
+echo:
+echo:       ______________________________________________________________
+echo:
+echo:                   SELEZIONA EDIZIONE DI OFFICE 2013
+echo:
+echo:             [1] Standard
+echo:             [2] Professional
+echo:             [3] Home and Student
+echo:             [0] Torna al menu precedente
+echo:       ______________________________________________________________
+echo:
+set /p editionChoice="      Scegli un'edizione di Office 2013 [1-3,0]: "
+
+if "%editionChoice%"=="1" start microsoft-edge:https://example.com/office2013-standard
+if "%editionChoice%"=="2" start microsoft-edge:https://example.com/office2013-professional
+if "%editionChoice%"=="3" start microsoft-edge:https://example.com/office2013-home-student
+if "%editionChoice%"=="0" goto :DownOffice
+goto:Office2016
 
 :Exit
 echo Uscita dal programma...
