@@ -7,7 +7,7 @@ echo:
 echo:
 echo:       ______________________________________________________________
 echo:
-echo:                 DJ SKIPE WINDOWS SCRIPT v1.1
+echo:                 DJ SKIPE WINDOWS SCRIPT v1.2
 echo:
 echo          Questo script ti permette di eseguire il debloater 
 echo          di Windows in facilita' direttamente da questo CMD.
@@ -651,10 +651,15 @@ echo:
 echo:             [1] Adobe Suite Crack
 echo:             [2] Wise Care 365
 echo:             [3] Powershell 7
+echo:             [4] Adobe Acrobat Pro DC 2024
+echo:             [5] Adobe Photoshop 2025
+echo:             [6] Adobe Premiere Pro 2025
+echo:             [7] Adobe Illustrator 2025 (password zip: 123)
+echo:             [8] Adobe After Effects 2025
 echo:             [0] Torna al menu principale
 echo:       ______________________________________________________________
 
-set /p extraChoice="      Scegli Extra [1-3,0]: "
+set /p extraChoice="      Scegli Extra [1-8,0]: "
 
 if "%extraChoice%"=="1" (
     start "" "https://github.com/wangzhenjjcn/AdobeGenp/releases/download/AdobeGenp-3.4.2-CGP/AdobeGenp-3.4.2-CGP.exe"
@@ -673,6 +678,26 @@ if "%extraChoice%"=="3" (
     ) else (
         echo PowerShell 7 è stato installato con successo.
     )
+    goto Extra
+)
+if "%extraChoice%"=="4" (
+    start "" "https://download2276.mediafire.com/cxxum78y8zqgN_tJuU36Elb1r3l7lFBTmK5EAve1C5152EfPM7eiv6zaCdX_xj_KJkVSSZa07LiPseGsEerZp2e5S1J0MjSdGlAJ-D0V1bVIFD25nV_cZ7PKYETrCAUcqGrKdcYYnwlRZQfLOQeOWacCz-Cii4FxyrTyn2vtMoWYqNs/wis3cl6fgdhsh6t/AdobeAcrobatProDC2024.005.20320x86.exe"
+    goto Extra
+)
+if "%extraChoice%"=="5" (
+    start "" "https://download2341.mediafire.com/hspn5g1bm5ogUM9JD6ZhoXVE7ai8ZXTiWrI4bHj7sgTd51_Ntlf5gKaq5XuOwenJVTYtOYhsRLqX4qnDHkJ_wlMoxNkkyk41paAdShKpPnB-5TALC3dVopvYaInRJYbFOifAtsVgBUFBmwD2vB5LDzopgmHL-VctqZghnMxrbDIO3ME/ptv08z9d94pgwd4/AdobePhotoshop2025v26.2.0.140x64Repack.exe"
+    goto Extra
+)
+if "%extraChoice%"=="6" (
+    start "" "https://download2362.mediafire.com/2agtqmude9ugQQ0uWsn2yv99DAfkJMnL2nebOVOjCg83X9d2yy0WMBayXvPx81NUzboLSGhx0JxJzYC-2jVwQ1hlHIKc_KYX24z524rzi2xJvWetrLm6QPxaWChDnndu6-7qhGwD_vjluz36HlGbDBn-ebNS2QJNpvf_dKajJGk--2E/bs6j6oxa34husl2/AdobePremierePro2025v25.1.0.073x64Repack.exe"
+    goto Extra
+)
+if "%extraChoice%"=="7" (
+    start "" "https://s2-download.xyz/a208c36e6a1aeb2b?ref=3b42157738c4f54a769a03bb72768090"
+    goto Extra
+)
+if "%extraChoice%"=="8" (
+    start "" "https://pixeldrain.com/u/sr6Juu55"
     goto Extra
 )
 
