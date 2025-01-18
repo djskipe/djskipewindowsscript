@@ -26,7 +26,7 @@ echo:             [8] Extra
 echo:             [0] Esci
 echo:       ______________________________________________________________
 echo:
-set /p choice="      Scegli un'opzione dal menu [1-5,0]: "
+set /p choice="      Scegli un'opzione dal menu [1-8,0]: "
 
 if "%choice%"=="1" goto :RunDebloater
 if "%choice%"=="2" goto :InstallBaseSoftwareCustomEdition
@@ -639,24 +639,26 @@ cls
 echo:
 echo:       ______________________________________________________________
 echo:
-echo:                   Extra
+echo:                            Extra
 echo:
 echo:             [1] Adobe Suite Crack
 echo:             [2] Wise Care 365
 echo:             [0] Torna al menu principale
 echo:       ______________________________________________________________
 
-set /p officeChoice="      Scegli Extra [1-7,0]: "
+set /p extraChoice="      Scegli Extra [1-2,0]: "
 
-if "%officeChoice%"=="1" (
+if "%extraChoice%"=="1" (
     start "" "https://github.com/wangzhenjjcn/AdobeGenp/releases/download/AdobeGenp-3.4.2-CGP/AdobeGenp-3.4.2-CGP.exe"
     goto Extra
 )
 
-if "%officeChoice%"=="2" (
+if "%extraChoice%"=="2" (
     start "" "https://dl.tickcoupon.cloud/WiseCare365_v7.0.2_TickGiveaway.exe"
     goto Extra
 )
+
+if "%extraChoice%"=="0" goto :MainMenu  :: Modificato per tornare al menu principale
 
 goto :Extra
 
@@ -664,3 +666,4 @@ goto :Extra
 echo Uscita dal programma...
 pause
 exit
+
