@@ -46,6 +46,13 @@ pause
 goto :MainMenu
 
 :InstallBaseSoftwareCustomEdition
+echo Installazione di PowerShell in corso...
+winget install --id Microsoft.PowerShell --source winget --silent --accept-package-agreements --accept-source-agreements
+if %errorlevel% neq 0 (
+    echo Errore durante l'installazione di PowerShell. Prova a disabilitare temporaneamente il firewall o l'antivirus.
+) else (
+    echo PowerShell è stato installato con successo.
+)
 echo Installazione del software base in corso...
 start microsoft-edge:https://ninite.com/7zip-brave-discord-handbrake-notepadplusplus-operaChromium-python3-steam-teamviewer15-vlc-vscode/
 echo Download e installazione di Tixati in corso...
@@ -178,7 +185,7 @@ echo:             [4] Home and Business
 echo:             [0] Torna al menu precedente
 echo:       ______________________________________________________________
 echo:
-set /p editionChoice="      Scegli un'edizione di Office 2024 [1-3,0]: "
+set /p editionChoice="      Scegli un'edizione di Office 2024 [1-4,0]: "
 
 if "%editionChoice%"=="1" (
     start "" "https://officecdn.microsoft.com/db/492350F6-3A01-4F97-B9C0-C7C6DDF67D60/media/it-IT/ProPlus2024Retail.img"
@@ -349,7 +356,7 @@ echo:             [5] Access
 echo:             [0] Torna al menu precedente
 echo:       ______________________________________________________________
 echo:
-set /p editionChoice="      Scegli un software di Office [1-9,0]: "
+set /p editionChoice="      Scegli un software di Office [1-5,0]: "
 
 if "%editionChoice%"=="1" (
     start "" "http://officecdn.microsoft.com.edgesuite.net/db/492350F6-3A01-4F97-B9C0-C7C6DDF67D60/media/it-it/Word2024Retail.img"
@@ -390,7 +397,7 @@ echo:             [6] Windows Server
 echo:             [0] Torna al menu principale
 echo:       ______________________________________________________________
 echo:
-set /p winChoice="      Scegli una versione di Windows [1-7,0]: "
+set /p winChoice="      Scegli una versione di Windows [1-6,0]: "
 
 if "%winChoice%"=="1" goto :Win11
 if "%winChoice%"=="2" goto :Win10
@@ -580,7 +587,7 @@ echo:             [2] Windows XP Professional SP2 64-bit (solo inglese)
 echo:             [0] Torna al menu precedente
 echo:       ______________________________________________________________
 echo:
-set /p archChoice="      Scegli l'architettura [1,0]: "
+set /p archChoice="      Scegli l'architettura [1-2,0]: "
 
 if "%archChoice%"=="1" (
     start "" "https://archive.org/download/xppro32retailita/it_windows_xp_professional_with_service_pack_3_x86_cd_x14-80460.iso"
@@ -609,7 +616,7 @@ echo:             [6] Windows Server 2008 R2
 echo:             [0] Torna al menu precedente
 echo:       ______________________________________________________________
 echo:
-set /p editionChoice="      Scegli una versione di Windows Server [1-5,0]: "
+set /p editionChoice="      Scegli una versione di Windows Server [1-6,0]: "
 
 if "%editionChoice%"=="1" (
     start "" "https://oemsoc.download.prss.microsoft.com/dbazure/X23-81962_26100.1742.240906-0331.ge_release_svc_refresh_SERVER_OEMRET_x64FRE_it-it.iso_48cb6aac-6a5f-4b42-8eb8-58e82f98e0ea?t=b7f5fbb0-2607-4b2c-8c6c-a38461db2668&P1=102817441220&P2=601&P3=2&P4=qNno3hapIKl8cJiUZp%2fOrX14cqNaI6jq5aNvVXCqzS3aQEdzH3jb7je57F%2bTkkfiysXwxZ2lYY9XJs8gcVMFqHolQQGLX%2fb%2fQXxMX96QFek8b3v8%2b9FzpZcccVBclC0F0bTSUZuEY%2fop%2fpaolR2gketpgFkvlc5VJokh1266Ab3Gsm4WKowQCvJ5gEgEgjN2JdErZHtMz76mBGjyg0lHRBrs98dZE8bsCscZbh4YpfHELdIt7Z1stOg0SQqiUF8nYm%2b3PVE4zh9w9sopgbUVnAyUUQNpiTr1esfeuf8WOMyAVfmyc2%2faSgmErMuruE84LHj4UbxL3nyvkiArzOs9mg%3d%3d"
@@ -643,10 +650,11 @@ echo:                            Extra
 echo:
 echo:             [1] Adobe Suite Crack
 echo:             [2] Wise Care 365
+echo:             [3] Powershell 7
 echo:             [0] Torna al menu principale
 echo:       ______________________________________________________________
 
-set /p extraChoice="      Scegli Extra [1-2,0]: "
+set /p extraChoice="      Scegli Extra [1-3,0]: "
 
 if "%extraChoice%"=="1" (
     start "" "https://github.com/wangzhenjjcn/AdobeGenp/releases/download/AdobeGenp-3.4.2-CGP/AdobeGenp-3.4.2-CGP.exe"
@@ -655,6 +663,16 @@ if "%extraChoice%"=="1" (
 
 if "%extraChoice%"=="2" (
     start "" "https://dl.tickcoupon.cloud/WiseCare365_v7.0.2_TickGiveaway.exe"
+    goto Extra
+)
+if "%extraChoice%"=="3" (
+    echo Installazione di PowerShell 7 in corso...
+    winget install --id Microsoft.Powershell --source winget --silent --accept-package-agreements --accept-source-agreements
+    if %errorlevel% neq 0 (
+        echo Errore durante l'installazione di PowerShell. Prova a disabilitare temporaneamente il firewall o l'antivirus.
+    ) else (
+        echo PowerShell 7 è stato installato con successo.
+    )
     goto Extra
 )
 
