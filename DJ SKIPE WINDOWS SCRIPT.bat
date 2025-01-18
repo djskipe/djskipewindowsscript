@@ -7,7 +7,7 @@ echo:
 echo:
 echo:       ______________________________________________________________
 echo:
-echo:                 DJ SKIPE WINDOWS SCRIPT v1.0
+echo:                 DJ SKIPE WINDOWS SCRIPT v1.1
 echo:
 echo          Questo script ti permette di eseguire il debloater 
 echo          di Windows in facilita' direttamente da questo CMD.
@@ -19,9 +19,10 @@ echo:             [1] Esegui Debloater Windows 11
 echo:             [2] Installa Software Custom Edition by dj skipe
 echo:             [3] Installa Software Base 
 echo:             [4] Scarica e Avvia Office Tool Plus
-echo:             [5] Attiva Windows e Office
+echo:             [5] Attivazione Windows e Office
 echo:             [6] Scarica Microsoft Office
 echo:             [7] Scarica Microsoft Windows
+echo:             [8] Extra
 echo:             [0] Esci
 echo:       ______________________________________________________________
 echo:
@@ -34,6 +35,7 @@ if "%choice%"=="4" goto :RunOfficeToolPlus
 if "%choice%"=="5" goto :ActivateWindows
 if "%choice%"=="6" goto :DownOffice
 if "%choice%"=="7" goto :DownWindows
+if "%choice%"=="8" goto :Extra
 if "%choice%"=="0" goto :Exit
 goto :MainMenu
 
@@ -421,15 +423,19 @@ echo:             [1] Professional
 echo:             [2] Enterprise
 echo:             [3] Ultimate
 echo:             [4] Home Premium
+echo:             [5] All in One Version 32/64 bit
 echo:             [0] Torna al menu precedente
 echo:       ______________________________________________________________
 echo:
-set /p editionChoice="      Scegli un'edizione di Windows 7 [1-4,0]: "
+set /p editionChoice="      Scegli un'edizione di Windows 7 [1-5,0]: "
 
 if "%editionChoice%"=="1" goto :Win7Pro
 if "%editionChoice%"=="2" goto :Win7Enterprise
 if "%editionChoice%"=="3" goto :Win7Ultimate
 if "%editionChoice%"=="4" goto :Win7HomePremium
+if "%editionChoice%"=="5"(
+start "" "https://archive.org/download/win-7-aio-32x-64x/Win7AIO32x64x.iso"
+)
 if "%editionChoice%"=="0" goto :DownWindows
 goto :Win7
 
@@ -438,7 +444,7 @@ cls
 echo:
 echo:       ______________________________________________________________
 echo:
-echo:                   SELEZIONA ARCHITETTURA WINDOWS 7 PROFESSIONAL
+echo:                   SELEZIONA EDIZONE WINDOWS 7 PROFESSIONAL
 echo:
 echo:             [1] Windows 7 Professional x64
 echo:             [2] Windows 7 Professional x86
@@ -448,11 +454,11 @@ echo:
 set /p archChoice="      Scegli l'architettura [1-2,0]: "
 
 if "%archChoice%"=="1" (
-    start "" "https://software.download.prss.microsoft.com/dbazure/Win7_Pro_SP1_Italian_x64.iso"
+    start "" "https://archive.org/download/win-7-pro-sp1-italian/Win7_Pro_SP1_Italian_x64.iso"
     goto Win7Pro
 )
 if "%archChoice%"=="2" (
-    start "" "https://software.download.prss.microsoft.com/dbazure/Win7_Pro_SP1_Italian_x86.iso"
+    start "" "https://archive.org/download/win-7-pro-sp1-italian/Win7_Pro_SP1_Italian_x86.iso"
     goto Win7Pro
 )
 if "%archChoice%"=="0" goto :Win7
@@ -463,7 +469,7 @@ cls
 echo:
 echo:       ______________________________________________________________
 echo:
-echo:                   SELEZIONA ARCHITETTURA WINDOWS 7 ENTERPRISE
+echo:                   SELEZIONA EDIZIONE WINDOWS 7 ENTERPRISE
 echo:
 echo:             [1] Windows 7 Enterprise x64
 echo:             [2] Windows 7 Enterprise x86
@@ -473,11 +479,11 @@ echo:
 set /p archChoice="      Scegli l'architettura [1-2,0]: "
 
 if "%archChoice%"=="1" (
-    start "" "https://software.download.prss.microsoft.com/dbazure/Win7_Ent_SP1_Italian_x64.iso"
+    start "" "https://archive.org/download/Win7EnterpriseSP1x64ITA/it_windows_7_enterprise_with_sp1_x64_dvd_u_677660.iso"
     goto Win7Enterprise
 )
 if "%archChoice%"=="2" (
-    start "" "https://software.download.prss.microsoft.com/dbazure/Win7_Ent_SP1_Italian_x86.iso"
+    start "" "https://archive.org/download/Win7EnterpriseSP1x86ITA/it_windows_7_enterprise_with_sp1_x86_dvd_u_677749.iso"
     goto Win7Enterprise
 )
 if "%archChoice%"=="0" goto :Win7
@@ -498,11 +504,11 @@ echo:
 set /p archChoice="      Scegli l'architettura [1-2,0]: "
 
 if "%archChoice%"=="1" (
-    start "" "https://software.download.prss.microsoft.com/dbazure/Win7_Ult_SP1_Italian_x64.iso"
+    start "" "https://archive.org/download/cover_20230817/it_windows_7_ultimate_with_sp1_x64_dvd_u_677356.iso"
     goto Win7Ultimate
 )
 if "%archChoice%"=="2" (
-    start "" "https://software.download.prss.microsoft.com/dbazure/Win7_Ult_SP1_Italian_x86.iso"
+    start "" "https://archive.org/download/cover_20230817/it_windows_7_ultimate_with_sp1_x86_dvd_u_677443.iso"
     goto Win7Ultimate
 )
 if "%archChoice%"=="0" goto :Win7
@@ -523,15 +529,16 @@ echo:
 set /p archChoice="      Scegli l'architettura [1-2,0]: "
 
 if "%archChoice%"=="1" (
-    start "" "https://software.download.prss.microsoft.com/dbazure/Win7_HomePrem_SP1_Italian_x64.iso"
+    start "" "https://archive.org/download/win-7-italian-home-premium/Win7_HomePrem_SP1_Italian_x64.iso"
     goto Win7HomePremium
 )
 if "%archChoice%"=="2" (
-    start "" "https://software.download.prss.microsoft.com/dbazure/Win7_HomePrem_SP1_Italian_x86.iso"
+    start "" "https://archive.org/download/win-7-italian-home-premium/Win7_HomePrem_SP1_Italian_x64.iso"
     goto Win7HomePremium
 )
 if "%archChoice%"=="0" goto :Win7
 goto :Win7HomePremium
+
 
 :WinXP
 cls
@@ -540,28 +547,51 @@ echo:       ______________________________________________________________
 echo:
 echo:                   SELEZIONA EDIZIONE DI WINDOWS XP
 echo:
-echo:             [1] Professional SP3
-echo:             [2] Home SP3
-echo:             [3] Professional x64 Edition
+echo:             [1] Professional
+echo:             [2] Home 
+echo:             [3] Media Center
 echo:             [0] Torna al menu precedente
 echo:       ______________________________________________________________
 echo:
 set /p editionChoice="      Scegli un'edizione di Windows XP [1-3,0]: "
 
-if "%editionChoice%"=="1" (
-    start "" "https://software.download.prss.microsoft.com/dbazure/WinXP_Pro_SP3_Italian.iso"
-    goto WinXP
-)
+if "%editionChoice%"=="1" goto :WinXPProSP3
 if "%editionChoice%"=="2" (
-    start "" "https://software.download.prss.microsoft.com/dbazure/WinXP_Home_SP3_Italian.iso"
+    start "" "https://archive.org/download/microsoft-windows-xp-italiano-raccolta-di-mrgass/%5BISO%5D%20CD%20di%20Installazione/Microsoft%20Windows%20XP%20Home/Microsoft%20Windows%20XP%20Home%20Edition%20Service%20Pack%203%20Retail%202600.5512.xpsp.080413-2111/it_windows_xp_home_with_service_pack_3_x86_cd_x14-92420.iso"
     goto WinXP
 )
 if "%editionChoice%"=="3" (
-    start "" "https://software.download.prss.microsoft.com/dbazure/WinXP_Pro_x64_Italian.iso"
+    start "" "https://archive.org/download/WinXPMCE2005SP3ITA/Windows_XP_Media_Center_Edition_2005_Sp3_ITA_by_Condor.07.iso"
     goto WinXP
 )
+
 if "%editionChoice%"=="0" goto :DownWindows
 goto :WinXP
+
+:WinXPProSP3
+cls
+echo:
+echo:       ______________________________________________________________
+echo:
+echo:                   SELEZIONA ARCHITETTURA WINDOWS XP PROFESSIONAL SP3
+echo:
+echo:             [1] Windows XP Professional SP3 32-bit
+echo:             [2] Windows XP Professional SP2 64-bit (solo inglese)
+echo:             [0] Torna al menu precedente
+echo:       ______________________________________________________________
+echo:
+set /p archChoice="      Scegli l'architettura [1,0]: "
+
+if "%archChoice%"=="1" (
+    start "" "https://archive.org/download/xppro32retailita/it_windows_xp_professional_with_service_pack_3_x86_cd_x14-80460.iso"
+    goto WinXPProSP3
+)
+if "%archChoice%"=="2" (
+    start "" "https://archive.org/download/windows-xp-professional-64-bit_202105/Windows_XP_Professional_64-bit.iso"
+    goto WinXPProSP3
+)
+if "%archChoice%"=="0" goto :WinXP
+goto :WinXPProSP3
 
 :WinServer
 cls
@@ -570,38 +600,65 @@ echo:       ______________________________________________________________
 echo:
 echo:                   SELEZIONA VERSIONE DI WINDOWS SERVER
 echo:
-echo:             [1] Windows Server 2022
-echo:             [2] Windows Server 2019
-echo:             [3] Windows Server 2016
-echo:             [4] Windows Server 2012 R2
-echo:             [5] Windows Server 2008 R2
+echo:             [1] Windows Server 2025
+echo:             [2] Windows Server 2022
+echo:             [3] Windows Server 2019
+echo:             [4] Windows Server 2016
+echo:             [5] Windows Server 2012 
+echo:             [6] Windows Server 2008 R2
 echo:             [0] Torna al menu precedente
 echo:       ______________________________________________________________
 echo:
 set /p editionChoice="      Scegli una versione di Windows Server [1-5,0]: "
 
 if "%editionChoice%"=="1" (
-    start "" "https://software.download.prss.microsoft.com/dbazure/WinServer2022_x64_Italian.iso"
+    start "" "https://oemsoc.download.prss.microsoft.com/dbazure/X23-81962_26100.1742.240906-0331.ge_release_svc_refresh_SERVER_OEMRET_x64FRE_it-it.iso_48cb6aac-6a5f-4b42-8eb8-58e82f98e0ea?t=b7f5fbb0-2607-4b2c-8c6c-a38461db2668&P1=102817441220&P2=601&P3=2&P4=qNno3hapIKl8cJiUZp%2fOrX14cqNaI6jq5aNvVXCqzS3aQEdzH3jb7je57F%2bTkkfiysXwxZ2lYY9XJs8gcVMFqHolQQGLX%2fb%2fQXxMX96QFek8b3v8%2b9FzpZcccVBclC0F0bTSUZuEY%2fop%2fpaolR2gketpgFkvlc5VJokh1266Ab3Gsm4WKowQCvJ5gEgEgjN2JdErZHtMz76mBGjyg0lHRBrs98dZE8bsCscZbh4YpfHELdIt7Z1stOg0SQqiUF8nYm%2b3PVE4zh9w9sopgbUVnAyUUQNpiTr1esfeuf8WOMyAVfmyc2%2faSgmErMuruE84LHj4UbxL3nyvkiArzOs9mg%3d%3d"
     goto WinServer
 )
 if "%editionChoice%"=="2" (
-    start "" "https://software.download.prss.microsoft.com/dbazure/WinServer2019_x64_Italian.iso"
+    start "" "https://drive.massgrave.dev/it-it_windows_server_2022_updated_nov_2024_x64_dvd_4e34897c.iso"
     goto WinServer
 )
 if "%editionChoice%"=="3" (
-    start "" "https://software.download.prss.microsoft.com/dbazure/WinServer2016_x64_Italian.iso"
+    start "" "https://drive.massgrave.dev/it-it_windows_server_2019_x64_dvd_454267de.iso"
     goto WinServer
 )
 if "%editionChoice%"=="4" (
-    start "" "https://software.download.prss.microsoft.com/dbazure/WinServer2012R2_x64_Italian.iso"
+    start "" "https://drive.massgrave.dev/it_windows_server_2012_r2_vl_with_update_x64_dvd_6052792.iso"
     goto WinServer
 )
 if "%editionChoice%"=="5" (
-    start "" "https://software.download.prss.microsoft.com/dbazure/WinServer2008R2_x64_Italian.iso"
+    start "" "https://drive.massgrave.dev/it_windows_server_2008_r2_with_sp1_vl_build_x64_dvd_619596.iso"
     goto WinServer
 )
 if "%editionChoice%"=="0" goto :DownWindows
 goto :WinServer
+
+:Extra
+cls
+echo:
+echo:       ______________________________________________________________
+echo:
+echo:                   Extra
+echo:
+echo:             [1] Adobe Suite Crack
+echo:             [2] Wise Care 365
+echo:             [0] Torna al menu principale
+echo:       ______________________________________________________________
+
+set /p officeChoice="      Scegli Extra [1-7,0]: "
+
+if "%officeChoice%"=="1" (
+    start "" "https://github.com/wangzhenjjcn/AdobeGenp/releases/download/AdobeGenp-3.4.2-CGP/AdobeGenp-3.4.2-CGP.exe"
+    goto Extra
+)
+
+if "%officeChoice%"=="2" (
+    start "" "https://dl.tickcoupon.cloud/WiseCare365_v7.0.2_TickGiveaway.exe"
+    goto Extra
+)
+
+goto :Extra
 
 :Exit
 echo Uscita dal programma...
