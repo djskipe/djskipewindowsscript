@@ -657,11 +657,13 @@ echo:             [6] Adobe Premiere Pro 2025
 echo:             [7] Adobe Illustrator 2025 (password zip: 123)
 echo:             [8] Adobe After Effects 2025
 echo:             [9] MiniTool Partition Wizard Technician 12.9
-echo:             [9] Revo Uninstaller Pro
+echo:             [10] Revo Uninstaller Pro
+echo:             [11] Poweroff
+echo:             [12] Glasswire
 echo:             [0] Torna al menu principale
 echo:       ______________________________________________________________
 
-set /p extraChoice="      Scegli Extra [1-9,0]: "
+set /p extraChoice="      Scegli Extra [1-11,0]: "
 
 if "%extraChoice%"=="1" (
     start "" "https://github.com/wangzhenjjcn/AdobeGenp/releases/download/AdobeGenp-3.4.2-CGP/AdobeGenp-3.4.2-CGP.exe"
@@ -708,6 +710,14 @@ if "%extraChoice%"=="9" (
 )
 if "%extraChoice%"=="10" (
     start "" "https://download2264.mediafire.com/yn7i8ultj3ygKC6IvuMxmGFypQmbqgG9nn_cXRk7HI0cuydUcovA8ky579k6fQHy0nIClkK2JuPZt8s_quqKLb_G8pj5KZOfx97CKkLRvVtrMdTMEgzkPfgxRlLQvMSIosJNseCnJ-ouHFQbRdCcVQsqUvfL42etzrO8mM5JJbeahb0/nukbc77mx4snbdz/RevoUninstallerPro5.3.5.exe.xz"
+    goto Extra
+)
+if "%extraChoice%"=="11" (
+    start "" "https://download1509.mediafire.com/fsep1extw7ogjAaBtolj-EW4KJ98qspT2vIrbCg3UmGqbJNa_GHy5Dsr9bt0xsZRtK_o9FzAMxzeHB5tPUqhGe-AUEEhr1QZZ4qEhRvXUJYqswTsGDpKwQ_R8RtTqbGesqsYpfP_56eT-WS47HodFUv86_chCDMfj2dK8xBD7FfFy7M/oa2j0ymtjjgzr1s/poweroff-3.0.1.3.zip"
+    goto Extra
+)
+if "%extraChoice%"=="12" (
+    start "" "https://download2388.mediafire.com/9k0l3cdx4mpgWXSpL4__11B-7xZFvlUyPWcJte1ADHgiTc7fcTkWa1TamhafLO-_Kx5KuhZcFYBsbI8dnxnbrmDIb7WwYKu3wb1vhJe4d563A-f_sX06cgYv4g70kVQqhtFPiIvvXrnoD_8D2v1GjXzdM5q4R5eGTzvyA4SmiA28eLU/9wsxxcvrn4bpz6g/Glasswire3.4.768.exe.xz"
     goto Extra
 )
 
