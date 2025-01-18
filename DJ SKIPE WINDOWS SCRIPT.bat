@@ -656,10 +656,12 @@ echo:             [5] Adobe Photoshop 2025
 echo:             [6] Adobe Premiere Pro 2025
 echo:             [7] Adobe Illustrator 2025 (password zip: 123)
 echo:             [8] Adobe After Effects 2025
+echo:             [9] MiniTool Partition Wizard Technician 12.9
+echo:             [9] Revo Uninstaller Pro
 echo:             [0] Torna al menu principale
 echo:       ______________________________________________________________
 
-set /p extraChoice="      Scegli Extra [1-8,0]: "
+set /p extraChoice="      Scegli Extra [1-9,0]: "
 
 if "%extraChoice%"=="1" (
     start "" "https://github.com/wangzhenjjcn/AdobeGenp/releases/download/AdobeGenp-3.4.2-CGP/AdobeGenp-3.4.2-CGP.exe"
@@ -698,6 +700,14 @@ if "%extraChoice%"=="7" (
 )
 if "%extraChoice%"=="8" (
     start "" "https://pixeldrain.com/u/sr6Juu55"
+    goto Extra
+)
+if "%extraChoice%"=="9" (
+    start "" "https://download2303.mediafire.com/nzdul5186wegPipTxg3QiEJTcN5Txa1YwPEusyRyOFaYsGI8cL6Txet6oLwVMaqxe6O6Mxex9E7858bELiecPzgus72T0MqL4B3qdBHsoJ3_iKbS0kgCTv3tPoosMZ12sxjOntLEvdkUzw_mSsOSweExC5o1IgtzPXsVlEK2I_MkC_c/ydflmgh2hlhrrtc/MiniToolPartitionWizardTechnician12.9.tar.xz"
+    goto Extra
+)
+if "%extraChoice%"=="10" (
+    start "" "https://download2264.mediafire.com/yn7i8ultj3ygKC6IvuMxmGFypQmbqgG9nn_cXRk7HI0cuydUcovA8ky579k6fQHy0nIClkK2JuPZt8s_quqKLb_G8pj5KZOfx97CKkLRvVtrMdTMEgzkPfgxRlLQvMSIosJNseCnJ-ouHFQbRdCcVQsqUvfL42etzrO8mM5JJbeahb0/nukbc77mx4snbdz/RevoUninstallerPro5.3.5.exe.xz"
     goto Extra
 )
 
