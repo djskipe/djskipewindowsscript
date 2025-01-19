@@ -882,12 +882,13 @@ echo:             [8] Adobe After Effects 2025
 echo:             [9] MiniTool Partition Wizard Technician 12.9
 echo:             [10] Revo Uninstaller Pro
 echo:             [11] Poweroff
-echo:             [12] Glasswire        
+echo:             [12] Glasswire 
+echo:             [13] Windows XP Activator             
 if "%LANG%"=="EN" (
 echo              [0] Back to previous menu
 echo:       ______________________________________________________________
 echo:
-	set /p extraChoice="      Choose Extra [1-12,0]: "
+	set /p extraChoice="      Choose Extra [1-13,0]: "
 	
 ) else (
 echo              [0] Torna al menu precedente
@@ -966,6 +967,10 @@ if "%extraChoice%"=="11" (
 )
 if "%extraChoice%"=="12" (
     start "" "https://download2388.mediafire.com/9k0l3cdx4mpgWXSpL4__11B-7xZFvlUyPWcJte1ADHgiTc7fcTkWa1TamhafLO-_Kx5KuhZcFYBsbI8dnxnbrmDIb7WwYKu3wb1vhJe4d563A-f_sX06cgYv4g70kVQqhtFPiIvvXrnoD_8D2v1GjXzdM5q4R5eGTzvyA4SmiA28eLU/9wsxxcvrn4bpz6g/Glasswire3.4.768.exe.xz"
+    goto Extra
+)
+if "%extraChoice%"=="13" (
+    start "" "https://archive.org/download/xp_activate32_202305/xp_activate32.zip"
     goto Extra
 )
 
