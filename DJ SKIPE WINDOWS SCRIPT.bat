@@ -30,7 +30,7 @@ echo:
 echo:       ______________________________________________________________
 echo:
 if "%LANG%"=="EN" (
-    echo:                 DJ SKIPE WINDOWS SCRIPT v1.3
+    echo:                 DJ SKIPE WINDOWS SCRIPT v1.3.1
     echo:
     echo          This script allows you to easily run the Windows
     echo          debloater from this CMD. It also allows you to
