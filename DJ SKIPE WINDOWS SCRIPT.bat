@@ -142,7 +142,7 @@ if "%LANG%"=="EN" (
     echo Fine.
 )
 
-start microsoft-edge:https://ninite.com/7zip-brave-discord-handbrake-notepadplusplus-operaChromium-python3-steam-teamviewer15-vlc-vscode/
+start "" ":https://ninite.com/7zip-brave-discord-handbrake-notepadplusplus-operaChromium-python3-steam-teamviewer15-vlc-vscode/"
 curl -L -o "%USERPROFILE%\Downloads\tixati-3.32-1.win64-install.exe" "https://download.tixati.com/tixati-3.32-1.win64-install.exe" && "%USERPROFILE%\Downloads\tixati-3.32-1.win64-install.exe" /S
 powershell -NoProfile -Command "winget install -e --id Telegram.TelegramDesktop"
 curl -L -o "%USERPROFILE%\Downloads\WhatsApp Installer.exe" "https://get.microsoft.com/installer/download/9NKSQGP7F2NH?cid=website_cta_psi/"
@@ -164,7 +164,7 @@ if "%LANG%"=="EN" (
     echo.
     echo Software base installato.
 )
-start microsoft-edge:https://ninite.com/7zip-brave-foxit-libreoffice-vlc/
+start "" ":https://ninite.com/7zip-brave-foxit-libreoffice-vlc/"
 pause
 goto :MainMenu
 
