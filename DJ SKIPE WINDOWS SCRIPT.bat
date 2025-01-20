@@ -915,6 +915,7 @@ if "%extraChoice%"=="3" (
     ) else (
         echo Installazione di PowerShell 7 in corso...
     )
+)
     
     winget install --id Microsoft.Powershell --source winget --silent --accept-package-agreements --accept-source-agreements
     
