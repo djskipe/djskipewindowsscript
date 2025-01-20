@@ -894,7 +894,7 @@ echo:
 echo              [0] Torna al menu precedente
 echo:       ______________________________________________________________
 echo:
-    set /p extraChoice="      Scegli Extra [1-12,0]: "
+    set /p extraChoice="      Scegli Extra [1-13,0]: "
 )
 
 if "%extraChoice%"=="0" goto :MainMenu
