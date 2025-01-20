@@ -854,10 +854,14 @@ if "%editionChoice%"=="3" (
     goto WinServer
 )
 if "%editionChoice%"=="4" (
-    start "" "https://drive.massgrave.dev/it_windows_server_2012_r2_vl_with_update_x64_dvd_6052792.iso"
+    start "" "https://drive.massgrave.dev/it_windows_server_2016_vl_x64_dvd_11636710.iso"
     goto WinServer
 )
 if "%editionChoice%"=="5" (
+    start "" "https://drive.massgrave.dev/it_windows_server_2012_r2_vl_with_update_x64_dvd_6052792.iso"
+    goto WinServer
+)
+if "%editionChoice%"=="6" (
     start "" "https://drive.massgrave.dev/it_windows_server_2008_r2_with_sp1_vl_build_x64_dvd_619596.iso"
     goto WinServer
 )
