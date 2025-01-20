@@ -526,21 +526,21 @@ if "%LANG%"=="EN" (
 if "%winChoice%"=="1" (
     cls
     echo: Downloading Windows 11...
-    start "" "https://software.download.prss.microsoft.com/dbazure/Win11_24H2_Italian_x64.iso?t=52b88a14-2732-4489-ac54-8233f950f32f&P1=1737205836&P2=601&P3=2&P4=3G48wwJiMPyfr45ItnbBLuIuYHCjimXpWUyGImBRWVNVjiKqSBj4vaKQDI6LKRRrZQHSNc91WLQWkQ0jT8ZXm30SsHmiOL%2fM2IlpfW7z7WmJLyj43sh8fYQ2z%2fAUIBu68Q02UD2MyC343agQjnC7VDlqhkLxo0oCmcI%2foRl7UHQFnX2XB1aSpg19skHkIjnhlSo6YLzgWYMrQD5wvAM%2bP36%2fWoC0XYaI3V1%2bgEgnhrGXxxFW3LYxNMTvcop%2b3efhftI7o6aiQnzqik74DXt%2bbaSSg1FQSFXeE0f%2bdvxJrIsB1g3fcTb87BiuNFSGO7q3oHiXJGVp33VTlKVQ199npg%3d%3d"
+    start "" "https://archive.org/download/Win11v24H2ITAx64/Win11_24H2_Italian_x64.iso"
     goto :DownWindows
 )
 
 if "%winChoice%"=="2" (
     cls
     echo: Downloading Windows 10...
-    start "" "https://delivery.activated.win/47c62492-92f1-49ef-8740-62989154e590/it-it_windows_10_consumer_editions_version_22h2_updated_nov_2024_x86_dvd_3eeacab9.iso?t=ac967221-29d9-4d79-9d04-282aaab25502&P1=1737141282&P2=601&P3=2&P4=7tvlhF7XjJMA0%2B45bPZYN8SASWzXxo8cO3l%2FUMVMQKs%3D"
+    start "" "https://archive.org/download/win-10-22-h-2-italian-x-64_202302/Win10_22H2_Italian_x64.iso"
     goto :DownWindows
 )
 
 if "%winChoice%"=="3" (
     cls
     echo: Downloading Windows 8.1...
-    start "" "https://software.download.prss.microsoft.com/dbazure/Win8.1_Italian_x64.iso?t=411b2b32-613a-490d-b5b4-960f793af0ed&P1=1737206229&P2=601&P3=2&P4=Maq8BzXR%2bhX%2f3051IIFG5Xex6B9SOOSZPf7Bhohg3E3KDtEx3tQGYTbysn2D%2b9Hjw29L82ner2JVgGVjMdnQmfptORF4FgAIMANq%2f2nbviLbppbtRVyuaEiya7hM72pr6g1Ca8K%2fXckJGHm7uMuV9ijdjTjf%2fE%2faiTHz5aF8delbxesYS%2fhv6IgpwAm5%2b1PTPgKoCxiRetka1aiYRlSdKZFJ2xaFQvu4ILZuWwYNLhGc96TiVJ30nHrfVSOsL5c3H8HcSIhyNtvhgGoAa4%2flbctMKZBLyOwl%2bweilsFN9ILHmc7uOCZ3zppau6R75PNCwZx1Zt3COhdhyoNvNP2Aew%3d%3d"
+    start "" "https://archive.org/download/Win8.1AIOITA/Microsoft.Windows.8.1.AiO.6in1.Core.Prof.ProWMC.X86.X64.RTM.9600.ITA%2BACT.iso"
     goto :DownWindows
 )
 
