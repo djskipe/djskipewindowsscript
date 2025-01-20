@@ -786,14 +786,13 @@ if "%LANG%"=="EN" (
 echo:
 echo:             [1] Windows XP Professional SP3 32-bit
 echo:             [2] Windows XP Professional SP2 64-bit (English only)
-if "%LANG%"=="EN"
-echo              [0] Back to previous menu
+if "%LANG%"=="EN" (
+    echo              [0] Back to previous menu
 ) else (
-echo              [0] Torna al menu precedente
+    echo              [0] Torna al menu precedente
 )
 
 echo:
-
 if "%LANG%"=="EN" (
     set /p archChoice="      Choose architecture [1-2,0]: "
 ) else (
@@ -842,7 +841,7 @@ if "%LANG%"=="EN" (
 )
 
 if "%editionChoice%"=="1" (
-    start "" "https://oemsoc.download.prss.microsoft.com/dbazure/X23-81962_26100.1742.240906-0331.ge_release_svc_refresh_SERVER_OEMRET_x64FRE_it-it.iso_48cb6aac-6a5f-4b42-8eb8-58e82f98e0ea?t=b7f5fbb0-2607-4b2c-8c6c-a38461db2668&P1=102817441220&P2=601&P3=2&P4=qNno3hapIKl8cJiUZp%2fOrX14cqNaI6jq5aNvVXCqzS3aQEdzH3jb7je57F%2bTkkfiysXwxZ2lYY9XJs8gcVMFqHolQQGLX%2fb%2fQXxMX96QFek8b3v8%2b9FzpZcccVBclC0F0bTSUZuEY%2fop%2fpaolR2gketpgFkvlc5VJokh1266Ab3Gsm4WKowQCvJ5gEgEgjN2JdErZHtMz76mBGjyg0lHRBrs98dZE8bsCscZbh4YpfHELdIt7Z1stOg0SQqiUF8nYm%2b3PVE4zh9w9sopgbUVnAyUUQNpiTr1esfeuf8WOMyAVfmyc2%2faSgmErMuruE84LHj4UbxL3nyvkiArzOs9mg%3d%3d"
+    start "" "https://archive.org/download/winserver2025ita/it-it_windows_server_2025_x64_dvd_98437899.iso"
     goto WinServer
 )
 if "%editionChoice%"=="2" (
