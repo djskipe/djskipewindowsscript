@@ -30,7 +30,7 @@ echo:
 echo:       ______________________________________________________________
 echo:
 if "%LANG%"=="EN" (
-    echo:                 DJ SKIPE WINDOWS SCRIPT v1.3.1
+    echo:                 DJ SKIPE WINDOWS SCRIPT v1.3.2
     echo:
     echo          This script allows you to easily run the Windows
     echo          debloater from this CMD. It also allows you to
@@ -49,7 +49,7 @@ if "%LANG%"=="EN" (
     echo:             [9] Change Language
     echo:             [0] Exit
 ) else (
-    echo:                 DJ SKIPE WINDOWS SCRIPT v1.3.1
+    echo:                 DJ SKIPE WINDOWS SCRIPT v1.3.2
     echo:
     echo          Questo script ti permette di eseguire il debloater 
     echo          di Windows in facilita' direttamente da questo CMD.
@@ -876,11 +876,10 @@ echo:                            Extra
 echo:
 echo:             [1] Adobe Suite Crack
 echo:             [2] Wise Care 365
-echo:             [3] Powershell 7
+echo:             [3] Powershell 7 Installer by dj skipe
 echo:             [4] Adobe Acrobat Pro DC 2024
 echo:             [5] Adobe Photoshop 2025
 echo:             [6] Adobe Premiere Pro 2025
-echo:             [7] Adobe Illustrator 2025 (zip password: 123)
 echo:             [8] Adobe After Effects 2025
 echo:             [9] MiniTool Partition Wizard Technician 12.9
 echo:             [10] Revo Uninstaller Pro
@@ -904,7 +903,7 @@ if "%extraChoice%"=="0" goto :MainMenu
 
 
 if "%extraChoice%"=="1" (
-    start "" "https://github.com/wangzhenjjcn/AdobeGenp/releases/download/AdobeGenp-3.4.2-CGP/AdobeGenp-3.4.2-CGP.exe"
+    start "" "https://github.com/wangzhenjjcn/AdobeGenp/releases/download/AdobeGenp-3.5.0-UniversalPath/AdobeGenp-3.5.0-UniversalPath.exe"
     goto Extra
 )
 
@@ -936,7 +935,7 @@ if "%extraChoice%"=="3" (
     goto Extra
 )
 if "%extraChoice%"=="4" (
-    start "" "https://download2276.mediafire.com/cxxum78y8zqgN_tJuU36Elb1r3l7lFBTmK5EAve1C5152EfPM7eiv6zaCdX_xj_KJkVSSZa07LiPseGsEerZp2e5S1J0MjSdGlAJ-D0V1bVIFD25nV_cZ7PKYETrCAUcqGrKdcYYnwlRZQfLOQeOWacCz-Cii4FxyrTyn2vtMoWYqNs/wis3cl6fgdhsh6t/AdobeAcrobatProDC2024.005.20320x86.exe"
+    start "" "https://www.mediafire.com/file/8stg5lbcjk86eth/AdobeAcrobatClassic24.001.30225x64.exe/file"
     goto Extra
 )
 if "%extraChoice%"=="5" (
@@ -944,11 +943,11 @@ if "%extraChoice%"=="5" (
     goto Extra
 )
 if "%extraChoice%"=="6" (
-    start "" "https://download2362.mediafire.com/2agtqmude9ugQQ0uWsn2yv99DAfkJMnL2nebOVOjCg83X9d2yy0WMBayXvPx81NUzboLSGhx0JxJzYC-2jVwQ1hlHIKc_KYX24z524rzi2xJvWetrLm6QPxaWChDnndu6-7qhGwD_vjluz36HlGbDBn-ebNS2QJNpvf_dKajJGk--2E/bs6j6oxa34husl2/AdobePremierePro2025v25.1.0.073x64Repack.exe"
+    start "" "https://www.mediafire.com/file/bs6j6oxa34husl2/AdobePremierePro2025v25.1.0.073x64Repack.exe/file"
     goto Extra
 )
 if "%extraChoice%"=="7" (
-    start "" "https://s2-download.xyz/a208c36e6a1aeb2b?ref=3b42157738c4f54a769a03bb72768090"
+    start "" "https://www.mediafire.com/file/0dpuu7xiwkuku79/AdobeIllustrator2025v29.2.1.116x64Repack.exe/file"
     goto Extra
 )
 if "%extraChoice%"=="8" (
