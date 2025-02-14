@@ -30,7 +30,7 @@ echo:
 echo:       ______________________________________________________________
 echo:
 if "%LANG%"=="EN" (
-    echo:                 DJ SKIPE WINDOWS SCRIPT v1.3.2
+    echo:                 DJ SKIPE WINDOWS SCRIPT v1.3.3
     echo:
     echo          This script allows you to easily run the Windows
     echo          debloater from this CMD. It also allows you to
@@ -49,7 +49,7 @@ if "%LANG%"=="EN" (
     echo:             [9] Change Language
     echo:             [0] Exit
 ) else (
-    echo:                 DJ SKIPE WINDOWS SCRIPT v1.3.2
+    echo:                 DJ SKIPE WINDOWS SCRIPT v1.3.3
     echo:
     echo          Questo script ti permette di eseguire il debloater 
     echo          di Windows in facilita' direttamente da questo CMD.
