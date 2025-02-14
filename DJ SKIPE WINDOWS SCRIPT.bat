@@ -170,13 +170,37 @@ goto :MainMenu
 
 :RunOfficeToolPlus
 if "%LANG%"=="EN" (
-    echo Downloading and launching Office Tool Plus...
+    echo Downloading and launching application...
 ) else (
-    echo Scarico e avvio Office Tool Plus...
+    echo Download e avvio dell'applicazione in corso...
 )
-powershell -NoProfile -Command "Invoke-WebRequest -Uri 'https://otp.landian.vip/redirect/download.php?type=runtime&arch=x64&site=github' -OutFile '%UserProfile%\Downloads\officetoolplus_x64.zip'"
-powershell -NoProfile -Command "Expand-Archive -Path '%UserProfile%\Downloads\officetoolplus_x64.zip' -DestinationPath '%UserProfile%\Downloads\officetoolplus_x64.zip' -Force"
-start "" "%UserProfile%\Downloads\officetoolplus_x64\office tool\office tool plus.exe"
+
+:: Imposta il percorso di download
+set "downloadPath=%UserProfile%\Downloads\OfficeTool.exe"
+
+:: Download del file usando PowerShell
+powershell -NoProfile -Command "Invoke-WebRequest -Uri 'https://download1587.mediafire.com/a5zxjuzci9eg3Lz3aR4JOsOo9ePz7_ZN6Yctu-evsEXzhXJ3E0OgtGpb9WC2ojgv3iAMlL6CJPAU3tD-J1f3Efoz4K3bOHuP0qDlicoWMPmT-BuZPOCSWZxy_E_-daLbOW9JucqWXptCXHfec18u_sy_2d0QZKIYPjYSG1R_wZ82ilw/xw81d73bdyvrv3v/Office+Tool+Plus.exe' -OutFile '%downloadPath%'"
+
+:: Verifica se il download è riuscito
+if exist "%downloadPath%" (
+    if "%LANG%"=="EN" (
+        echo Download completed successfully.
+        echo Launching application...
+    ) else (
+        echo Download completato con successo.
+        echo Avvio dell'applicazione...
+    )
+    
+    :: Avvia l'applicazione
+    start "" "%downloadPath%"
+) else (
+    if "%LANG%"=="EN" (
+        echo Error during download.
+    ) else (
+        echo Errore durante il download.
+    )
+)
+
 pause
 goto :MainMenu
 
