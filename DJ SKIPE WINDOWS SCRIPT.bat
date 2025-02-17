@@ -175,30 +175,49 @@ if "%LANG%"=="EN" (
     echo Download e avvio dell'applicazione in corso...
 )
 
-:: Imposta il percorso di download
-set "downloadPath=%UserProfile%\Downloads\OfficeTool.exe"
+:: Set download path
+set "downloadPath=%UserProfile%\Downloads\OTP_Runtime.zip"
+set "extractPath=%UserProfile%\Downloads\OTP"
 
-:: Download del file usando PowerShell
-powershell -NoProfile -Command "Invoke-WebRequest -Uri 'https://download1587.mediafire.com/a5zxjuzci9eg3Lz3aR4JOsOo9ePz7_ZN6Yctu-evsEXzhXJ3E0OgtGpb9WC2ojgv3iAMlL6CJPAU3tD-J1f3Efoz4K3bOHuP0qDlicoWMPmT-BuZPOCSWZxy_E_-daLbOW9JucqWXptCXHfec18u_sy_2d0QZKIYPjYSG1R_wZ82ilw/xw81d73bdyvrv3v/Office+Tool+Plus.exe' -OutFile '%downloadPath%'"
+:: Download the file using PowerShell with the new direct URL
+powershell -NoProfile -Command "$ProgressPreference = 'SilentlyContinue'; Invoke-WebRequest -Uri 'https://otp.landian.vip/redirect/download.php?type=runtime&arch=x64&site=github' -OutFile '%downloadPath%'"
 
-:: Verifica se il download è riuscito
+:: Check if download was successful
 if exist "%downloadPath%" (
     if "%LANG%"=="EN" (
         echo Download completed successfully.
-        echo Launching application...
+        echo Extracting files...
     ) else (
         echo Download completato con successo.
-        echo Avvio dell'applicazione...
+        echo Estrazione dei file in corso...
     )
     
-    :: Avvia l'applicazione
-    start "" "%downloadPath%"
-) else (
-    if "%LANG%"=="EN" (
-        echo Error during download.
+    :: Create extraction directory if it doesn't exist
+    if not exist "%extractPath%" mkdir "%extractPath%"
+    
+    :: Extract the ZIP file using PowerShell
+    powershell -NoProfile -Command "Expand-Archive -Path '%downloadPath%' -DestinationPath '%extractPath%' -Force"
+    
+    :: Launch the application
+    if exist "%extractPath%\Office Tool Plus.exe" (
+        start "" "%extractPath%\Office Tool Plus.exe"
     ) else (
-        echo Errore durante il download.
+        :: Try alternative path in case it's in a subfolder
+        for /r "%extractPath%" %%i in (*"Office Tool Plus.exe") do (
+            start "" "%%i"
+            goto :continue
+        )
+        
+        if "%LANG%"=="EN" (
+            echo Error: Could not find Office Tool Plus executable.
+        ) else (
+            echo Errore: Impossibile trovare l'eseguibile di Office Tool Plus.
+        )
     )
+    
+    :continue
+    :: Clean up downloaded zip file
+    del "%downloadPath%"
 )
 
 pause
