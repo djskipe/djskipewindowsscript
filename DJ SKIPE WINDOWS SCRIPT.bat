@@ -1000,6 +1000,8 @@ echo:             [14] WinRar 7.10
 echo:             [15] Topaz Video AI 6.0.4
 echo:             [16] StartAllBack
 echo:             [17] Hard Disk Sentinel Pro
+echo:             [18] Advanced IP Scanner
+
 
 if "%LANG%"=="EN" (
 echo              [0] Back to previous menu
@@ -1105,6 +1107,11 @@ if "%extraChoice%"=="17" (
     start "" "https://www.mediafire.com/file/274tmjzrf8w8yw8/Hard+Disk+Sentinel+Pro+6.20.7.7z/file"
     goto Extra
 )
+if "%extraChoice%"=="18" (
+    start "" "https://www.advanced-ip-scanner.com/it/download/"
+    goto Extra
+)
+
 
 goto :Extra
 
