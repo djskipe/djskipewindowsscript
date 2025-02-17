@@ -116,7 +116,7 @@ if "%LANG%"=="EN" (
     echo:             [9] Change Language
     echo:             [0] Exit
 ) else (
-    echo:                 DJ SKIPE WINDOWS SCRIPT v1.3.3
+    echo:                 DJ SKIPE WINDOWS SCRIPT v1.4.0
     echo:
     echo          Questo script ti permette di eseguire il debloater 
     echo          di Windows in facilita' direttamente da questo CMD.
@@ -231,7 +231,7 @@ if "%LANG%"=="EN" (
     echo.
     echo Software base installato.
 )
-start "" "https://ninite.com/7zip-brave-foxit-libreoffice-vlc/"
+start "" "https://ninite.com/7zip-brave-foxit-openoffice-vlc/"
 pause
 goto :MainMenu
 
