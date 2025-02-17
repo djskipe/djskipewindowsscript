@@ -994,19 +994,24 @@ echo:             [8] Adobe After Effects 2025
 echo:             [9] MiniTool Partition Wizard Technician 12.9
 echo:             [10] Revo Uninstaller Pro
 echo:             [11] Poweroff
-echo:             [12] Glasswire 
-echo:             [13] Windows XP Activator             
+echo:             [12] Glasswire
+echo:             [13] Windows XP Activator       
+echo:             [14] WinRar 7.10  
+echo:             [15] Topaz Video AI 6.0.4
+echo:             [16] StartAllBack
+echo:             [17] Hard Disk Sentinel Pro
+
 if "%LANG%"=="EN" (
 echo              [0] Back to previous menu
 echo:       ______________________________________________________________
 echo:
-	set /p extraChoice="      Choose Extra [1-13,0]: "
+	set /p extraChoice="      Choose Extra [1-17,0]: "
 	
 ) else (
 echo              [0] Torna al menu precedente
 echo:       ______________________________________________________________
 echo:
-    set /p extraChoice="      Scegli Extra [1-13,0]: "
+    set /p extraChoice="      Scegli Extra [1-17,0]: "
 )
 
 if "%extraChoice%"=="0" goto :MainMenu
@@ -1082,6 +1087,22 @@ if "%extraChoice%"=="12" (
 )
 if "%extraChoice%"=="13" (
     start "" "https://archive.org/download/xp_activate32_202305/xp_activate32.zip"
+    goto Extra
+)
+if "%extraChoice%"=="14" (
+    start "" "https://download2263.mediafire.com/jx2owxsnx07gtfKnNyIw_D8Bg-JAqSBaK2HPDBBKRsaB6TL46YMHH9ecqq-bicwlBQtw4HfcV1dRBl6yNtJqX_QtX1KOiJwgevNQ9QXW9O-mfh7GlKXhaE8wXzHeW6t_0WVmh18_oa3_Fmv_JdEJRdcFX0Nh9lCH7XlIpMLZ5xmBO7Y/3v0l7z2qn2cvpob/WinRAR7.10x64.exe"
+    goto Extra
+)
+if "%extraChoice%"=="15" (
+    start "" "https://download2283.mediafire.com/696bngrjqlbgym-Ev10pB5zHWwK8q12cghgIjLgxIILhlcyfMJIhXqxaHKHrMd31GJQSg4SOXgf8mQE53KOB_IP_G7M9BdlqXOmiJlM6EWsk2HWLQaqrVGsKT1zq5XCWQwvACIvpm3lX8uglO3EVLlNKrzP7xfKFpBWNCykyyl_kbZA/5sb1b29mhfq51rm/TopazVideoAI6.0.4x64.exe.xz"
+    goto Extra
+)
+if "%extraChoice%"=="16" (
+    start "" "https://download1580.mediafire.com/jsb4q4h7e0fgx_E69z1odzA2tHfu2WPcY271ICzajEzx_6LwrtogcUYyd7NlTuf3lYLxDQiMunnqIYtODr48PdS1JwD_8OKtBXgdFNh_Mfd4nWPwVQTrMxni3UKjnB2iVxXQCTvOKM2btzO5MBpUzI3-9g99VmOThHn1-rzp1SNueqY/icj3cwv6j8522ky/StartAllBack%2B%2B3.9.4.5246x64.exe.xz"
+    goto Extra
+)
+if "%extraChoice%"=="17" (
+    start "" "https://www.mediafire.com/file/274tmjzrf8w8yw8/Hard+Disk+Sentinel+Pro+6.20.7.7z/file"
     goto Extra
 )
 
