@@ -748,7 +748,7 @@ echo:             [2] Windows 7 Enterprise x86
 if "%LANG%"=="EN" (
 echo              [0] Back to previous menu
 ) else (
-echo              [0] Torna al menu precedente
+echo             [0] Torna al menu precedente
 )
 
 echo:
