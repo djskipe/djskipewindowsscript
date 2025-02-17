@@ -1,6 +1,73 @@
 @echo off
 setlocal enabledelayedexpansion
 
+:: Version information
+set "CURRENT_VERSION=1.4.0"
+set "GITHUB_API_URL=https://api.github.com/repos/djskipe/djskipewindowsscript/releases/latest"
+
+:: Check for updates before showing the menu
+call :CheckForUpdates
+
+:LanguageSelect
+cls
+:: Rest of your existing language selection code...
+echo Continuing without update...
+:: Qui prosegue normalmente il codice esistente
+goto :eof
+
+:CheckForUpdates
+:: Create a temporary file to store the API response
+set "temp_file=%temp%\github_response.txt"
+
+:: Use PowerShell to fetch the latest release information
+powershell -Command "(Invoke-WebRequest -Uri '%GITHUB_API_URL%' -UseBasicParsing).Content" > "%temp_file%"
+
+:: Extract the latest version and download URL using PowerShell
+for /f "tokens=* usebackq" %%a in (`powershell -Command "Get-Content '%temp_file%' | ConvertFrom-Json | Select-Object -ExpandProperty tag_name"`) do set "LATEST_VERSION=%%a"
+for /f "tokens=* usebackq" %%a in (`powershell -Command "Get-Content '%temp_file%' | ConvertFrom-Json | Select-Object -ExpandProperty assets | Select-Object -First 1 | Select-Object -ExpandProperty browser_download_url"`) do set "DOWNLOAD_URL=%%a"
+
+:: Remove the temporary file
+del "%temp_file%"
+
+:: Compare versions
+if not "%LATEST_VERSION%"=="%CURRENT_VERSION%" (
+    cls
+    echo:
+    echo  New version available: %LATEST_VERSION% ^(Current: %CURRENT_VERSION%^)
+    echo:
+    set /p "UPDATE_CHOICE=Do you want to update now? (Y/N): "
+    
+    if /i "!UPDATE_CHOICE!"=="Y" (
+        :: Download the new version
+        echo Downloading update...
+        powershell -Command "Invoke-WebRequest -Uri '%DOWNLOAD_URL%' -OutFile '%~dp0update.bat'"
+
+        :: Check if the update.bat file exists
+        if exist "%~dp0update.bat" (
+            :: Create an updater script in a temporary location (to avoid conflict with the current script)
+            echo @echo off > "%temp%\update_script.bat"
+            echo timeout /t 2 /nobreak ^> nul >> "%temp%\update_script.bat"
+            echo move /y "%~dp0update.bat" "%~nx0" >> "%temp%\update_script.bat"
+            echo start "" "%~nx0" >> "%temp%\update_script.bat"
+            echo del "%temp%\update_script.bat" >> "%temp%\update_script.bat"
+            
+            :: Run the updater script in a new command window to avoid conflict
+            start cmd /c "%temp%\update_script.bat"
+            exit
+        ) else (
+            echo Error: Update file not found.
+            pause
+            exit
+        )
+    ) else (
+        echo Skipping update...
+        goto LanguageSelect
+    )
+)
+goto :eof
+
+setlocal enabledelayedexpansion
+
 :LanguageSelect
 cls
 echo:
@@ -30,7 +97,7 @@ echo:
 echo:       ______________________________________________________________
 echo:
 if "%LANG%"=="EN" (
-    echo:                 DJ SKIPE WINDOWS SCRIPT v1.3.3
+    echo:                 DJ SKIPE WINDOWS SCRIPT v1.4.0
     echo:
     echo          This script allows you to easily run the Windows
     echo          debloater from this CMD. It also allows you to
