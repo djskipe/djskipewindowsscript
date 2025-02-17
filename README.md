@@ -38,7 +38,7 @@ This script automates the activation of Windows and Office while streamlining th
   - 🗂 7zip  
   - 🌐 Brave  
   - 📑 Foxit Reader  
-  - 📚 LibreOffice  
+  - 📚 OpenOffice  
   - 🎵 VLC  
 
 ---
