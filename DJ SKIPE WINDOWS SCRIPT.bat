@@ -2,7 +2,7 @@
 setlocal enabledelayedexpansion
 
 :: Version information
-set "CURRENT_VERSION=1.4.0"
+set "CURRENT_VERSION=1.4.1"
 set "GITHUB_API_URL=https://api.github.com/repos/djskipe/djskipewindowsscript/releases/latest"
 
 :: Check for updates before showing the menu
@@ -97,7 +97,7 @@ echo:
 echo:       ______________________________________________________________
 echo:
 if "%LANG%"=="EN" (
-    echo:                 DJ SKIPE WINDOWS SCRIPT v1.4.0
+    echo:                 DJ SKIPE WINDOWS SCRIPT v1.4.1
     echo:
     echo          This script allows you to easily run the Windows
     echo          debloater from this CMD. It also allows you to
@@ -116,7 +116,7 @@ if "%LANG%"=="EN" (
     echo:             [9] Change Language
     echo:             [0] Exit
 ) else (
-    echo:                 DJ SKIPE WINDOWS SCRIPT v1.4.0
+    echo:                 DJ SKIPE WINDOWS SCRIPT v1.4.1
     echo:
     echo          Questo script ti permette di eseguire il debloater 
     echo          di Windows in facilita' direttamente da questo CMD.
@@ -991,7 +991,7 @@ echo:             [4] Adobe Acrobat Pro DC 2024
 echo:             [5] Adobe Photoshop 2025
 echo:             [6] Adobe Premiere Pro 2025
 echo:             [8] Adobe After Effects 2025
-echo:             [9] MiniTool Partition Wizard Technician 12.9
+echo:             [9] MiniTool Partition Wizard Technician 12.8
 echo:             [10] Revo Uninstaller Pro
 echo:             [11] Poweroff
 echo:             [12] Glasswire
@@ -1072,7 +1072,7 @@ if "%extraChoice%"=="8" (
     goto Extra
 )
 if "%extraChoice%"=="9" (
-    start "" "https://download2303.mediafire.com/nzdul5186wegPipTxg3QiEJTcN5Txa1YwPEusyRyOFaYsGI8cL6Txet6oLwVMaqxe6O6Mxex9E7858bELiecPzgus72T0MqL4B3qdBHsoJ3_iKbS0kgCTv3tPoosMZ12sxjOntLEvdkUzw_mSsOSweExC5o1IgtzPXsVlEK2I_MkC_c/ydflmgh2hlhrrtc/MiniToolPartitionWizardTechnician12.9.tar.xz"
+    start "" "https://www.mediafire.com/file/xdb83hmd58cehmv/MiniTool_Partition_Wizard_v12.8.rar/file"
     goto Extra
 )
 if "%extraChoice%"=="10" (
