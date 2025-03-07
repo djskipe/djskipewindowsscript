@@ -1016,7 +1016,7 @@ echo:             [11] Poweroff
 echo:             [12] Glasswire
 echo:             [13] Windows XP Activator       
 echo:             [14] WinRar 7.10  
-echo:             [15] Topaz Video AI 6.0.4
+echo:             [15] Topaz Video AI 6.1.2
 echo:             [16] StartAllBack
 echo:             [17] Hard Disk Sentinel Pro
 echo:             [18] Advanced IP Scanner
@@ -1118,7 +1118,7 @@ if "%extraChoice%"=="14" (
     goto Extra
 )
 if "%extraChoice%"=="15" (
-    start "" "https://download2283.mediafire.com/696bngrjqlbgym-Ev10pB5zHWwK8q12cghgIjLgxIILhlcyfMJIhXqxaHKHrMd31GJQSg4SOXgf8mQE53KOB_IP_G7M9BdlqXOmiJlM6EWsk2HWLQaqrVGsKT1zq5XCWQwvACIvpm3lX8uglO3EVLlNKrzP7xfKFpBWNCykyyl_kbZA/5sb1b29mhfq51rm/TopazVideoAI6.0.4x64.exe.xz"
+    start "" "https://www.mediafire.com/file/macakr1kr1adjex/Topaz_Video_AI_Pro_6.1.2.rar/file"
     goto Extra
 )
 if "%extraChoice%"=="16" (
