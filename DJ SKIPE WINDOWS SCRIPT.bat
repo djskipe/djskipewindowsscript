@@ -2,7 +2,7 @@
 setlocal enabledelayedexpansion
 
 :: Version information
-set "CURRENT_VERSION=1.4.1"
+set "CURRENT_VERSION=1.5"
 set "GITHUB_API_URL=https://api.github.com/repos/djskipe/djskipewindowsscript/releases/latest"
 
 :: Check for updates before showing the menu
@@ -10,9 +10,28 @@ call :CheckForUpdates
 
 :LanguageSelect
 cls
-:: Rest of your existing language selection code...
+echo:
+echo:       ______________________________________________________________
+echo:
+echo:                 SELECT LANGUAGE / SELEZIONA LINGUA
+echo:
+echo:             [1] English
+echo:             [2] Italiano
+echo:       ______________________________________________________________
+echo:
+set /p langChoice="Choose your language / Scegli la tua lingua [1-2]: "
+
+if "%langChoice%"=="1" (
+    set "LANG=EN"
+    goto :MainMenu
+)
+if "%langChoice%"=="2" (
+    set "LANG=IT"
+    goto :MainMenu
+)
+goto :LanguageSelect
+
 echo Continuing without update...
-:: Qui prosegue normalmente il codice esistente
 goto :eof
 
 :CheckForUpdates
@@ -97,7 +116,7 @@ echo:
 echo:       ______________________________________________________________
 echo:
 if "%LANG%"=="EN" (
-    echo:                 DJ SKIPE WINDOWS SCRIPT v1.4.1
+    echo:                 DJ SKIPE WINDOWS SCRIPT v1.5
     echo:
     echo          This script allows you to easily run the Windows
     echo          debloater from this CMD. It also allows you to
@@ -116,7 +135,7 @@ if "%LANG%"=="EN" (
     echo:             [9] Change Language
     echo:             [0] Exit
 ) else (
-    echo:                 DJ SKIPE WINDOWS SCRIPT v1.4.1
+    echo:                 DJ SKIPE WINDOWS SCRIPT v1.5
     echo:
     echo          Questo script ti permette di eseguire il debloater 
     echo          di Windows in facilita' direttamente da questo CMD.
@@ -980,11 +999,11 @@ goto WinServer
 :Extra
 cls
 echo:
-echo:       ______________________________________________________________
+echo:       ___________________________________________________________________________________________________________
 echo:
 echo:                            Extra
 echo:
-echo:             [1] Adobe Suite Crack
+echo:             [1] Adobe Suite Crack                                     [21] Revo Uninstaller Pro Portable          
 echo:             [2] Wise Care 365
 echo:             [3] Powershell 7 Installer by dj skipe
 echo:             [4] Adobe Acrobat Pro DC 2024
@@ -1001,19 +1020,22 @@ echo:             [15] Topaz Video AI 6.0.4
 echo:             [16] StartAllBack
 echo:             [17] Hard Disk Sentinel Pro
 echo:             [18] Advanced IP Scanner
+echo:             [19] Em Client Pro 10.2.1712
+echo:             [20] Any Excel Password Recovery
 
-
+echo:
 if "%LANG%"=="EN" (
 echo              [0] Back to previous menu
-echo:       ______________________________________________________________
+echo:      ___________________________________________________________________________________________________________
+
 echo:
-	set /p extraChoice="      Choose Extra [1-17,0]: "
+	set /p extraChoice="      Choose Extra [1-21,0]: "
 	
 ) else (
 echo              [0] Torna al menu precedente
-echo:       ______________________________________________________________
+echo:      ___________________________________________________________________________________________________________
 echo:
-    set /p extraChoice="      Scegli Extra [1-17,0]: "
+    set /p extraChoice="      Scegli Extra [1-21,0]: "
 )
 
 if "%extraChoice%"=="0" goto :MainMenu
@@ -1046,7 +1068,7 @@ if "%extraChoice%"=="3" (
         if "%LANG%"=="EN" (
             echo PowerShell 7 has been successfully installed.
         ) else (
-            echo PowerShell 7 è stato installato con successo.
+            echo PowerShell 7 e' stato installato con successo.
         )
     )
     goto Extra
@@ -1111,7 +1133,18 @@ if "%extraChoice%"=="18" (
     start "" "https://www.advanced-ip-scanner.com/it/download/"
     goto Extra
 )
-
+if "%extraChoice%"=="19" (
+    start "" "https://www.mediafire.com/file/tfayj9ascgphjw5/eM_Client_Pro_10.2.1712.rar/file"
+    goto Extra
+)
+if "%extraChoice%"=="20" (
+    start "" "https://www.mediafire.com/file/bgjgtwh2r5vka9b/Any_Excel_Password_Recovery_11.8.0.7z/file"
+    goto Extra
+)
+if "%extraChoice%"=="21" (
+    start "" "https://www.mediafire.com/file/lx5w3gf6xpke50f/RevoUninstallerPortable_5.1.7.rar/file"
+    goto Extra
+)
 
 goto :Extra
 
