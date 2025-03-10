@@ -2,7 +2,7 @@
 setlocal enabledelayedexpansion
 
 :: Version information
-set "CURRENT_VERSION=1.5"
+set "CURRENT_VERSION=1.5.1"
 set "GITHUB_API_URL=https://api.github.com/repos/djskipe/djskipewindowsscript/releases/latest"
 
 :: Check for updates before showing the menu
@@ -116,7 +116,7 @@ echo:
 echo:       ______________________________________________________________
 echo:
 if "%LANG%"=="EN" (
-    echo:                 DJ SKIPE WINDOWS SCRIPT v1.5
+    echo:                 DJ SKIPE WINDOWS SCRIPT v1.5.1
     echo:
     echo          This script allows you to easily run the Windows
     echo          debloater from this CMD. It also allows you to
@@ -135,7 +135,7 @@ if "%LANG%"=="EN" (
     echo:             [9] Change Language
     echo:             [0] Exit
 ) else (
-    echo:                 DJ SKIPE WINDOWS SCRIPT v1.5
+    echo:                 DJ SKIPE WINDOWS SCRIPT v1.5.1
     echo:
     echo          Questo script ti permette di eseguire il debloater 
     echo          di Windows in facilita' direttamente da questo CMD.
@@ -1006,7 +1006,7 @@ echo:
 echo:             [1] Adobe Suite Crack                                     [21] Revo Uninstaller Pro Portable          
 echo:             [2] Wise Care 365
 echo:             [3] Powershell 7 Installer by dj skipe
-echo:             [4] Adobe Acrobat Pro DC 2024
+echo:             [4] Adobe Acrobat Pro DC 2025
 echo:             [5] Adobe Photoshop 2025
 echo:             [6] Adobe Premiere Pro 2025
 echo:             [8] Adobe After Effects 2025
@@ -1074,7 +1074,7 @@ if "%extraChoice%"=="3" (
     goto Extra
 )
 if "%extraChoice%"=="4" (
-    start "" "https://www.mediafire.com/file/8stg5lbcjk86eth/AdobeAcrobatClassic24.001.30225x64.exe/file"
+    start "" "https://www.mediafire.com/file/kwad008fy1vw1na/AdobeAcrobatProDC2025.001.20428x86.exe/"
     goto Extra
 )
 if "%extraChoice%"=="5" (
@@ -1126,7 +1126,7 @@ if "%extraChoice%"=="16" (
     goto Extra
 )
 if "%extraChoice%"=="17" (
-    start "" "https://www.mediafire.com/file/274tmjzrf8w8yw8/Hard+Disk+Sentinel+Pro+6.20.7.7z/file"
+    start "" "https://www.mediafire.com/file/lgeorvdwvkhk30p/Hard_Disk_Sentinel_Pro_v6.20.8.rar/file"
     goto Extra
 )
 if "%extraChoice%"=="18" (
