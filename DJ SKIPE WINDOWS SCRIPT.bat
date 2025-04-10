@@ -1004,21 +1004,21 @@ echo:
 echo:                            Extra
 echo:
 echo:             [1] Adobe Suite Crack                                     [21] Revo Uninstaller Pro Portable          
-echo:             [2] Wise Care 365
-echo:             [3] Powershell 7 Installer by dj skipe
+echo:             [2] Wise Care 365 7.2.2                                   [22] Acronis True Image 41810
+echo:             [3] Powershell 7 Installer by dj skipe                     
 echo:             [4] Adobe Acrobat Pro DC 2025
 echo:             [5] Adobe Photoshop 2025
 echo:             [6] Adobe Premiere Pro 2025
 echo:             [8] Adobe After Effects 2025
 echo:             [9] MiniTool Partition Wizard Technician 12.8
-echo:             [10] Revo Uninstaller Pro
+echo:             [10] Revo Uninstaller Pro 5.3.7
 echo:             [11] Poweroff
 echo:             [12] Glasswire
 echo:             [13] Windows XP Activator       
-echo:             [14] WinRar 7.10  
-echo:             [15] Topaz Video AI 6.1.2
-echo:             [16] StartAllBack
-echo:             [17] Hard Disk Sentinel Pro
+echo:             [14] WinRar 7.11
+echo:             [15] Topaz Video AI 6.2.0
+echo:             [16] StartAllBack 3.9.7.5268
+echo:             [17] Hard Disk Sentinel Pro 6.30
 echo:             [18] Advanced IP Scanner
 echo:             [19] Em Client Pro 10.2.1712
 echo:             [20] Any Excel Password Recovery
@@ -1047,7 +1047,7 @@ if "%extraChoice%"=="1" (
 )
 
 if "%extraChoice%"=="2" (
-    start "" "https://dl.tickcoupon.cloud/WiseCare365_v7.0.2_TickGiveaway.exe"
+    start "" "https://www.mediafire.com/file/75zpyfurvsf5i81/Wise_Care_365PRO_v7.2.2.exe/file"
     goto Extra
 )
 if "%extraChoice%"=="3" (
@@ -1098,7 +1098,7 @@ if "%extraChoice%"=="9" (
     goto Extra
 )
 if "%extraChoice%"=="10" (
-    start "" "https://download1501.mediafire.com/zjqm2151zeig7M-iSDyB8xO5VgLG4BdQJ-SnjhcIK4MJAzOChCpFsWIf--sw5QOYTPQ3DfmuG9I0aZwTlFJ9CZX9byPcWZ0JFJ84gj4YsMSGF0lLvFrqsqO-6fpirIUrlPj2g4Ro7aPRmr7sqHdrdJ9Cho4EkM2qXLZK8C7yfKbRZU4/v5jbz2w6f5f5arn/Revo+Uninstaller+Pro+5.3.5.7z"
+    start "" "https://www.mediafire.com/file/29xbfv36q8x7yp6/Revo_Uninstaller_Pro_5.3.7.rar/file"
     goto Extra
 )
 if "%extraChoice%"=="11" (
@@ -1114,19 +1114,19 @@ if "%extraChoice%"=="13" (
     goto Extra
 )
 if "%extraChoice%"=="14" (
-    start "" "https://download2263.mediafire.com/jx2owxsnx07gtfKnNyIw_D8Bg-JAqSBaK2HPDBBKRsaB6TL46YMHH9ecqq-bicwlBQtw4HfcV1dRBl6yNtJqX_QtX1KOiJwgevNQ9QXW9O-mfh7GlKXhaE8wXzHeW6t_0WVmh18_oa3_Fmv_JdEJRdcFX0Nh9lCH7XlIpMLZ5xmBO7Y/3v0l7z2qn2cvpob/WinRAR7.10x64.exe"
+    start "" "https://www.mediafire.com/file/ax2lbg3x1ulyw7w/WinRAR_v7.11.rar/file"
     goto Extra
 )
 if "%extraChoice%"=="15" (
-    start "" "https://www.mediafire.com/file/macakr1kr1adjex/Topaz_Video_AI_Pro_6.1.2.rar/file"
+    start "" "https://www.mediafire.com/file/88zt3k0qmy6w35o/TopazVideoAI6.2.0x64.exe.xz/file"
     goto Extra
 )
 if "%extraChoice%"=="16" (
-    start "" "https://download1580.mediafire.com/jsb4q4h7e0fgx_E69z1odzA2tHfu2WPcY271ICzajEzx_6LwrtogcUYyd7NlTuf3lYLxDQiMunnqIYtODr48PdS1JwD_8OKtBXgdFNh_Mfd4nWPwVQTrMxni3UKjnB2iVxXQCTvOKM2btzO5MBpUzI3-9g99VmOThHn1-rzp1SNueqY/icj3cwv6j8522ky/StartAllBack%2B%2B3.9.4.5246x64.exe.xz"
+    start "" "https://www.mediafire.com/file/fyhhjwrpqfoqk9p/StartAllBack++3.9.7.5268x64.exe.xz/file"
     goto Extra
 )
 if "%extraChoice%"=="17" (
-    start "" "https://www.mediafire.com/file/lgeorvdwvkhk30p/Hard_Disk_Sentinel_Pro_v6.20.8.rar/file"
+    start "" "https://www.mediafire.com/file/tvhfxlwu3z3ktp8/Hard_Disk_Sentinel_Pro_v6.30.rar/file"
     goto Extra
 )
 if "%extraChoice%"=="18" (
@@ -1145,6 +1145,11 @@ if "%extraChoice%"=="21" (
     start "" "https://www.mediafire.com/file/lx5w3gf6xpke50f/RevoUninstallerPortable_5.1.7.rar/file"
     goto Extra
 )
+if "%extraChoice%"=="22" (
+    start "" "https://www.mediafire.com/file/lx5w3gf6xpke50f/RevoUninstallerPortable_5.1.7.rar/file"
+    goto Extra
+)
+
 
 goto :Extra
 
