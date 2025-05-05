@@ -2,7 +2,7 @@
 setlocal enabledelayedexpansion
 
 :: Version information
-set "CURRENT_VERSION=1.6.0"
+set "CURRENT_VERSION=1.6.1"
 set "GITHUB_API_URL=https://api.github.com/repos/djskipe/djskipewindowsscript/releases/latest"
 
 :: Check for updates before showing the menu
@@ -116,7 +116,7 @@ echo:
 echo:       ______________________________________________________________
 echo:
 if "%LANG%"=="EN" (
-    echo:                 DJ SKIPE WINDOWS SCRIPT v1.6.0
+    echo:                 DJ SKIPE WINDOWS SCRIPT v1.6.1
     echo:
     echo          This script allows you to easily run the Windows
     echo          debloater from this CMD. It also allows you to
@@ -135,7 +135,7 @@ if "%LANG%"=="EN" (
     echo:             [9] Change Language
     echo:             [0] Exit
 ) else (
-    echo:                 DJ SKIPE WINDOWS SCRIPT v1.6.0
+    echo:                 DJ SKIPE WINDOWS SCRIPT v1.6.1
     echo:
     echo          Questo script ti permette di eseguire il debloater 
     echo          di Windows in facilita' direttamente da questo CMD.
@@ -1009,6 +1009,7 @@ echo:             [3] Powershell 7 Installer by dj skipe
 echo:             [4] Adobe Acrobat Pro DC 2025
 echo:             [5] Adobe Photoshop 2025
 echo:             [6] Adobe Premiere Pro 2025
+echo:             [7] Adobe Illustrator 2025
 echo:             [8] Adobe After Effects 2025
 echo:             [9] MiniTool Partition Wizard Technician 12.8
 echo:             [10] Revo Uninstaller Pro 5.3.7
@@ -1042,7 +1043,7 @@ if "%extraChoice%"=="0" goto :MainMenu
 
 
 if "%extraChoice%"=="1" (
-    start "" "https://github.com/wangzhenjjcn/AdobeGenp/releases/download/AdobeGenp-3.5.0-UniversalPath/AdobeGenp-3.5.0-UniversalPath.exe"
+    start "" "https://github.com/wangzhenjjcn/AdobeGenp/releases/download/AdobeGenp-3.6.4-CGP/AdobeGenP.exe"
     goto Extra
 )
 
@@ -1074,23 +1075,23 @@ if "%extraChoice%"=="3" (
     goto Extra
 )
 if "%extraChoice%"=="4" (
-    start "" "https://www.mediafire.com/file/kwad008fy1vw1na/AdobeAcrobatProDC2025.001.20428x86.exe/"
+    start "" "https://www.mediafire.com/file/hd8tv0d46dg177g/AdobeAcrobatProDC2025.001.20467x64.exe/file"
     goto Extra
 )
 if "%extraChoice%"=="5" (
-    start "" "https://download2341.mediafire.com/hspn5g1bm5ogUM9JD6ZhoXVE7ai8ZXTiWrI4bHj7sgTd51_Ntlf5gKaq5XuOwenJVTYtOYhsRLqX4qnDHkJ_wlMoxNkkyk41paAdShKpPnB-5TALC3dVopvYaInRJYbFOifAtsVgBUFBmwD2vB5LDzopgmHL-VctqZghnMxrbDIO3ME/ptv08z9d94pgwd4/AdobePhotoshop2025v26.2.0.140x64Repack.exe"
+    start "" "https://www.mediafire.com/file/y8qpi5v09gd23dw/AdobePhotoshop2025v26.6.0.14x64Repack.exe/file"
     goto Extra
 )
 if "%extraChoice%"=="6" (
-    start "" "https://www.mediafire.com/file/bs6j6oxa34husl2/AdobePremierePro2025v25.1.0.073x64Repack.exe/file"
+    start "" "https://www.mediafire.com/file/7i42yf3zin5miyp/AdobePremierePro2025v25.2.3.004x64Repack.exe/file"
     goto Extra
 )
 if "%extraChoice%"=="7" (
-    start "" "https://www.mediafire.com/file/0dpuu7xiwkuku79/AdobeIllustrator2025v29.2.1.116x64Repack.exe/file"
+    start "" "https://www.mediafire.com/file/439cq4xwysh5jcg/AdobeIllustrator2025v29.4.0.152x64Repack.exe/file"
     goto Extra
 )
 if "%extraChoice%"=="8" (
-    start "" "https://pixeldrain.com/u/sr6Juu55"
+    start "" "https://www.mediafire.com/file/k74uhfwu7pa71g6/AdobeAfterEffects2025v25.2.2.002x64.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="9" (
