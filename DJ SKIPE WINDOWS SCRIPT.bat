@@ -1007,7 +1007,7 @@ echo:             [1] Adobe Suite Crack                                     [21]
 echo:             [2] Wise Care 365                                         [22] WinPE Acronis True Image 41810
 echo:             [3] Powershell 7 Installer by dj skipe                    [23] WinPE Sergei Strelect
 echo:             [4] Adobe Acrobat Pro DC 2025                             [24] MAGIX Vegas Pro
-echo:             [5] Adobe Photoshop 2025
+echo:             [5] Adobe Photoshop 2025                                  [25] WinPE Macrium Reflect X
 echo:             [6] Adobe Premiere Pro 2025
 echo:             [7] Adobe Illustrator 2025
 echo:             [8] Adobe After Effects 2025
@@ -1156,6 +1156,10 @@ if "%extraChoice%"=="23" (
 )
 if "%extraChoice%"=="24" (
     start "" "https://www.mediafire.com/file/c85rf7759hfdper/MAGIXVEGASPro22.0.0.250x64.exe.xz/file"
+    goto Extra
+)
+if "%extraChoice%"=="25" (
+    start "" ""
     goto Extra
 )
 
