@@ -2,7 +2,7 @@
 setlocal enabledelayedexpansion
 
 :: Version information
-set "CURRENT_VERSION=1.6.2"
+set "CURRENT_VERSION=1.7.0"
 set "GITHUB_API_URL=https://api.github.com/repos/djskipe/djskipewindowsscript/releases/latest"
 
 :: Check for updates before showing the menu
@@ -116,7 +116,7 @@ echo:
 echo:       ______________________________________________________________
 echo:
 if "%LANG%"=="EN" (
-    echo:                 DJ SKIPE WINDOWS SCRIPT v1.6.2
+    echo:                 DJ SKIPE WINDOWS SCRIPT v1.7.0
     echo:
     echo          This script allows you to easily run the Windows
     echo          debloater from this CMD. It also allows you to
@@ -135,7 +135,7 @@ if "%LANG%"=="EN" (
     echo:             [9] Change Language
     echo:             [0] Exit
 ) else (
-    echo:                 DJ SKIPE WINDOWS SCRIPT v1.6.2
+    echo:                 DJ SKIPE WINDOWS SCRIPT v1.7.0
     echo:
     echo          Questo script ti permette di eseguire il debloater 
     echo          di Windows in facilita' direttamente da questo CMD.
@@ -1004,24 +1004,24 @@ echo:
 echo:                            Extra
 echo:
 echo:             [1] Adobe Suite Crack                                     [21] Revo Uninstaller Pro Portable          
-echo:             [2] Wise Care 365 7.2.2                                   [22] Acronis True Image 41810
-echo:             [3] Powershell 7 Installer by dj skipe                     
-echo:             [4] Adobe Acrobat Pro DC 2025
+echo:             [2] Wise Care 365                                         [22] WinPE Acronis True Image 41810
+echo:             [3] Powershell 7 Installer by dj skipe                    [23] WinPE Sergei Strelect
+echo:             [4] Adobe Acrobat Pro DC 2025                             [24] MAGIX Vegas Pro
 echo:             [5] Adobe Photoshop 2025
 echo:             [6] Adobe Premiere Pro 2025
 echo:             [7] Adobe Illustrator 2025
 echo:             [8] Adobe After Effects 2025
 echo:             [9] MiniTool Partition Wizard Technician 12.8
-echo:             [10] Revo Uninstaller Pro 5.3.7
+echo:             [10] Revo Uninstaller Pro
 echo:             [11] Poweroff
 echo:             [12] Glasswire
 echo:             [13] Windows XP Activator       
 echo:             [14] WinRar 7.11
-echo:             [15] Topaz Video AI 6.2.0
-echo:             [16] StartAllBack 3.9.7.5268
-echo:             [17] Hard Disk Sentinel Pro 6.30
+echo:             [15] Topaz Video AI 
+echo:             [16] StartAllBack 
+echo:             [17] Hard Disk Sentinel Pro 
 echo:             [18] Advanced IP Scanner
-echo:             [19] Em Client Pro 10.2.1712
+echo:             [19] Em Client Pro 
 echo:             [20] Any Excel Password Recovery
 
 echo:
@@ -1048,7 +1048,7 @@ if "%extraChoice%"=="1" (
 )
 
 if "%extraChoice%"=="2" (
-    start "" "https://www.mediafire.com/file/75zpyfurvsf5i81/Wise_Care_365PRO_v7.2.2.exe/file"
+    start "" "https://www.mediafire.com/file/jtze8f6vaeleo78/WiseCare365_7.2.4.697.exe/file"
     goto Extra
 )
 if "%extraChoice%"=="3" (
@@ -1119,7 +1119,7 @@ if "%extraChoice%"=="14" (
     goto Extra
 )
 if "%extraChoice%"=="15" (
-    start "" "https://www.mediafire.com/file/88zt3k0qmy6w35o/TopazVideoAI6.2.0x64.exe.xz/file"
+    start "" "https://www.mediafire.com/file/96qjzfuq2nugey4/TopazVideoAIPro7.0.2TeamVR.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="16" (
@@ -1148,6 +1148,14 @@ if "%extraChoice%"=="21" (
 )
 if "%extraChoice%"=="22" (
     start "" "https://www.mediafire.com/file/rbv8pt8fme4j8yb/Acronis_True_Image_Build_41810_Multilingual_Bootable_ISO.rar/file"
+    goto Extra
+)
+if "%extraChoice%"=="23" (
+    start "" "https://mega.nz/file/cvpyhDgS#6_QA3ZfAaBdWoDdIwioqqjxy3hVhD5daPcti0L3W1-E"
+    goto Extra
+)
+if "%extraChoice%"=="24" (
+    start "" "https://www.mediafire.com/file/c85rf7759hfdper/MAGIXVEGASPro22.0.0.250x64.exe.xz/file"
     goto Extra
 )
 
