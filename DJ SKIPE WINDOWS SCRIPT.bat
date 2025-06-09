@@ -1023,7 +1023,6 @@ echo:             [17] Hard Disk Sentinel Pro
 echo:             [18] Advanced IP Scanner
 echo:             [19] Em Client Pro 
 echo:             [20] Any Excel Password Recovery
-
 echo:
 if "%LANG%"=="EN" (
 echo              [0] Back to previous menu
@@ -1159,9 +1158,54 @@ if "%extraChoice%"=="24" (
     goto Extra
 )
 if "%extraChoice%"=="25" (
-    start "" ""
+    goto MacriumSubmenu
+)
+
+goto :Extra
+
+:MacriumSubmenu
+cls
+echo:       ___________________________________________________________________________________________________________
+echo:
+echo:                            WinPE Macrium Reflect X - Scegli Versione
+echo:
+if "%LANG%"=="EN" (
+    echo:             [1] Macrium Reflect X Windows 10 WinPE
+    echo:             [2] Macrium Reflect X Windows 11 WinPE
+    echo:             [0] Back to Extra menu
+) else (
+    echo:             [1] Versione Windows 10
+    echo:             [2] Versione Windows 11
+    echo:             [0] Torna al menu Extra
+)
+echo:      ___________________________________________________________________________________________________________
+echo:
+
+if "%LANG%"=="EN" (
+    set /p macriumChoice="      Choose version [1-2,0]: "
+) else (
+    set /p macriumChoice="      Scegli versione [1-2,0]: "
+)
+
+if "%macriumChoice%"=="0" goto Extra
+
+if "%macriumChoice%"=="1" (
+    start "" "https://www.mediafire.com/file/h736rdrex3db1c7/MacriumRescueWin10.iso/file"
     goto Extra
 )
+
+if "%macriumChoice%"=="2" (
+    start "" "https://www.mediafire.com/file/7elnxegs54tkg5k/MacriumRescueWin11.iso/file"
+    goto Extra
+)
+
+if "%LANG%"=="EN" (
+    echo Invalid choice. Please try again.
+) else (
+    echo Scelta non valida. Riprova.
+)
+pause
+goto MacriumSubmenu
 
 goto :Extra
 
