@@ -970,11 +970,11 @@ if "%LANG%"=="EN" (
 )
 
 if "%editionChoice%"=="1" (
-    start "" "https://archive.org/download/winserver2025ita/it-it_windows_server_2025_x64_dvd_98437899.iso"
+    start "" "https://drive.massgrave.dev/it-it_windows_server_2025_updated_may_2025_x64_dvd_9c776dbb.iso"
     goto WinServer
 )
 if "%editionChoice%"=="2" (
-    start "" "https://drive.massgrave.dev/it-it_windows_server_2022_updated_nov_2024_x64_dvd_4e34897c.iso"
+    start "" "https://drive.massgrave.dev/it-it_windows_server_2022_updated_may_2025_x64_dvd_0146f834.iso"
     goto WinServer
 )
 if "%editionChoice%"=="3" (
