@@ -2,7 +2,7 @@
 setlocal enabledelayedexpansion
 
 :: Version information
-set "CURRENT_VERSION=1.6.1"
+set "CURRENT_VERSION=1.6.2"
 set "GITHUB_API_URL=https://api.github.com/repos/djskipe/djskipewindowsscript/releases/latest"
 
 :: Check for updates before showing the menu
@@ -116,7 +116,7 @@ echo:
 echo:       ______________________________________________________________
 echo:
 if "%LANG%"=="EN" (
-    echo:                 DJ SKIPE WINDOWS SCRIPT v1.6.1
+    echo:                 DJ SKIPE WINDOWS SCRIPT v1.6.2
     echo:
     echo          This script allows you to easily run the Windows
     echo          debloater from this CMD. It also allows you to
@@ -135,7 +135,7 @@ if "%LANG%"=="EN" (
     echo:             [9] Change Language
     echo:             [0] Exit
 ) else (
-    echo:                 DJ SKIPE WINDOWS SCRIPT v1.6.1
+    echo:                 DJ SKIPE WINDOWS SCRIPT v1.6.2
     echo:
     echo          Questo script ti permette di eseguire il debloater 
     echo          di Windows in facilita' direttamente da questo CMD.
@@ -1043,7 +1043,7 @@ if "%extraChoice%"=="0" goto :MainMenu
 
 
 if "%extraChoice%"=="1" (
-    start "" "https://github.com/wangzhenjjcn/AdobeGenp/releases/download/AdobeGenp-3.6.4-CGP/AdobeGenP.exe"
+    start "" "https://gen.paramore.su/GenP.v3.6.6-CGP.zip"
     goto Extra
 )
 
@@ -1075,11 +1075,11 @@ if "%extraChoice%"=="3" (
     goto Extra
 )
 if "%extraChoice%"=="4" (
-    start "" "https://www.mediafire.com/file/hd8tv0d46dg177g/AdobeAcrobatProDC2025.001.20467x64.exe/file"
+    start "" "https://www.mediafire.com/file/gucogvfun7ag959/AdobeAcrobatProDC2025.001.20521x64.exe/file"
     goto Extra
 )
 if "%extraChoice%"=="5" (
-    start "" "https://www.mediafire.com/file/y8qpi5v09gd23dw/AdobePhotoshop2025v26.6.0.14x64Repack.exe/file"
+    start "" "https://www.mediafire.com/file/y4xmby8bnt5myfs/AdobePhotoshop2025v26.7.0.15x64Repack.exe/file"
     goto Extra
 )
 if "%extraChoice%"=="6" (
@@ -1087,7 +1087,7 @@ if "%extraChoice%"=="6" (
     goto Extra
 )
 if "%extraChoice%"=="7" (
-    start "" "https://www.mediafire.com/file/439cq4xwysh5jcg/AdobeIllustrator2025v29.4.0.152x64Repack.exe/file"
+    start "" "https://www.mediafire.com/file/ks0c7kg8ne2fzm0/AdobeIllustrator2025v29.5.1.141x64Repack.exe/file"
     goto Extra
 )
 if "%extraChoice%"=="8" (
@@ -1099,7 +1099,7 @@ if "%extraChoice%"=="9" (
     goto Extra
 )
 if "%extraChoice%"=="10" (
-    start "" "https://www.mediafire.com/file/29xbfv36q8x7yp6/Revo_Uninstaller_Pro_5.3.7.rar/file"
+    start "" "https://www.mediafire.com/file/mjamylbeewy1q9o/RevoUninstallerPro5.4.0.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="11" (
@@ -1123,7 +1123,7 @@ if "%extraChoice%"=="15" (
     goto Extra
 )
 if "%extraChoice%"=="16" (
-    start "" "https://www.mediafire.com/file/fyhhjwrpqfoqk9p/StartAllBack++3.9.7.5268x64.exe.xz/file"
+    start "" "https://www.mediafire.com/file/bg7voye9u2v30yp/StartAllBack++3.9.10.5273x64.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="17" (
