@@ -1159,7 +1159,6 @@ if "%extraChoice%"=="24" (
     goto Extra
 )
 
-
 goto :Extra
 
 :Exit
