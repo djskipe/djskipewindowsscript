@@ -489,7 +489,7 @@ if "%LANG%"=="EN" (
     echo:
     echo:             [1] Professional Plus
     echo:             [2] Professional
-    echo:             [3] Home
+    echo:             [3] Home and Student
     echo:             [4] Home and Business
     echo:             [0] Torna al menu precedente
 )
@@ -511,7 +511,7 @@ if "%editionChoice%"=="2" (
     goto Office2021
 )
 if "%editionChoice%"=="3" (
-    start "" "https://officecdn.microsoft.com/db/492350F6-3A01-4F97-B9C0-C7C6DDF67D60/media/it-IT/Home2021Retail.img"
+    start "" "https://officecdn.microsoft.com/db/492350F6-3A01-4F97-B9C0-C7C6DDF67D60/media/it-IT/HomeStudent2021Retail.img"
     goto Office2021
 )
 if "%editionChoice%"=="4" (
@@ -539,7 +539,7 @@ if "%LANG%"=="EN" (
     echo:
     echo:             [1] Professional Plus
     echo:             [2] Professional
-    echo:             [3] Home
+    echo:             [3] Home and Student
     echo:             [4] Home and Business
     echo:             [0] Torna al menu precedente
 )
@@ -561,7 +561,7 @@ if "%editionChoice%"=="2" (
     goto Office2019
 )
 if "%editionChoice%"=="3" (
-    start "" "https://officecdn.microsoft.com/db/492350F6-3A01-4F97-B9C0-C7C6DDF67D60/media/it-IT/Home2019Retail.img"
+    start "" "https://officecdn.microsoft.com/db/492350F6-3A01-4F97-B9C0-C7C6DDF67D60/media/it-IT/HomeStudent2019Retail.img"
     goto Office2019
 )
 if "%editionChoice%"=="4" (
