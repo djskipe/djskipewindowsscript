@@ -1354,27 +1354,27 @@ if "%LANG%"=="EN" (
 ) else (
     echo:                            Software Utili
     echo:
-    echo:             [1] 7-Zip                                              [21] VirtualBox
-    echo:             [2] Google Chrome                                      [22] VMware Workstation Pro
-    echo:             [3] Firefox                                            [23] Audacity
-    echo:             [4] VLC Media Player                                   [24] OBS Studio
-    echo:             [5] WinRAR                                             [25] Blender
-    echo:             [6] Notepad++                                          [26] GIMP
-    echo:             [7] Visual Studio Code                                 [27] FileZilla
-    echo:             [8] Git                                                [28] PuTTY
-    echo:             [9] Python                                             [29] WinSCP
-    echo:             [10] Node.js                                           [30] Wireshark
-    echo:             [11] Discord                                           [31] Malwarebytes
-    echo:             [12] Zoom                                              [32] CCleaner
-    echo:             [13] TeamViewer                                        [33] Defraggler
-    echo:             [14] Spotify                                           [34] Recuva
-    echo:             [15] Steam                                             [35] Speccy
-    echo:             [16] Epic Games Launcher                               [36] CPU-Z
-    echo:             [17] Telegram                                          [37] GPU-Z
-    echo:             [18] WhatsApp                                          [38] HWiNFO
-    echo:             [19] Skype                                             [39] CrystalDiskInfo
-    echo:             [20] Slack                                             [40] TreeSize
-    echo:
+    echo:             [1] 7-Zip                                              [24] OBS Studio
+    echo:             [2] Google Chrome                                     
+    echo:             [3] Firefox                                            
+    echo:             [4] VLC Media Player                                   
+    echo:             [6] Notepad++                                          
+    echo:             [7] Visual Studio Code                                 
+    echo:             [8] OBS Studio                                           
+    echo:             [9] Python                                             
+    echo:             [10] CPU-Z  
+    echo:             [11] GPU-Z                                      
+    echo:             [12] Discord                                                                                                     
+    echo:             [13] TeamViewer                                        
+    echo:             [14] Spotify                                           
+    echo:             [15] Steam                                             
+    echo:             [16] Epic Games Launcher                               
+    echo:             [17] Telegram                                          
+    echo:             [18] WhatsApp                                          
+    echo:             [19] Skype                                             
+    echo:             [20] HWiNFO                                             
+    echo:             [21] HWiNFO
+    echo.
     echo              [0] Torna al menu principale
 )
 echo:      ___________________________________________________________________________________________________________
@@ -1383,77 +1383,77 @@ echo:
 if "%LANG%"=="EN" (
     set /p softwareChoice="      Choose Useful Software [1-40,0]: "
 ) else (
-    set /p softwareChoice="      Scegli Software Utile [1-40,0]: "
+    set /p softwareChoice="      Scegli Software Utili [1-40,0]: "
 )
 
 if "%softwareChoice%"=="0" goto :MainMenu
 
 if "%softwareChoice%"=="1" (
-    winget install --id=7zip.7zip -e --silent --accept-package-agreements --accept-source-agreements
+    start "" "https://www.7-zip.org/a/7z2501-x64.exe"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="2" (
-    winget install --id=Google.Chrome -e --silent --accept-package-agreements --accept-source-agreements
+    start "" "LINK_CHROME"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="3" (
-    winget install --id=Mozilla.Firefox -e --silent --accept-package-agreements --accept-source-agreements
+    start "" "https://download.mozilla.org/?product=firefox-stub&os=win&lang=it"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="4" (
-    winget install --id=VideoLAN.VLC -e --silent --accept-package-agreements --accept-source-agreements
+    start "" "LINK_VLC"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="5" (
-    winget install --id=RARLab.WinRAR -e --silent --accept-package-agreements --accept-source-agreements
+    start "" "LINK_WINRAR"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="6" (
-    winget install --id=Notepad++.Notepad++ -e --silent --accept-package-agreements --accept-source-agreements
+    start "" "LINK_NOTEPADPP"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="7" (
-    winget install --id=Microsoft.VisualStudioCode -e --silent --accept-package-agreements --accept-source-agreements
+    start "" "LINK_VSCODE"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="8" (
-    winget install --id=Git.Git -e --silent --accept-package-agreements --accept-source-agreements
+    start "" "LINK_GIT"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="9" (
-    winget install --id=Python.Python.3.12 -e --silent --accept-package-agreements --accept-source-agreements
+    start "" "LINK_PYTHON"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="10" (
-    winget install --id=OpenJS.NodeJS -e --silent --accept-package-agreements --accept-source-agreements
+    start "" "LINK_NODEJS"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="11" (
-    winget install --id=Discord.Discord -e --silent --accept-package-agreements --accept-source-agreements
+    start "" "LINK_DISCORD"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="12" (
-    winget install --id=Zoom.Zoom -e --silent --accept-package-agreements --accept-source-agreements
+    start "" "LINK_ZOOM"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="13" (
-    winget install --id=TeamViewer.TeamViewer -e --silent --accept-package-agreements --accept-source-agreements
+    start "" "LINK_TEAMVIEWER"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="14" (
-    winget install --id=Spotify.Spotify -e --silent --accept-package-agreements --accept-source-agreements
+    start "" "LINK_SPOTIFY"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="15" (
-    winget install --id=Valve.Steam -e --silent --accept-package-agreements --accept-source-agreements
+    start "" "LINK_STEAM"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="16" (
-    winget install --id=EpicGames.EpicGamesLauncher -e --silent --accept-package-agreements --accept-source-agreements
+    start "" "LINK_EPICGAMES"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="17" (
-    winget install --id=Telegram.TelegramDesktop -e --silent --accept-package-agreements --accept-source-agreements
+    start "" "LINK_TELEGRAM"
     goto SoftwareUtili
 )
 :Exit
