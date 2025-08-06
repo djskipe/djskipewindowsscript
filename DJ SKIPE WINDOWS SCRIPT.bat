@@ -1343,7 +1343,7 @@ if "%LANG%"=="EN" (
     echo:             [8] OBS Studio                                         [27] KeePass Password Manager    
     echo:             [9] Python                                             [28] OpenOffice
     echo:             [10] CPU-Z                                             [29] Libreoffice
-    echo:             [11] GPU-Z                                      
+    echo:             [11] GPU-Z                                             [30] qBittorent
     echo:             [12] Discord                                                                                                     
     echo:             [13] TeamViewer                                        
     echo:             [14] Spotify                                           
@@ -1367,7 +1367,7 @@ if "%LANG%"=="EN" (
     echo:             [8] OBS Studio                                         [27] KeePass Password Manager  
     echo:             [9] Python                                             [28] OpenOffice
     echo:             [10] CPU-Z                                             [29] Libreoffice
-    echo:             [11] GPU-Z                                      
+    echo:             [11] GPU-Z                                             [30] qBittorent
     echo:             [12] Discord                                                                                                     
     echo:             [13] TeamViewer                                        
     echo:             [14] Spotify                                           
@@ -1507,6 +1507,11 @@ if "%softwareChoice%"=="28" (
     start "" "https://it.libreoffice.org/donazioni/dl/win-x86_64/25.2.5/it/LibreOffice_25.2.5_Win_x86-64.msi"
     goto SoftwareUtili
 )
+if "%softwareChoice%"=="29" (
+    start "" "https://sourceforge.net/projects/qbittorrent/files/qbittorrent-win32/"
+    goto SoftwareUtili
+)
+
 :Exit
 
 if "%LANG%"=="EN" (
