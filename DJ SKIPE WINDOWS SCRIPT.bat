@@ -1340,7 +1340,7 @@ if "%LANG%"=="EN" (
     echo:             [4] VLC Media Player                                   [24] Opera
     echo:             [6] Notepad++                                          [25] Brave
     echo:             [7] Visual Studio Code                                 [26] Handbrake
-    echo:             [8] OBS Studio                                           
+    echo:             [8] OBS Studio                                         [27] KeePass Password Manager    
     echo:             [9] Python                                             
     echo:             [10] CPU-Z  
     echo:             [11] GPU-Z                                      
@@ -1364,7 +1364,7 @@ if "%LANG%"=="EN" (
     echo:             [4] VLC Media Player                                   [24] Opera
     echo:             [6] Notepad++                                          [25] Brave 
     echo:             [7] Visual Studio Code                                 [26] Handbrake
-    echo:             [8] OBS Studio                                           
+    echo:             [8] OBS Studio                                         [27] KeePass Password Manager  
     echo:             [9] Python                                             
     echo:             [10] CPU-Z  
     echo:             [11] GPU-Z                                      
@@ -1493,6 +1493,10 @@ if "%softwareChoice%"=="25" (
 )
 if "%softwareChoice%"=="26" (
     start "" "https://handbrake.fr/rotation.php?file=HandBrake-1.9.2-x86_64-Win_GUI.exe"
+    goto SoftwareUtili
+)
+if "%softwareChoice%"=="27" (
+    start "" "https://sourceforge.net/projects/keepass/files/KeePass%202.x/2.59/KeePass-2.59-Setup.exe/download"
     goto SoftwareUtili
 )
 :Exit
