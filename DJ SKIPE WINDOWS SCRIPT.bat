@@ -672,7 +672,7 @@ echo:       ______________________________________________________________
 echo:
 if "%LANG%"=="EN" (
     echo:                 SELECT OFFICE SOFTWARE TO DOWNLOAD
-    echo:                             ^(only 2024^)
+    echo:                             (only 2024)
     echo:
     echo:             [1] Word
     echo:             [2] Powerpoint
@@ -682,7 +682,7 @@ if "%LANG%"=="EN" (
     echo:             [0] Back to previous menu
 ) else (
     echo:                 SELEZIONA SOFTWARE DI OFFICE DA SCARICARE
-    echo:                             ^(solo 2024^)
+    echo:                             (solo 2024)
     echo:
     echo:             [1] Word
     echo:             [2] Powerpoint
@@ -1075,11 +1075,11 @@ if "%LANG%"=="EN" (
 )
 
 if "%editionChoice%"=="1" (
-    start "" "https://drive.massgrave.dev/it-it_windows_server_2025_updated_may_2025_x64_dvd_9c776dbb.iso"
+    start "" "https://drive.massgrave.dev/it-it_windows_server_2025_updated_july_2025_x64_dvd_a1f0681d.iso"
     goto WinServer
 )
 if "%editionChoice%"=="2" (
-    start "" "https://drive.massgrave.dev/it-it_windows_server_2022_updated_may_2025_x64_dvd_0146f834.iso"
+    start "" "https://drive.massgrave.dev/it-it_windows_server_2022_updated_july_2025_x64_dvd_f3e39b78.iso"
     goto WinServer
 )
 if "%editionChoice%"=="3" (
@@ -1109,11 +1109,11 @@ echo:
 echo:                            Extra
 echo:
 echo:             [1] Adobe Suite Crack                                     [21] Revo Uninstaller Pro Portable          
-echo:             [2] Wise Care 365                                         [22] WinPE Acronis True Image 41810
+echo:             [2] Wise Care 365                                         [22] WinPE Acronis True Image 
 echo:             [3] Powershell 7 Installer by dj skipe                    [23] WinPE Sergei Strelect
 echo:             [4] Adobe Acrobat Pro DC 2025                             [24] MAGIX Vegas Pro
 echo:             [5] Adobe Photoshop 2025                                  [25] WinPE Macrium Reflect X
-echo:             [6] Adobe Premiere Pro 2025
+echo:             [6] Adobe Premiere Pro 2025                               [26] ABBYY FineReader Corporate
 echo:             [7] Adobe Illustrator 2025
 echo:             [8] Adobe After Effects 2025
 echo:             [9] MiniTool Partition Wizard Technician 12.8
@@ -1147,12 +1147,12 @@ if "%extraChoice%"=="0" goto :MainMenu
 
 
 if "%extraChoice%"=="1" (
-    start "" "https://gen.paramore.su/GenP.v3.6.6-CGP.zip"
+    start "" "https://www.mediafire.com/file/rfkhtvca7v8x5ip/GenP.v3.6.8.7z/file"
     goto Extra
 )
 
 if "%extraChoice%"=="2" (
-    start "" "https://www.mediafire.com/file/jtze8f6vaeleo78/WiseCare365_7.2.4.697.exe/file"
+    start "" "https://www.mediafire.com/file/cis98c3afhdx23g/WiseCare365_7.2.5.703.exe/file"
     goto Extra
 )
 if "%extraChoice%"=="3" (
@@ -1179,23 +1179,23 @@ if "%extraChoice%"=="3" (
     goto Extra
 )
 if "%extraChoice%"=="4" (
-    start "" "https://www.mediafire.com/file/gucogvfun7ag959/AdobeAcrobatProDC2025.001.20521x64.exe/file"
+    start "" "https://www.mediafire.com/file/4b6xahp0t7cr1t6/AdobeAcrobatProDC2025.001.20577x64.exe/file"
     goto Extra
 )
 if "%extraChoice%"=="5" (
-    start "" "https://www.mediafire.com/file/y4xmby8bnt5myfs/AdobePhotoshop2025v26.7.0.15x64Repack.exe/file"
+    start "" "https://www.mediafire.com/file/ed0g9tq2jdif5ev/AdobePhotoshop2025v26.9.0.15x64Repack.exe/file"
     goto Extra
 )
 if "%extraChoice%"=="6" (
-    start "" "https://www.mediafire.com/file/7i42yf3zin5miyp/AdobePremierePro2025v25.2.3.004x64Repack.exe/file"
+    start "" "https://www.mediafire.com/file/pumkdvaul314y5u/AdobePremierePro2025v25.3.0.084x64Repack.exe/file"
     goto Extra
 )
 if "%extraChoice%"=="7" (
-    start "" "https://www.mediafire.com/file/ks0c7kg8ne2fzm0/AdobeIllustrator2025v29.5.1.141x64Repack.exe/file"
+    start "" "https://www.mediafire.com/file/krke39ev1wjgezj/AdobeIllustrator2025v29.6.1.9x64Repack.exe/file"
     goto Extra
 )
 if "%extraChoice%"=="8" (
-    start "" "https://www.mediafire.com/file/k74uhfwu7pa71g6/AdobeAfterEffects2025v25.2.2.002x64.7z/file"
+    start "" "https://www.mediafire.com/file/a4nwt112iqfztzj/AdobeAfterEffects2025v25.3.2.002x64.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="9" (
@@ -1219,15 +1219,15 @@ if "%extraChoice%"=="13" (
     goto Extra
 )
 if "%extraChoice%"=="14" (
-    start "" "https://www.mediafire.com/file/ax2lbg3x1ulyw7w/WinRAR_v7.11.rar/file"
+    start "" "https://www.mediafire.com/file/wz16eq1kmpe4bfu/WinRAR7.13x64.exe/file"
     goto Extra
 )
 if "%extraChoice%"=="15" (
-    start "" "https://www.mediafire.com/file/96qjzfuq2nugey4/TopazVideoAIPro7.0.2TeamVR.7z/file"
+    start "" "https://www.mediafire.com/file/ft3w9qrryg7ra89/TopazVideoAI7.1.0x64.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="16" (
-    start "" "https://www.mediafire.com/file/bg7voye9u2v30yp/StartAllBack++3.9.10.5273x64.7z/file"
+    start "" "https://www.mediafire.com/file/eur53u458z4vmir/StartAllBack_3.9.13.5293.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="17" (
@@ -1239,7 +1239,7 @@ if "%extraChoice%"=="18" (
     goto Extra
 )
 if "%extraChoice%"=="19" (
-    start "" "https://www.mediafire.com/file/njzg2fd6e3r534k/eM+Client+Pro+10.3.2040.7z/file"
+    start "" "https://www.mediafire.com/file/slx24irw8uqlcyi/eM+Client+Pro+10.3.2619.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="20" (
@@ -1247,11 +1247,11 @@ if "%extraChoice%"=="20" (
     goto Extra
 )
 if "%extraChoice%"=="21" (
-    start "" "https://www.mediafire.com/file/lx5w3gf6xpke50f/RevoUninstallerPortable_5.1.7.rar/file"
+    start "" "https://www.mediafire.com/file/9xttrpzmbntda0u/Revo+Uninstaller+Pro+5.4.0+Portable.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="22" (
-    start "" "https://www.mediafire.com/file/rbv8pt8fme4j8yb/Acronis_True_Image_Build_41810_Multilingual_Bootable_ISO.rar/file"
+    start "" "https://www.mediafire.com/file/s3cx3antqfwahp1/Acronis+True+Image+Build+42072+Multilingual+Bootable+ISO.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="23" (
@@ -1264,6 +1264,10 @@ if "%extraChoice%"=="24" (
 )
 if "%extraChoice%"=="25" (
     goto MacriumSubmenu
+)
+if "%extraChoice%"=="26" (
+    start "" "https://www.mediafire.com/file/sq279uu7lcwqbdn/ABBYYFineReaderCorporate16.0.14.7295x64.exe/file"
+    goto Extra
 )
 
 goto :Extra
@@ -1295,12 +1299,12 @@ if "%LANG%"=="EN" (
 if "%macriumChoice%"=="0" goto Extra
 
 if "%macriumChoice%"=="1" (
-    start "" "https://www.mediafire.com/file/h736rdrex3db1c7/MacriumRescueWin10.iso/file"
+    start "" "https://www.mediafire.com/file/t591taedfywoz90/Macrium+Reflect+X+Server+10.0.8576+(x64)+WinPE+10.7z/file"
     goto Extra
 )
 
 if "%macriumChoice%"=="2" (
-    start "" "https://www.mediafire.com/file/7elnxegs54tkg5k/MacriumRescueWin11.iso/file"
+    start "" "https://www.mediafire.com/file/2pek6ack7mivl5i/Macrium+Reflect+X+Server+10.0.8576+(x64)+WinPE+11.7z/file"
     goto Extra
 )
 
