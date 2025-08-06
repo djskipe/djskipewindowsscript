@@ -471,6 +471,106 @@ if "%editionChoice%"=="4" (
 if "%editionChoice%"=="0" goto :DownOffice
 goto :Office2024 
 
+:Office2021
+cls
+echo:
+echo:       ______________________________________________________________
+echo:
+if "%LANG%"=="EN" (
+    echo:                   SELECT OFFICE 2021 EDITION
+    echo:
+    echo:             [1] Professional Plus
+    echo:             [2] Professional
+    echo:             [3] Home
+    echo:             [4] Home and Business
+    echo:             [0] Back to previous menu
+) else (
+    echo:                   SELEZIONA EDIZIONE DI OFFICE 2021
+    echo:
+    echo:             [1] Professional Plus
+    echo:             [2] Professional
+    echo:             [3] Home
+    echo:             [4] Home and Business
+    echo:             [0] Torna al menu precedente
+)
+echo:       ______________________________________________________________
+echo:
+
+if "%LANG%"=="EN" (
+    set /p editionChoice="      Choose an Office 2021 edition [1-4,0]: "
+) else (
+    set /p editionChoice="      Scegli un'edizione di Office 2021 [1-4,0]: "
+)
+
+if "%editionChoice%"=="1" (
+    start "" "https://officecdn.microsoft.com/db/492350F6-3A01-4F97-B9C0-C7C6DDF67D60/media/it-IT/ProPlus2021Retail.img"
+    goto Office2021
+)
+if "%editionChoice%"=="2" (
+    start "" "https://officecdn.microsoft.com/db/492350F6-3A01-4F97-B9C0-C7C6DDF67D60/media/it-IT/Professional2021Retail.img"
+    goto Office2021
+)
+if "%editionChoice%"=="3" (
+    start "" "https://officecdn.microsoft.com/db/492350F6-3A01-4F97-B9C0-C7C6DDF67D60/media/it-IT/Home2021Retail.img"
+    goto Office2021
+)
+if "%editionChoice%"=="4" (
+    start "" "https://officecdn.microsoft.com/db/492350F6-3A01-4F97-B9C0-C7C6DDF67D60/media/it-IT/HomeBusiness2021Retail.img"
+    goto Office2021
+)
+if "%editionChoice%"=="0" goto :DownOffice
+goto :Office2021
+
+:Office2019
+cls
+echo:
+echo:       ______________________________________________________________
+echo:
+if "%LANG%"=="EN" (
+    echo:                   SELECT OFFICE 2019 EDITION
+    echo:
+    echo:             [1] Professional Plus
+    echo:             [2] Professional
+    echo:             [3] Home
+    echo:             [4] Home and Business
+    echo:             [0] Back to previous menu
+) else (
+    echo:                   SELEZIONA EDIZIONE DI OFFICE 2019
+    echo:
+    echo:             [1] Professional Plus
+    echo:             [2] Professional
+    echo:             [3] Home
+    echo:             [4] Home and Business
+    echo:             [0] Torna al menu precedente
+)
+echo:       ______________________________________________________________
+echo:
+
+if "%LANG%"=="EN" (
+    set /p editionChoice="      Choose an Office 2019 edition [1-4,0]: "
+) else (
+    set /p editionChoice="      Scegli un'edizione di Office 2019 [1-4,0]: "
+)
+
+if "%editionChoice%"=="1" (
+    start "" "https://officecdn.microsoft.com/db/492350F6-3A01-4F97-B9C0-C7C6DDF67D60/media/it-IT/ProPlus2019Retail.img"
+    goto Office2019
+)
+if "%editionChoice%"=="2" (
+    start "" "https://officecdn.microsoft.com/db/492350F6-3A01-4F97-B9C0-C7C6DDF67D60/media/it-IT/Professional2019Retail.img"
+    goto Office2019
+)
+if "%editionChoice%"=="3" (
+    start "" "https://officecdn.microsoft.com/db/492350F6-3A01-4F97-B9C0-C7C6DDF67D60/media/it-IT/Home2019Retail.img"
+    goto Office2019
+)
+if "%editionChoice%"=="4" (
+    start "" "https://officecdn.microsoft.com/db/492350F6-3A01-4F97-B9C0-C7C6DDF67D60/media/it-IT/HomeBusiness2019Retail.img"
+    goto Office2019
+)
+if "%editionChoice%"=="0" goto :DownOffice
+goto :Office2019
+
 :Office2016
 cls
 echo:
