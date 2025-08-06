@@ -572,7 +572,7 @@ echo:       ______________________________________________________________
 echo:
 if "%LANG%"=="EN" (
     echo:                 SELECT OFFICE SOFTWARE TO DOWNLOAD
-    echo:                             (only 2024)
+    echo:                             ^(only 2024^)
     echo:
     echo:             [1] Word
     echo:             [2] Powerpoint
@@ -582,7 +582,7 @@ if "%LANG%"=="EN" (
     echo:             [0] Back to previous menu
 ) else (
     echo:                 SELEZIONA SOFTWARE DI OFFICE DA SCARICARE
-    echo:                             (solo 2024)
+    echo:                             ^(solo 2024^)
     echo:
     echo:             [1] Word
     echo:             [2] Powerpoint
@@ -593,7 +593,12 @@ if "%LANG%"=="EN" (
 )
 echo:       ______________________________________________________________
 echo:
-set /p editionChoice="      Scegli un software di Office [1-5,0]: "
+
+if "%LANG%"=="EN" (
+    set /p editionChoice="      Choose Office software [1-5,0]: "
+) else (
+    set /p editionChoice="      Scegli un software di Office [1-5,0]: "
+)
 
 if "%editionChoice%"=="1" (
     start "" "http://officecdn.microsoft.com.edgesuite.net/db/492350F6-3A01-4F97-B9C0-C7C6DDF67D60/media/it-it/Word2024Retail.img"
