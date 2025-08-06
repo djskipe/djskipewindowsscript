@@ -1384,9 +1384,9 @@ echo:      _____________________________________________________________________
 echo:
 
 if "%LANG%"=="EN" (
-    set /p softwareChoice="      Choose Useful Software [1-40,0]: "
+    set /p softwareChoice="      Choose Useful Software [1-23,0]: "
 ) else (
-    set /p softwareChoice="      Scegli Software Utili [1-40,0]: "
+    set /p softwareChoice="      Scegli Software Utili [1-23,0]: "
 )
 
 if "%softwareChoice%"=="0" goto :MainMenu
