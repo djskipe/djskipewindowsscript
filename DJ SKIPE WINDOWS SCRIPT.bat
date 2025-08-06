@@ -1341,8 +1341,8 @@ if "%LANG%"=="EN" (
     echo:             [6] Notepad++                                          [25] Brave
     echo:             [7] Visual Studio Code                                 [26] Handbrake
     echo:             [8] OBS Studio                                         [27] KeePass Password Manager    
-    echo:             [9] Python                                             
-    echo:             [10] CPU-Z  
+    echo:             [9] Python                                             [28] OpenOffice
+    echo:             [10] CPU-Z                                             [29] Libreoffice
     echo:             [11] GPU-Z                                      
     echo:             [12] Discord                                                                                                     
     echo:             [13] TeamViewer                                        
@@ -1365,8 +1365,8 @@ if "%LANG%"=="EN" (
     echo:             [6] Notepad++                                          [25] Brave 
     echo:             [7] Visual Studio Code                                 [26] Handbrake
     echo:             [8] OBS Studio                                         [27] KeePass Password Manager  
-    echo:             [9] Python                                             
-    echo:             [10] CPU-Z  
+    echo:             [9] Python                                             [28] OpenOffice
+    echo:             [10] CPU-Z                                             [29] Libreoffice
     echo:             [11] GPU-Z                                      
     echo:             [12] Discord                                                                                                     
     echo:             [13] TeamViewer                                        
@@ -1497,6 +1497,14 @@ if "%softwareChoice%"=="26" (
 )
 if "%softwareChoice%"=="27" (
     start "" "https://sourceforge.net/projects/keepass/files/KeePass%202.x/2.59/KeePass-2.59-Setup.exe/download"
+    goto SoftwareUtili
+)
+if "%softwareChoice%"=="28" (
+    start "" "https://sourceforge.net/projects/openofficeorg.mirror/files/4.1.15/binaries/it/Apache_OpenOffice_4.1.15_Win_x86_install_it.exe/download"
+    goto SoftwareUtili
+)
+if "%softwareChoice%"=="28" (
+    start "" "https://it.libreoffice.org/donazioni/dl/win-x86_64/25.2.5/it/LibreOffice_25.2.5_Win_x86-64.msi"
     goto SoftwareUtili
 )
 :Exit
