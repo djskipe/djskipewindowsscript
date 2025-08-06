@@ -1117,7 +1117,7 @@ echo:             [3] Powershell 7 Installer by dj skipe                    [23]
 echo:             [4] Adobe Acrobat Pro DC 2025                             [24] MAGIX Vegas Pro
 echo:             [5] Adobe Photoshop 2025                                  [25] WinPE Macrium Reflect X
 echo:             [6] Adobe Premiere Pro 2025                               [26] ABBYY FineReader Corporate
-echo:             [7] Adobe Illustrator 2025
+echo:             [7] Adobe Illustrator 2025                                [27] Aida64 Business
 echo:             [8] Adobe After Effects 2025
 echo:             [9] MiniTool Partition Wizard Technician 12.8
 echo:             [10] Revo Uninstaller Pro
@@ -1272,6 +1272,11 @@ if "%extraChoice%"=="26" (
     start "" "https://www.mediafire.com/file/sq279uu7lcwqbdn/ABBYYFineReaderCorporate16.0.14.7295x64.exe/file"
     goto Extra
 )
+if "%extraChoice%"=="27" (
+    start "" "https://www.mediafire.com/file/lrndezvvqa61d3b/AIDA64Business7.70.7500.7z/file"
+    goto Extra
+)
+
 
 goto :Extra
 
@@ -1327,36 +1332,11 @@ echo:
 echo:       ___________________________________________________________________________________________________________
 echo:
 if "%LANG%"=="EN" (
-    echo:                            Useful Software
+    echo:                                          Useful Software
     echo:
-    echo:             [1] 7-Zip                                              [21] VirtualBox
-    echo:             [2] Google Chrome                                      [22] VMware Workstation Pro
-    echo:             [3] Firefox                                            [23] Audacity
-    echo:             [4] VLC Media Player                                   [24] OBS Studio
-    echo:             [5] WinRAR                                             [25] Blender
-    echo:             [6] Notepad++                                          [26] GIMP
-    echo:             [7] Visual Studio Code                                 [27] FileZilla
-    echo:             [8] Git                                                [28] PuTTY
-    echo:             [9] Python                                             [29] WinSCP
-    echo:             [10] Node.js                                           [30] Wireshark
-    echo:             [11] Discord                                           [31] Malwarebytes
-    echo:             [12] Zoom                                              [32] CCleaner
-    echo:             [13] TeamViewer                                        [33] Defraggler
-    echo:             [14] Spotify                                           [34] Recuva
-    echo:             [15] Steam                                             [35] Speccy
-    echo:             [16] Epic Games Launcher                               [36] CPU-Z
-    echo:             [17] Telegram                                          [37] GPU-Z
-    echo:             [18] WhatsApp                                          [38] HWiNFO
-    echo:             [19] Skype                                             [39] CrystalDiskInfo
-    echo:             [20] Slack                                             [40] TreeSize
-    echo:
-    echo              [0] Back to main menu
-) else (
-    echo:                            Software Utili
-    echo:
-    echo:             [1] 7-Zip                                              [24] OBS Studio
-    echo:             [2] Google Chrome                                     
-    echo:             [3] Firefox                                            
+    echo:             [1] 7-Zip                                              [21] Ubisoft Connect
+    echo:             [2] Google Chrome                                      [22] Gog Launcher
+    echo:             [3] Firefox                                            [23] CrystalDiskInfo
     echo:             [4] VLC Media Player                                   
     echo:             [6] Notepad++                                          
     echo:             [7] Visual Studio Code                                 
@@ -1370,11 +1350,34 @@ if "%LANG%"=="EN" (
     echo:             [15] Steam                                             
     echo:             [16] Epic Games Launcher                               
     echo:             [17] Telegram                                          
-    echo:             [18] WhatsApp                                          
-    echo:             [19] Skype                                             
-    echo:             [20] HWiNFO                                             
-    echo:             [21] HWiNFO
-    echo.
+    echo:             [18] WhatsApp                                                                                     
+    echo:             [19] EA App                                             
+    echo:             [20] HWiNFO
+    echo:
+    echo              [0] Back to main menu
+) else (
+    echo:                                          Software Utili
+    echo:
+    echo:             [1] 7-Zip                                              [21] Ubisoft Connect
+    echo:             [2] Google Chrome                                      [22] Gog Launcher
+    echo:             [3] Firefox                                            [23] CrystalDiskInfo
+    echo:             [4] VLC Media Player                                   
+    echo:             [6] Notepad++                                          
+    echo:             [7] Visual Studio Code                                 
+    echo:             [8] OBS Studio                                           
+    echo:             [9] Python                                             
+    echo:             [10] CPU-Z  
+    echo:             [11] GPU-Z                                      
+    echo:             [12] Discord                                                                                                     
+    echo:             [13] TeamViewer                                        
+    echo:             [14] Spotify                                           
+    echo:             [15] Steam                                             
+    echo:             [16] Epic Games Launcher                               
+    echo:             [17] Telegram                                          
+    echo:             [18] WhatsApp                                                                                     
+    echo:             [19] EA App                                             
+    echo:             [20] HWiNFO
+    echo:
     echo              [0] Torna al menu principale
 )
 echo:      ___________________________________________________________________________________________________________
@@ -1393,7 +1396,7 @@ if "%softwareChoice%"=="1" (
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="2" (
-    start "" "LINK_CHROME"
+    start "" "https://www.mediafire.com/file/tbp43lxp6eezlx4/ChromeSetup.exe/file"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="3" (
@@ -1401,59 +1404,83 @@ if "%softwareChoice%"=="3" (
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="4" (
-    start "" "LINK_VLC"
+    start "" "https://get.videolan.org/vlc/3.0.21/win32/vlc-3.0.21-win32.exe"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="5" (
-    start "" "LINK_WINRAR"
+    start "" "https://www.mediafire.com/file/wz16eq1kmpe4bfu/WinRAR7.13x64.exe/file"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="6" (
-    start "" "LINK_NOTEPADPP"
+    start "" "https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.7.7/npp.8.7.7.Installer.x64.exe"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="7" (
-    start "" "LINK_VSCODE"
+    start "" "https://code.visualstudio.com/sha/download?build=stable&os=win32-x64-user"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="8" (
-    start "" "LINK_GIT"
+    start "" "LIhttps://cdn-fastly.obsproject.com/downloads/OBS-Studio-31.1.2-Windows-x64-Installer.exeNK_GIT"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="9" (
-    start "" "LINK_PYTHON"
+    start "" "LINKhttps://www.python.org/ftp/python/3.13.5/python-3.13.5-amd64.exe_PYTHON"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="10" (
-    start "" "LINK_NODEJS"
+    start "" "https://download.cpuid.com/cpu-z/cpu-z_2.16-en.exe"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="11" (
-    start "" "LINK_DISCORD"
+    start "" "https://www.guru3d.com/getdownload/2c1b2414f56a6594ffef91236a87c0e976d52e0518b4303846bab016c2f20c7c4d6ce7dfe19a0bc843da8d448bbb670058b0c9ee9a26f5cf49bc39c97da070e6eb314629af3da2d24ab0413917f73b946419b5af447da45cefb517a0840ad3003abff4f9d5fe7828bbbb910ee270b40528035fb17c6b4c80012cb4bd3140fa764f68932d48b5bb53887b044417f16e18cb59c8aca2a366e80787b52d8a915d2bf3ecdac9dae6c8bf601ba1d54d0f634b29e61c9fcb7e"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="12" (
-    start "" "LINK_ZOOM"
+    start "" "https://discord.com/api/downloads/distributions/app/installers/latest?channel=stable&platform=win&arch=x64"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="13" (
-    start "" "LINK_TEAMVIEWER"
+    start "" "https://download.teamviewer.com/download/TeamViewer_Setup_x64.exe"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="14" (
-    start "" "LINK_SPOTIFY"
+    start "" "https://download.scdn.co/SpotifySetup.exe"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="15" (
-    start "" "LINK_STEAM"
+    start "" "https://cdn.akamai.steamstatic.com/client/installer/SteamSetup.exe"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="16" (
-    start "" "LINK_EPICGAMES"
+    start "" "https://launcher-public-service-prod06.ol.epicgames.com/launcher/api/installer/download/EpicGamesLauncherInstaller.msi"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="17" (
-    start "" "LINK_TELEGRAM"
+    start "" "https://telegram.org/dl/desktop/win64"
+    goto SoftwareUtili
+)
+if "%softwareChoice%"=="18" (
+    start "" "https://get.microsoft.com/installer/download/9NKSQGP7F2NH?cid=website_cta_psi"
+    goto SoftwareUtili
+)
+if "%softwareChoice%"=="19" (
+    start "" "https://origin-a.akamaihd.net/EA-Desktop-Client-Download/installer-releases/EAappInstaller.exe"
+    goto SoftwareUtili
+)
+if "%softwareChoice%"=="20" (
+    start "" "https://sourceforge.net/projects/hwinfo/files/Windows_Installer/hwi64_828.exe/download"
+    goto SoftwareUtili
+)
+if "%softwareChoice%"=="21" (
+    start "" "https://ubi.li/4vxt9"
+    goto SoftwareUtili
+)
+if "%softwareChoice%"=="22" (
+    start "" "https://webinstallers.gog-statics.com/download/GOG_Galaxy_2.0.exe?payload=z6TgP8u7TnR3kbZbBsJ6HZvcqb4Q7ocn9w7cXKr-uvjp8EAs6SmeyxnuWvlQ50_0DjTZkrbQW2ZrVaggEjttD7lg1YNKvv3rOE6IiIliDN5pkl6us7IIFo5V-LJ27ePfntcEokTpWCwZ6ncXaxrzh44eXAWgBJjHqh2WqwUqG9BJeBgZVd9D4Fb7iC4lXBktlxe0lamSxEiDaRerGQjaCHlLpN-p9-7cleZYW_D0dGc20Og2FABN3FBuGMAvdP_lGyC82QvNvQCIb5bkwrmBiS1c430gmHSV6Q4F5Yc-KYpJ2HTeCCtxuCcD7_XMRfbQt7wHYXELdXL-mK8-NNSqE6TLwQfRWYDfR_q6Nw6uVShfNA9xJOZaSNb3693FcCY21ksdTCdoJvrpTWHhq8jp3KMeU6WOf1xv3rCo7aZBeX-b1N1NeMuQCf2zSN7HKghfrG0iYupOr47BfbL3Yyr1_ufyTpyCB14XhWqJhnyQeRxESTllyvcnc2YQe-AXqOrsaYlK1jXTihiHgpRSlffq2228Vna_cxHcocTUsgNRuuYVYPGPq_9lYd_XZVQUaZ9JeK_rFKGQya5WG6JJDuAzQHXU3KFH-QzJ985bJCapf4rZZbr9rjcipQ_L3Mv-jGEa-DoiVvV0J4145PjocWwcK4Cm53fJFYfHS_0ZqfPwSNzKAAgAUtEriRD1BIT_g9vo7w.."
+    goto SoftwareUtili
+)
+if "%softwareChoice%"=="23" (
+    start "" "https://sourceforge.net/projects/crystaldiskmark/files/9.0.1/CrystalDiskMark9_0_1Ads.exe/download"
     goto SoftwareUtili
 )
 :Exit
