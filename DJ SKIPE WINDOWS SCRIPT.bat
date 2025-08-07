@@ -1358,14 +1358,14 @@ if "%LANG%"=="EN" (
     echo:             [1] 7-Zip                                              [21] Ubisoft Connect
     echo:             [2] Google Chrome                                      [22] Gog Launcher
     echo:             [3] Firefox                                            [23] CrystalDiskInfo
-    echo:             [4] VLC Media Player                                   
-    echo:             [6] Notepad++                                          
-    echo:             [7] Visual Studio Code                                 
-    echo:             [8] OBS Studio                                           
-    echo:             [9] Python                                             
-    echo:             [10] CPU-Z  
-    echo:             [11] GPU-Z                                      
-    echo:             [12] Discord                                                                                                     
+    echo:             [4] VLC Media Player                                   [24] Opera
+    echo:             [6] Notepad++                                          [25] Brave
+    echo:             [7] Visual Studio Code                                 [26] Handbrake
+    echo:             [8] OBS Studio                                         [27] KeePass Password Manager    
+    echo:             [9] Python                                             [28] OpenOffice
+    echo:             [10] CPU-Z                                             [29] Libreoffice
+    echo:             [11] GPU-Z                                             [30] qBittorent
+    echo:             [12] Discord                                           [31] Adobe Reader                                                           
     echo:             [13] TeamViewer                                        
     echo:             [14] Spotify                                           
     echo:             [15] Steam                                             
@@ -1382,14 +1382,14 @@ if "%LANG%"=="EN" (
     echo:             [1] 7-Zip                                              [21] Ubisoft Connect
     echo:             [2] Google Chrome                                      [22] Gog Launcher
     echo:             [3] Firefox                                            [23] CrystalDiskInfo
-    echo:             [4] VLC Media Player                                   
-    echo:             [6] Notepad++                                          
-    echo:             [7] Visual Studio Code                                 
-    echo:             [8] OBS Studio                                           
-    echo:             [9] Python                                             
-    echo:             [10] CPU-Z  
-    echo:             [11] GPU-Z                                      
-    echo:             [12] Discord                                                                                                     
+    echo:             [4] VLC Media Player                                   [24] Opera
+    echo:             [6] Notepad++                                          [25] Brave 
+    echo:             [7] Visual Studio Code                                 [26] Handbrake
+    echo:             [8] OBS Studio                                         [27] KeePass Password Manager  
+    echo:             [9] Python                                             [28] OpenOffice
+    echo:             [10] CPU-Z                                             [29] Libreoffice
+    echo:             [11] GPU-Z                                             [30] qBittorent
+    echo:             [12] Discord                                           [31] Adobe Reader                                                         
     echo:             [13] TeamViewer                                        
     echo:             [14] Spotify                                           
     echo:             [15] Steam                                             
@@ -1504,6 +1504,39 @@ if "%softwareChoice%"=="23" (
     start "" "https://sourceforge.net/projects/crystaldiskmark/files/9.0.1/CrystalDiskMark9_0_1Ads.exe/download"
     goto SoftwareUtili
 )
+if "%softwareChoice%"=="24" (
+    start "" "https://www.opera.com/it/computer/thanks?ni=stable&os=windows"
+    goto SoftwareUtili
+)
+if "%softwareChoice%"=="25" (
+    start "" "https://laptop-updates.brave.com/download/BRV010?bitness=64"
+    goto SoftwareUtili
+)
+if "%softwareChoice%"=="26" (
+    start "" "https://handbrake.fr/rotation.php?file=HandBrake-1.9.2-x86_64-Win_GUI.exe"
+    goto SoftwareUtili
+)
+if "%softwareChoice%"=="27" (
+    start "" "https://sourceforge.net/projects/keepass/files/KeePass%202.x/2.59/KeePass-2.59-Setup.exe/download"
+    goto SoftwareUtili
+)
+if "%softwareChoice%"=="28" (
+    start "" "https://sourceforge.net/projects/openofficeorg.mirror/files/4.1.15/binaries/it/Apache_OpenOffice_4.1.15_Win_x86_install_it.exe/download"
+    goto SoftwareUtili
+)
+if "%softwareChoice%"=="29" (
+    start "" "https://it.libreoffice.org/donazioni/dl/win-x86_64/25.2.5/it/LibreOffice_25.2.5_Win_x86-64.msi"
+    goto SoftwareUtili
+)
+if "%softwareChoice%"=="30" (
+    start "" "https://sourceforge.net/projects/qbittorrent/files/qbittorrent-win32/"
+    goto SoftwareUtili
+)
+if "%softwareChoice%"=="31" (
+    start "" "https://get.adobe.com/it/reader/download?os=Windows+10&name=Reader+2025.001.20531+Italian+Windows%2864Bit%29&lang=it&nativeOs=Windows+10&accepted=cr&declined=mss&preInstalled=&site=landing"
+    goto SoftwareUtili
+)
+
 :Exit
 
 if "%LANG%"=="EN" (
