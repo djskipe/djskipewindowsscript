@@ -1,3 +1,4 @@
+
 @echo off
 setlocal enabledelayedexpansion
 
@@ -31,22 +32,40 @@ if "%langChoice%"=="2" (
 )
 goto :LanguageSelect
 
-echo Continuing without update...
-goto :eof
-
 :CheckForUpdates
+echo Checking for updates...
+
 :: Create a temporary file to store the API response
 set "temp_file=%temp%\github_response.txt"
 
-:: Use PowerShell to fetch the latest release information
-powershell -Command "(Invoke-WebRequest -Uri '%GITHUB_API_URL%' -UseBasicParsing).Content" > "%temp_file%"
+:: Use PowerShell to fetch and parse the latest release information
+powershell -NoProfile -Command "try { $response = Invoke-RestMethod -Uri '%GITHUB_API_URL%' -UseBasicParsing; Write-Host $response.tag_name; Write-Host $response.assets[0].browser_download_url } catch { Write-Host 'ERROR'; Write-Host 'ERROR' }" > "%temp_file%"
 
-:: Extract the latest version and download URL using PowerShell
-for /f "tokens=* usebackq" %%a in (`powershell -Command "Get-Content '%temp_file%' | ConvertFrom-Json | Select-Object -ExpandProperty tag_name"`) do set "LATEST_VERSION=%%a"
-for /f "tokens=* usebackq" %%a in (`powershell -Command "Get-Content '%temp_file%' | ConvertFrom-Json | Select-Object -ExpandProperty assets | Select-Object -First 1 | Select-Object -ExpandProperty browser_download_url"`) do set "DOWNLOAD_URL=%%a"
+:: Read the response
+set "line_count=0"
+for /f "tokens=*" %%a in (%temp_file%) do (
+    set /a line_count+=1
+    if !line_count!==1 set "LATEST_VERSION=%%a"
+    if !line_count!==2 set "DOWNLOAD_URL=%%a"
+)
 
 :: Remove the temporary file
 del "%temp_file%"
+
+:: Check if we got valid data
+if "%LATEST_VERSION%"=="ERROR" (
+    echo Unable to check for updates. Continuing...
+    goto :eof
+)
+
+if "%LATEST_VERSION%"=="" (
+    echo Unable to check for updates. Continuing...
+    goto :eof
+)
+
+:: Display current and latest versions for debugging
+echo Current version: %CURRENT_VERSION%
+echo Latest version: %LATEST_VERSION%
 
 :: Compare versions
 if not "%LATEST_VERSION%"=="%CURRENT_VERSION%" (
@@ -63,27 +82,29 @@ if not "%LATEST_VERSION%"=="%CURRENT_VERSION%" (
 
         :: Check if the update.bat file exists
         if exist "%~dp0update.bat" (
-            :: Create an updater script in a temporary location (to avoid conflict with the current script)
+            :: Create an updater script in a temporary location
             echo @echo off > "%temp%\update_script.bat"
             echo timeout /t 2 /nobreak ^> nul >> "%temp%\update_script.bat"
             echo move /y "%~dp0update.bat" "%~nx0" >> "%temp%\update_script.bat"
             echo start "" "%~nx0" >> "%temp%\update_script.bat"
             echo del "%temp%\update_script.bat" >> "%temp%\update_script.bat"
             
-            :: Run the updater script in a new command window to avoid conflict
+            :: Run the updater script
             start cmd /c "%temp%\update_script.bat"
             exit
         ) else (
             echo Error: Update file not found.
             pause
-            exit
         )
     ) else (
         echo Skipping update...
-        goto LanguageSelect
     )
+) else (
+    echo You are using the latest version.
 )
+
 goto :eof
+
 
 setlocal enabledelayedexpansion
 
