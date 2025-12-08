@@ -1099,11 +1099,11 @@ if "%LANG%"=="EN" (
 )
 
 if "%editionChoice%"=="1" (
-    start "" "https://drive.massgrave.dev/it-it_windows_server_2025_updated_july_2025_x64_dvd_a1f0681d.iso"
+    start "" "https://drive.massgrave.dev/it-it_windows_server_2025_updated_nov_2025_x64_dvd_2cfcca22.iso"
     goto WinServer
 )
 if "%editionChoice%"=="2" (
-    start "" "https://drive.massgrave.dev/it-it_windows_server_2022_updated_july_2025_x64_dvd_f3e39b78.iso"
+    start "" "https://drive.massgrave.dev/it-it_windows_server_2022_updated_nov_2025_x64_dvd_2fa82c06.iso"
     goto WinServer
 )
 if "%editionChoice%"=="3" (
