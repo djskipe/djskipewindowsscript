@@ -1136,9 +1136,9 @@ echo:             [1] Adobe Suite Crack                                     [21]
 echo:             [2] Wise Care 365                                         [22] WinPE Acronis True Image 
 echo:             [3] Powershell 7 Installer by dj skipe                    [23] WinPE Sergei Strelect
 echo:             [4] Adobe Acrobat Pro DC 2025                             [24] MAGIX Vegas Pro
-echo:             [5] Adobe Photoshop 2025                                  [25] WinPE Macrium Reflect X
+echo:             [5] Adobe Photoshop 2026                                  [25] WinPE Macrium Reflect X
 echo:             [6] Adobe Premiere Pro 2025                               [26] ABBYY FineReader Corporate
-echo:             [7] Adobe Illustrator 2025                                [27] Aida64 Business
+echo:             [7] Adobe Illustrator 2026                                
 echo:             [8] Adobe After Effects 2025
 echo:             [9] MiniTool Partition Wizard Technician 12.8
 echo:             [10] Revo Uninstaller Pro
@@ -1150,7 +1150,7 @@ echo:             [15] Topaz Video AI
 echo:             [16] StartAllBack 
 echo:             [17] Hard Disk Sentinel Pro 
 echo:             [18] Advanced IP Scanner
-echo:             [19] Em Client Pro 
+echo:             [19] Aida64 
 echo:             [20] Any Excel Password Recovery
 echo:
 if "%LANG%"=="EN" (
@@ -1171,12 +1171,12 @@ if "%extraChoice%"=="0" goto :MainMenu
 
 
 if "%extraChoice%"=="1" (
-    start "" "https://www.mediafire.com/file/rfkhtvca7v8x5ip/GenP.v3.6.8.7z/file"
+    start "" "https://gen.paramore.su/GenP.v3.7.1-CGP.zip"
     goto Extra
 )
 
 if "%extraChoice%"=="2" (
-    start "" "https://www.mediafire.com/file/cis98c3afhdx23g/WiseCare365_7.2.5.703.exe/file"
+    start "" "https://www.mediafire.com/file/ssbqd9nyfh6mwfo/WiseCare365v7.3.2.716.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="3" (
@@ -1203,31 +1203,31 @@ if "%extraChoice%"=="3" (
     goto Extra
 )
 if "%extraChoice%"=="4" (
-    start "" "https://www.mediafire.com/file/4b6xahp0t7cr1t6/AdobeAcrobatProDC2025.001.20577x64.exe/file"
+    start "" "https://www.mediafire.com/file/dozda96mp09eg17/AdobeAcrobatProDC2025.001.20982x64.exe/file"
     goto Extra
 )
 if "%extraChoice%"=="5" (
-    start "" "https://www.mediafire.com/file/ed0g9tq2jdif5ev/AdobePhotoshop2025v26.9.0.15x64Repack.exe/file"
+    start "" "https://www.mediafire.com/file/ojmo2x6ty48em75/AdobePhotoshop2026v27.1.0.17x64Repack.exe/file"
     goto Extra
 )
 if "%extraChoice%"=="6" (
-    start "" "https://www.mediafire.com/file/pumkdvaul314y5u/AdobePremierePro2025v25.3.0.084x64Repack.exe/file"
+    start "" "https://www.mediafire.com/file/jcoia1uqzpav8sr/AdobePremierePro2025v25.6.3.002x64Repack.exe/file"
     goto Extra
 )
 if "%extraChoice%"=="7" (
-    start "" "https://www.mediafire.com/file/krke39ev1wjgezj/AdobeIllustrator2025v29.6.1.9x64Repack.exe/file"
+    start "" "https://www.mediafire.com/file/izersxzjjzr37gi/AdobeIllustrator2026v30.0.0.123x64Repack.exe/file"
     goto Extra
 )
 if "%extraChoice%"=="8" (
-    start "" "https://www.mediafire.com/file/a4nwt112iqfztzj/AdobeAfterEffects2025v25.3.2.002x64.7z/file"
+    start "" "https://www.mediafire.com/file/xp8vtvm02jjk8r8/AdobeAfterEffects2025v25.6.0.101x64.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="9" (
-    start "" "https://www.mediafire.com/file/xdb83hmd58cehmv/MiniTool_Partition_Wizard_v12.8.rar/file"
+    start "" "https://www.mediafire.com/file/819r2n0t9tqu269/MiniTool+Partition+Wizard+All+Editions+13.0+RePack+(&+Portable).exe.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="10" (
-    start "" "https://www.mediafire.com/file/mjamylbeewy1q9o/RevoUninstallerPro5.4.0.7z/file"
+    start "" "https://www.mediafire.com/file/gvkocpufwybaa45/RevoUninstallerPro5.4.5.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="11" (
@@ -1243,7 +1243,7 @@ if "%extraChoice%"=="13" (
     goto Extra
 )
 if "%extraChoice%"=="14" (
-    start "" "https://www.mediafire.com/file/wz16eq1kmpe4bfu/WinRAR7.13x64.exe/file"
+    start "" "https://www.mediafire.com/file/qrmce25bxlhigtx/WinRAR7.20B2x64.exe/file"
     goto Extra
 )
 if "%extraChoice%"=="15" (
@@ -1251,7 +1251,7 @@ if "%extraChoice%"=="15" (
     goto Extra
 )
 if "%extraChoice%"=="16" (
-    start "" "https://www.mediafire.com/file/eur53u458z4vmir/StartAllBack_3.9.13.5293.7z/file"
+    start "" "https://www.mediafire.com/file/7al0vdaate6eqwc/StartAllBack++3.9.18.5341x64.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="17" (
@@ -1263,7 +1263,7 @@ if "%extraChoice%"=="18" (
     goto Extra
 )
 if "%extraChoice%"=="19" (
-    start "" "https://www.mediafire.com/file/slx24irw8uqlcyi/eM+Client+Pro+10.3.2619.7z/file"
+    start "" "https://www.mediafire.com/file/qgm7qfd3lttkczu/AIDA64+8.00.8000⁄AIDA64+8.00.8000.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="20" (
@@ -1283,7 +1283,7 @@ if "%extraChoice%"=="23" (
     goto Extra
 )
 if "%extraChoice%"=="24" (
-    start "" "https://www.mediafire.com/file/c85rf7759hfdper/MAGIXVEGASPro22.0.0.250x64.exe.xz/file"
+    start "" "https://www.mediafire.com/file/03mwuf2v3qvfmj5/MAGIXVEGASPro23.0.302x64.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="25" (
@@ -1293,10 +1293,7 @@ if "%extraChoice%"=="26" (
     start "" "https://www.mediafire.com/file/sq279uu7lcwqbdn/ABBYYFineReaderCorporate16.0.14.7295x64.exe/file"
     goto Extra
 )
-if "%extraChoice%"=="27" (
-    start "" "https://www.mediafire.com/file/lrndezvvqa61d3b/AIDA64Business7.70.7500.7z/file"
-    goto Extra
-)
+
 
 
 goto :Extra
