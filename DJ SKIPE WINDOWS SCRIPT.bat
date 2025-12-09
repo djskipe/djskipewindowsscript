@@ -1387,7 +1387,7 @@ if "%LANG%"=="EN" (
     echo:             [10] CPU-Z                                             [29] Libreoffice
     echo:             [11] GPU-Z                                             [30] qBittorent
     echo:             [12] Discord                                           [31] Adobe Reader                                                         
-    echo:             [13] TeamViewer                                        
+    echo:             [13] TeamViewer                                        [32] DDU - Display Driver Uninstaller
     echo:             [14] Spotify                                           
     echo:             [15] Steam                                             
     echo:             [16] Epic Games Launcher                               
@@ -1531,6 +1531,10 @@ if "%softwareChoice%"=="30" (
 )
 if "%softwareChoice%"=="31" (
     start "" "https://get.adobe.com/it/reader/download?os=Windows+10&name=Reader+2025.001.20531+Italian+Windows%2864Bit%29&lang=it&nativeOs=Windows+10&accepted=cr&declined=mss&preInstalled=&site=landing"
+    goto SoftwareUtili
+)
+if "%softwareChoice%"=="32" (
+    start "" "https://www.guru3d.com/getdownload/2c1b2414f56a6594ffef91236a87c0e976d52e0519bd313846bab016c2f20c7c4d6ce7dfe1991cc241d59b5c8cb07e5018b083a5902ac6c67fbe3b852ca022b0f73541638028a2d270eb55780ef5228e6253f6a66d60fa4ef89b4df48149d51c0bcc8bdeeda443729289d718cb6c973d6b22698d314d0ab77355bb817577d85c4e69c11d13a5f604e4795c4b0ebf2765d959c9acdfea23be45c0f53b8698463ee8"
     goto SoftwareUtili
 )
 
