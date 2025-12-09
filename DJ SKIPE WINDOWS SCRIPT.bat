@@ -1363,8 +1363,8 @@ if "%LANG%"=="EN" (
     echo:             [10] CPU-Z                                             [29] Libreoffice
     echo:             [11] GPU-Z                                             [30] qBittorent
     echo:             [12] Discord                                           [31] Adobe Reader                                                           
-    echo:             [13] TeamViewer                                        
-    echo:             [14] Spotify                                           
+    echo:             [13] TeamViewer                                        [32] DDU - Display Driver Uninstaller
+    echo:             [14] Spotify                                           [33] Driver Store Explorer                                  
     echo:             [15] Steam                                             
     echo:             [16] Epic Games Launcher                               
     echo:             [17] Telegram                                          
