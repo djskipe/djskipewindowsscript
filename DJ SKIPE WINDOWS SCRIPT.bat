@@ -1271,15 +1271,15 @@ if "%extraChoice%"=="20" (
     goto Extra
 )
 if "%extraChoice%"=="21" (
-    start "" "https://www.mediafire.com/file/gvkocpufwybaa45/RevoUninstallerPro5.4.5.7z/file"
+    start "" "https://www.mediafire.com/file/e53xi4jzb8g3nqp/Revo+Uninstaller+Pro+Portable+5.4.5.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="22" (
-    start "" "https://www.mediafire.com/file/s3cx3antqfwahp1/Acronis+True+Image+Build+42072+Multilingual+Bootable+ISO.7z/file"
+    start "" "https://www.mediafire.com/file/b05pzu1t2e21mcb/Acronis+True+Image+Build+42386+Multilingual+Bootable+ISO.iso/file"
     goto Extra
 )
 if "%extraChoice%"=="23" (
-    start "" "https://mega.nz/file/cvpyhDgS#6_QA3ZfAaBdWoDdIwioqqjxy3hVhD5daPcti0L3W1-E"
+    start "" "https://mega.nz/file/YuoRULJC#q-jikbnA9J1ueJ1-Bvy0fyHOR1_KERIwQeBGO4ChdxQ"
     goto Extra
 )
 if "%extraChoice%"=="24" (
@@ -1325,12 +1325,12 @@ if "%LANG%"=="EN" (
 if "%macriumChoice%"=="0" goto Extra
 
 if "%macriumChoice%"=="1" (
-    start "" "https://www.mediafire.com/file/t591taedfywoz90/Macrium+Reflect+X+Server+10.0.8576+(x64)+WinPE+10.7z/file"
+    start "" "https://www.mediafire.com/file/zlk15pdhfkmgd8q/MacriumRescueWinPE_Win10.iso/file"
     goto Extra
 )
 
 if "%macriumChoice%"=="2" (
-    start "" "https://www.mediafire.com/file/2pek6ack7mivl5i/Macrium+Reflect+X+Server+10.0.8576+(x64)+WinPE+11.7z/file"
+    start "" "https://www.mediafire.com/file/vpbwk3p1wzrwa5n/MacriumRescueWinPE_Win11.iso/file"
     goto Extra
 )
 
