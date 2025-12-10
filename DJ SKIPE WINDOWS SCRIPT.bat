@@ -157,7 +157,7 @@ if "%LANG%"=="EN" (
     echo:             [10] Change Language
     echo:             [0] Exit
 ) else (
-    echo:                 DJ SKIPE WINDOWS SCRIPT v1.8.1
+    echo:                 DJ SKIPE WINDOWS SCRIPT v1.9.0
     echo:
     echo          Questo script ti permette di eseguire il debloater 
     echo          di Windows in facilita' direttamente da questo CMD.
