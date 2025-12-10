@@ -3,7 +3,7 @@
 setlocal enabledelayedexpansion
 
 :: Version information
-set "CURRENT_VERSION=1.8.1"
+set "CURRENT_VERSION=1.9.0"
 set "GITHUB_API_URL=https://api.github.com/repos/djskipe/djskipewindowsscript/releases/latest"
 
 :: Check for updates before showing the menu
@@ -137,7 +137,7 @@ echo:
 echo:       ______________________________________________________________
 echo:
 if "%LANG%"=="EN" (
-    echo:                 DJ SKIPE WINDOWS SCRIPT v1.8.1
+    echo:                 DJ SKIPE WINDOWS SCRIPT v1.9.0
     echo:
     echo          This script allows you to easily run the Windows
     echo          debloater from this CMD. It also allows you to
@@ -1426,11 +1426,11 @@ if "%softwareChoice%"=="4" (
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="5" (
-    start "" "https://www.mediafire.com/file/wz16eq1kmpe4bfu/WinRAR7.13x64.exe/file"
+    start "" "https://winrar.it/prelievo_ok.php?url=prelievo/WinRAR-x64-720b2it.exe"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="6" (
-    start "" "https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.7.7/npp.8.7.7.Installer.x64.exe"
+    start "" "https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.8.9/npp.8.8.9.Installer.x64.exe"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="7" (
@@ -1438,7 +1438,7 @@ if "%softwareChoice%"=="7" (
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="8" (
-    start "" "LIhttps://cdn-fastly.obsproject.com/downloads/OBS-Studio-31.1.2-Windows-x64-Installer.exeNK_GIT"
+    start "" "https://github.com/obsproject/obs-studio/releases/download/32.0.3/OBS-Studio-32.0.3-Windows-x64-Installer.exe"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="9" (
@@ -1510,19 +1510,19 @@ if "%softwareChoice%"=="25" (
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="26" (
-    start "" "https://handbrake.fr/rotation.php?file=HandBrake-1.9.2-x86_64-Win_GUI.exe"
+    start "" "https://handbrake.fr/rotation.php?file=HandBrake-1.10.2-x86_64-Win_GUI.exe"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="27" (
-    start "" "https://sourceforge.net/projects/keepass/files/KeePass%202.x/2.59/KeePass-2.59-Setup.exe/download"
+    start "" "https://sourceforge.net/projects/keepass/files/KeePass%202.x/2.60/KeePass-2.60-Setup.exe/download"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="28" (
-    start "" "https://sourceforge.net/projects/openofficeorg.mirror/files/4.1.15/binaries/it/Apache_OpenOffice_4.1.15_Win_x86_install_it.exe/download"
+    start "" "https://sourceforge.net/projects/openofficeorg.mirror/files/4.1.16/binaries/it/Apache_OpenOffice_4.1.16_Win_x86_install_it.exe/download"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="29" (
-    start "" "https://it.libreoffice.org/donazioni/dl/win-x86_64/25.2.5/it/LibreOffice_25.2.5_Win_x86-64.msi"
+    start "" "https://it.libreoffice.org/donazioni/dl/win-x86_64/25.8.3/it/LibreOffice_25.8.3_Win_x86-64.msi"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="30" (
