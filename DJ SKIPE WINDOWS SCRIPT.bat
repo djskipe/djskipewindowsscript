@@ -1446,7 +1446,7 @@ if "%softwareChoice%"=="9" (
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="10" (
-    start "" "https://download.cpuid.com/cpu-z/cpu-z_2.16-en.exe"
+    start "" "https://download.cpuid.com/cpu-z/cpu-z_2.17-en.exe"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="11" (
@@ -1486,7 +1486,7 @@ if "%softwareChoice%"=="19" (
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="20" (
-    start "" "https://sourceforge.net/projects/hwinfo/files/Windows_Installer/hwi64_828.exe/download"
+    start "" "https://www.hwinfo.com/files/hwi64_834.exe"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="21" (
@@ -1498,7 +1498,7 @@ if "%softwareChoice%"=="22" (
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="23" (
-    start "" "https://sourceforge.net/projects/crystaldiskmark/files/9.0.1/CrystalDiskMark9_0_1Ads.exe/download"
+    start "" "https://sourceforge.net/projects/crystaldiskinfo/files/latest/download"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="24" (
@@ -1530,7 +1530,7 @@ if "%softwareChoice%"=="30" (
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="31" (
-    start "" "https://get.adobe.com/it/reader/download?os=Windows+10&name=Reader+2025.001.20531+Italian+Windows%2864Bit%29&lang=it&nativeOs=Windows+10&accepted=cr&declined=mss&preInstalled=&site=landing"
+    start "" "https://get.adobe.com/it/reader/download?os=Windows+10&name=Reader+2025.001.20997+Italian+for+Windows+%28Recommended%29&lang=it&nativeOs=Windows+10&accepted=cr&declined=mss%2Chrm&preInstalled=&site=landing"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="32" (
