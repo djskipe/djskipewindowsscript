@@ -1145,7 +1145,7 @@ echo:             [10] Revo Uninstaller Pro
 echo:             [11] Poweroff
 echo:             [12] Glasswire
 echo:             [13] Windows XP Activator       
-echo:             [14] WinRar 7.11
+echo:             [14] WinRar
 echo:             [15] Topaz Video AI 
 echo:             [16] StartAllBack 
 echo:             [17] Hard Disk Sentinel Pro 
