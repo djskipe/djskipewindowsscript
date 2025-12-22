@@ -137,7 +137,7 @@ echo:
 echo:       ______________________________________________________________
 echo:
 if "%LANG%"=="EN" (
-    echo:                 DJ SKIPE WINDOWS SCRIPT v1.9.0
+    echo:                 DJ SKIPE WINDOWS SCRIPT v1.9.1
     echo:
     echo          This script allows you to easily run the Windows
     echo          debloater from this CMD. It also allows you to
@@ -157,7 +157,7 @@ if "%LANG%"=="EN" (
     echo:             [10] Change Language
     echo:             [0] Exit
 ) else (
-    echo:                 DJ SKIPE WINDOWS SCRIPT v1.9.0
+    echo:                 DJ SKIPE WINDOWS SCRIPT v1.9.1
     echo:
     echo          Questo script ti permette di eseguire il debloater 
     echo          di Windows in facilita' direttamente da questo CMD.
@@ -1140,7 +1140,7 @@ echo:             [5] Adobe Photoshop 2026                                  [25]
 echo:             [6] Adobe Premiere Pro 2025                               [26] ABBYY FineReader Corporate
 echo:             [7] Adobe Illustrator 2026                                
 echo:             [8] Adobe After Effects 2025
-echo:             [9] MiniTool Partition Wizard Technician 12.8
+echo:             [9] MiniTool Partition Wizard
 echo:             [10] Revo Uninstaller Pro
 echo:             [11] Poweroff
 echo:             [12] Glasswire
@@ -1176,7 +1176,7 @@ if "%extraChoice%"=="1" (
 )
 
 if "%extraChoice%"=="2" (
-    start "" "https://www.mediafire.com/file/ssbqd9nyfh6mwfo/WiseCare365v7.3.2.716.7z/file"
+    start "" "https://www.mediafire.com/file/xl9yf7wlg0pkkey/Wise_Care_365_Pro_7.3.2.716.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="3" (
