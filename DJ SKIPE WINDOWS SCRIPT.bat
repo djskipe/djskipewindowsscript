@@ -3,7 +3,7 @@
 setlocal enabledelayedexpansion
 
 :: Version information
-set "CURRENT_VERSION=1.9.1"
+set "CURRENT_VERSION=1.9.2"
 set "GITHUB_API_URL=https://api.github.com/repos/djskipe/djskipewindowsscript/releases/latest"
 
 :: Check for updates before showing the menu
@@ -137,7 +137,7 @@ echo:
 echo:       ______________________________________________________________
 echo:
 if "%LANG%"=="EN" (
-    echo:                 DJ SKIPE WINDOWS SCRIPT v1.9.1
+    echo:                 DJ SKIPE WINDOWS SCRIPT v1.9.2
     echo:
     echo          This script allows you to easily run the Windows
     echo          debloater from this CMD. It also allows you to
@@ -157,7 +157,7 @@ if "%LANG%"=="EN" (
     echo:             [10] Change Language
     echo:             [0] Exit
 ) else (
-    echo:                 DJ SKIPE WINDOWS SCRIPT v1.9.1
+    echo:                 DJ SKIPE WINDOWS SCRIPT v1.9.2
     echo:
     echo          Questo script ti permette di eseguire il debloater 
     echo          di Windows in facilita' direttamente da questo CMD.
@@ -784,7 +784,7 @@ if "%LANG%"=="EN" (
 if "%winChoice%"=="1" (
     cls
     echo: Downloading Windows 11...
-    start "" "https://archive.org/download/Win11v24H2ITAx64/Win11_24H2_Italian_x64.iso"
+    start "" "https://archive.org/download/Win11v25H2ITAx64/Win11_25H2_Italian_x64.iso"
     goto :DownWindows
 )
 
