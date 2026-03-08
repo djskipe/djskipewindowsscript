@@ -3,7 +3,7 @@
 setlocal enabledelayedexpansion
 
 :: Version information
-set "CURRENT_VERSION=1.9.2"
+set "CURRENT_VERSION=2.0.0"
 set "GITHUB_API_URL=https://api.github.com/repos/djskipe/djskipewindowsscript/releases/latest"
 
 :: Check for updates before showing the menu
@@ -137,7 +137,7 @@ echo:
 echo:       ______________________________________________________________
 echo:
 if "%LANG%"=="EN" (
-    echo:                 DJ SKIPE WINDOWS SCRIPT v1.9.2
+    echo:                 DJ SKIPE WINDOWS SCRIPT v2.0.0
     echo:
     echo          This script allows you to easily run the Windows
     echo          debloater from this CMD. It also allows you to
@@ -157,7 +157,7 @@ if "%LANG%"=="EN" (
     echo:             [10] Change Language
     echo:             [0] Exit
 ) else (
-    echo:                 DJ SKIPE WINDOWS SCRIPT v1.9.2
+    echo:                 DJ SKIPE WINDOWS SCRIPT v2.0.0
     echo:
     echo          Questo script ti permette di eseguire il debloater 
     echo          di Windows in facilita' direttamente da questo CMD.
@@ -784,7 +784,7 @@ if "%LANG%"=="EN" (
 if "%winChoice%"=="1" (
     cls
     echo: Downloading Windows 11...
-    start "" "https://archive.org/download/Win11v25H2ITAx64/Win11_25H2_Italian_x64.iso"
+    start "" "https://software-static.download.prss.microsoft.com/dbazure/888969d5-f34g-4e03-ac9d-1f9786c66749/26200.6584.250915-1905.25h2_ge_release_svc_refresh_CLIENT_CONSUMER_x64FRE_it-it.iso"
     goto :DownWindows
 )
 
@@ -1137,9 +1137,9 @@ echo:             [2] Wise Care 365                                         [22]
 echo:             [3] Powershell 7 Installer by dj skipe                    [23] WinPE Sergei Strelect
 echo:             [4] Adobe Acrobat Pro DC 2025                             [24] MAGIX Vegas Pro
 echo:             [5] Adobe Photoshop 2026                                  [25] WinPE Macrium Reflect X
-echo:             [6] Adobe Premiere Pro 2025                               [26] ABBYY FineReader Corporate
-echo:             [7] Adobe Illustrator 2026                                
-echo:             [8] Adobe After Effects 2025
+echo:             [6] Adobe Premiere Pro 2026                               [26] ABBYY FineReader Corporate
+echo:             [7] Adobe Illustrator 2026                                [27] WeMod Patcher
+echo:             [8] Adobe After Effects 2026
 echo:             [9] MiniTool Partition Wizard
 echo:             [10] Revo Uninstaller Pro
 echo:             [11] Poweroff
@@ -1171,7 +1171,7 @@ if "%extraChoice%"=="0" goto :MainMenu
 
 
 if "%extraChoice%"=="1" (
-    start "" "https://gen.paramore.su/GenP.v3.7.1-CGP.zip"
+    start "" "https://gen.paramore.su/GenP.v3.8.0-CGP.zip"
     goto Extra
 )
 
@@ -1203,23 +1203,23 @@ if "%extraChoice%"=="3" (
     goto Extra
 )
 if "%extraChoice%"=="4" (
-    start "" "https://www.mediafire.com/file/dozda96mp09eg17/AdobeAcrobatProDC2025.001.20982x64.exe/file"
+    start "" "https://transfer.it/t/NThyY483nTbS"
     goto Extra
 )
 if "%extraChoice%"=="5" (
-    start "" "https://www.mediafire.com/file/ojmo2x6ty48em75/AdobePhotoshop2026v27.1.0.17x64Repack.exe/file"
+    start "" "https://transfer.it/t/lDuZUw0XlZwR"
     goto Extra
 )
 if "%extraChoice%"=="6" (
-    start "" "https://www.mediafire.com/file/jcoia1uqzpav8sr/AdobePremierePro2025v25.6.3.002x64Repack.exe/file"
+    start "" "https://transfer.it/t/2lpUdxslDLxC"
     goto Extra
 )
 if "%extraChoice%"=="7" (
-    start "" "https://www.mediafire.com/file/izersxzjjzr37gi/AdobeIllustrator2026v30.0.0.123x64Repack.exe/file"
+    start "" "https://transfer.it/t/IjIY01sTQTJR"
     goto Extra
 )
 if "%extraChoice%"=="8" (
-    start "" "https://www.mediafire.com/file/xp8vtvm02jjk8r8/AdobeAfterEffects2025v25.6.0.101x64.7z/file"
+    start "" "https://ranoz.gg/file/NyGtDYhy"
     goto Extra
 )
 if "%extraChoice%"=="9" (
@@ -1227,7 +1227,7 @@ if "%extraChoice%"=="9" (
     goto Extra
 )
 if "%extraChoice%"=="10" (
-    start "" "https://www.mediafire.com/file/gvkocpufwybaa45/RevoUninstallerPro5.4.5.7z/file"
+    start "" "https://www.mediafire.com/file/zqg6656neuszlm9/RevoUninstallerPro5.4.7.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="11" (
@@ -1243,7 +1243,7 @@ if "%extraChoice%"=="13" (
     goto Extra
 )
 if "%extraChoice%"=="14" (
-    start "" "https://www.mediafire.com/file/qrmce25bxlhigtx/WinRAR7.20B2x64.exe/file"
+    start "" "https://www.mediafire.com/file/f9eg3matld4h2c1/WinRAR7.20x64.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="15" (
@@ -1251,11 +1251,11 @@ if "%extraChoice%"=="15" (
     goto Extra
 )
 if "%extraChoice%"=="16" (
-    start "" "https://www.mediafire.com/file/7al0vdaate6eqwc/StartAllBack++3.9.18.5341x64.7z/file"
+    start "" "https://www.mediafire.com/file/1glccxw94o1eqh6/StartAllBack++3.9.21.5360x64.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="17" (
-    start "" "https://www.mediafire.com/file/tvhfxlwu3z3ktp8/Hard_Disk_Sentinel_Pro_v6.30.rar/file"
+    start "" "https://www.mediafire.com/file/7omoxq81jmzwolz/HardDiskSentinelPro6.4.0.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="18" (
@@ -1271,7 +1271,7 @@ if "%extraChoice%"=="20" (
     goto Extra
 )
 if "%extraChoice%"=="21" (
-    start "" "https://www.mediafire.com/file/e53xi4jzb8g3nqp/Revo+Uninstaller+Pro+Portable+5.4.5.7z/file"
+    start "" "https://www.mediafire.com/file/aiylijjoeqx04rg/Revo_Uninstaller_Pro_Portable_5.4.7.zip/file"
     goto Extra
 )
 if "%extraChoice%"=="22" (
@@ -1279,11 +1279,11 @@ if "%extraChoice%"=="22" (
     goto Extra
 )
 if "%extraChoice%"=="23" (
-    start "" "https://mega.nz/file/YuoRULJC#q-jikbnA9J1ueJ1-Bvy0fyHOR1_KERIwQeBGO4ChdxQ"
+    start "" "https://mega.nz/file/U7hmAThC#yOFdxDLfNRM_NzKUzNQ1BHuLxexfiHmunw4HlhfxpFQ"
     goto Extra
 )
 if "%extraChoice%"=="24" (
-    start "" "https://www.mediafire.com/file/03mwuf2v3qvfmj5/MAGIXVEGASPro23.0.302x64.7z/file"
+    start "" "https://www.mediafire.com/file/c4n0as3ft0xd3w2/MAGIXVEGASPro23.0.356x64.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="25" (
@@ -1293,7 +1293,10 @@ if "%extraChoice%"=="26" (
     start "" "https://www.mediafire.com/file/sq279uu7lcwqbdn/ABBYYFineReaderCorporate16.0.14.7295x64.exe/file"
     goto Extra
 )
-
+if "%extraChoice%"=="27" (
+    start "" "https://github.com/k1tbyte/Wemod-Patcher/releases/download/1.0.6.0/WeModPatcher.exe"
+    goto Extra
+)
 
 
 goto :Extra
@@ -1422,7 +1425,7 @@ if "%softwareChoice%"=="3" (
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="4" (
-    start "" "https://get.videolan.org/vlc/3.0.21/win32/vlc-3.0.21-win32.exe"
+    start "" "https://get.videolan.org/vlc/3.0.23/win32/vlc-3.0.23-win32.exe"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="5" (
@@ -1430,7 +1433,7 @@ if "%softwareChoice%"=="5" (
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="6" (
-    start "" "https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.8.9/npp.8.8.9.Installer.x64.exe"
+    start "" "https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.9.2/npp.8.9.2.Installer.x64.exe"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="7" (
@@ -1438,23 +1441,23 @@ if "%softwareChoice%"=="7" (
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="8" (
-    start "" "https://github.com/obsproject/obs-studio/releases/download/32.0.3/OBS-Studio-32.0.3-Windows-x64-Installer.exe"
+    start "" "https://cdn-fastly.obsproject.com/downloads/OBS-Studio-32.0.4-Windows-x64-Installer.exe"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="9" (
-    start "" "LINKhttps://www.python.org/ftp/python/3.13.5/python-3.13.5-amd64.exe_PYTHON"
+    start "" "https://www.python.org/ftp/python/3.14.3/python-3.14.3-amd64.exe"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="10" (
-    start "" "https://download.cpuid.com/cpu-z/cpu-z_2.17-en.exe"
+    start "" "https://download.cpuid.com/cpu-z/cpu-z_2.18-en.exe"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="11" (
-    start "" "https://www.guru3d.com/getdownload/2c1b2414f56a6594ffef91236a87c0e976d52e0518b4303846bab016c2f20c7c4d6ce7dfe19a0bc843da8d448bbb670058b0c9ee9a26f5cf49bc39c97da070e6eb314629af3da2d24ab0413917f73b946419b5af447da45cefb517a0840ad3003abff4f9d5fe7828bbbb910ee270b40528035fb17c6b4c80012cb4bd3140fa764f68932d48b5bb53887b044417f16e18cb59c8aca2a366e80787b52d8a915d2bf3ecdac9dae6c8bf601ba1d54d0f634b29e61c9fcb7e"
+    start "" "https://www.guru3d.com/getdownload/2c1b2414f56a6594ffef91236a87c0e976d52e0518b4303846bab016c2f20c7c4d6ce7dfe19a0bc843da8d448bbb670058b0c9ee9a26f5cf49bc39c97da070e6eb314629af3da2d24ab0413917f73b946419b5af447da45cefb517a0840ad3003abff4f9d5fe7828bbbb910ee270b40528035fb17c6b4c80012cb4bd3140fa764f68932d48b5bb53887b044417f16e18cb59c8aca2a366e80787b52d8a915d2bf3ecdac9dae6c8bf601ba1d54d0d644f20e6189ac57e"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="12" (
-    start "" "https://discord.com/api/downloads/distributions/app/installers/latest?channel=stable&platform=win&arch=x64"
+    start "" "https://discord.com/api/downloads/distributions/app/installers/latest?channel=stable&platform=win&arch=x64
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="13" (
@@ -1514,7 +1517,7 @@ if "%softwareChoice%"=="26" (
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="27" (
-    start "" "https://sourceforge.net/projects/keepass/files/KeePass%202.x/2.60/KeePass-2.60-Setup.exe/download"
+    start "" "https://sourceforge.net/projects/keepass/files/KeePass%202.x/2.61/KeePass-2.61-Setup.exe/download"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="28" (
@@ -1522,7 +1525,7 @@ if "%softwareChoice%"=="28" (
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="29" (
-    start "" "https://it.libreoffice.org/donazioni/dl/win-x86_64/25.8.3/it/LibreOffice_25.8.3_Win_x86-64.msi"
+    start "" "https://it.libreoffice.org/donazioni/dl/win-x86_64/26.2.1/it/LibreOffice_26.2.1_Win_x86-64.msi"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="30" (
@@ -1534,11 +1537,11 @@ if "%softwareChoice%"=="31" (
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="32" (
-    start "" "https://www.guru3d.com/getdownload/2c1b2414f56a6594ffef91236a87c0e976d52e0519bd313846bab016c2f20c7c4d6ce7dfe1991cc241d59b5c8cb07e5018b083a5902ac6c67fbe3b852ca022b0f73541638028a2d270eb55780ef5228e6253f6a66d60fa4ef89b4df48149d51c0bcc8bdeeda443729289d718cb6c973d6b22698d314d0ab77355bb817577d85c4e69c11d13a5f604e4795c4b0ebf2765d959c9acdfea23be45c0f53b8698463ee8"
+    start "" "https://www.guru3d.com/getdownload/2c1b2414f56a6594ffef91236a87c0e976d52e0519bd313846bab016c2f20c7c4d6ce7dfe19a0bc843da8d448bbb670058b0c9ee9a26f5cf49bc39c97da070e6eb314629af3da2d24ab0413917f73b946419b5af447da45cefb517a0840ad3003abff4f9d5fe7828bbbb910ee270b704333a0283584211b2623dc4ca585fe82d4774d04b4af4b257b930215e13b2364fde129ef8d1f274e01f97997bd9cd142bafb4819bb6a291e23d01ac99"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="33" (
-    start "" "https://github.com/lostindark/DriverStoreExplorer/releases/download/v0.12.127/DriverStoreExplorer.v0.12.127.zip"
+    start "" "https://github.com/lostindark/DriverStoreExplorer/releases/download/v0.12.145/DriverStoreExplorer.v0.12.145.zip"
     goto SoftwareUtili
 )
 
