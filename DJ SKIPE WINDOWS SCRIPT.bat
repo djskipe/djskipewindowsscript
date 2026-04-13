@@ -784,14 +784,14 @@ if "%LANG%"=="EN" (
 if "%winChoice%"=="1" (
     cls
     echo: Downloading Windows 11...
-    start "" "https://software-static.download.prss.microsoft.com/dbazure/888969d5-f34g-4e03-ac9d-1f9786c66749/26200.6584.250915-1905.25h2_ge_release_svc_refresh_CLIENT_CONSUMER_x64FRE_it-it.iso"
+    start "" "https://buzzheavier.com/9v2qpkr6ljem"
     goto :DownWindows
 )
 
 if "%winChoice%"=="2" (
     cls
     echo: Downloading Windows 10...
-    start "" "https://archive.org/download/win-10-22-h-2-italian-x-64_202302/Win10_22H2_Italian_x64.iso"
+    start "" "https://buzzheavier.com/1yn7wu9kb5sg"
     goto :DownWindows
 )
 
@@ -1099,11 +1099,11 @@ if "%LANG%"=="EN" (
 )
 
 if "%editionChoice%"=="1" (
-    start "" "https://drive.massgrave.dev/it-it_windows_server_2025_updated_nov_2025_x64_dvd_2cfcca22.iso"
+    start "" "https://buzzheavier.com/ybm8btt90db5"
     goto WinServer
 )
 if "%editionChoice%"=="2" (
-    start "" "https://drive.massgrave.dev/it-it_windows_server_2022_updated_nov_2025_x64_dvd_2fa82c06.iso"
+    start "" "https://buzzheavier.com/2uevnsrbf3gn"
     goto WinServer
 )
 if "%editionChoice%"=="3" (
