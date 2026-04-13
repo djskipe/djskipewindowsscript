@@ -1135,7 +1135,7 @@ echo:
 echo:             [1] Adobe Suite Crack                                     [21] Revo Uninstaller Pro Portable          
 echo:             [2] Wise Care 365                                         [22] WinPE Acronis True Image 
 echo:             [3] Powershell 7                                          [23] WinPE Sergei Strelect
-echo:             [4] Adobe Acrobat Pro DC 2026                             [24] MAGIX Vegas Pro
+echo:             [4] Adobe Acrobat Pro DC 2026                             [24] MAGIX Vegas Pro 2026
 echo:             [5] Adobe Photoshop 2026                                  [25] WinPE Macrium Reflect X
 echo:             [6] Adobe Premiere Pro 2026                               [26] ABBYY FineReader Corporate
 echo:             [7] Adobe Illustrator 2026                                [27] WeMod Patcher
@@ -1232,7 +1232,7 @@ if "%extraChoice%"=="15" (
     goto Extra
 )
 if "%extraChoice%"=="16" (
-    start "" "https://www.mediafire.com/file/1glccxw94o1eqh6/StartAllBack++3.9.21.5360x64.7z/file"
+    start "" "https://www.mediafire.com/file/vqkpgkhj6b7ef7k/StartAllBack+3.9.22.5362.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="17" (
@@ -1264,7 +1264,7 @@ if "%extraChoice%"=="23" (
     goto Extra
 )
 if "%extraChoice%"=="24" (
-    start "" "https://www.mediafire.com/file/c4n0as3ft0xd3w2/MAGIXVEGASPro23.0.356x64.7z/file"
+    start "" "https://www.mediafire.com/file/0yg03ftca97cqyk/Boris+FX+VEGAS+Pro+2026.0.0.66.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="25" (
