@@ -1135,7 +1135,7 @@ echo:
 echo:             [1] Adobe Suite Crack                                     [21] Revo Uninstaller Pro Portable          
 echo:             [2] Wise Care 365                                         [22] WinPE Acronis True Image 
 echo:             [3] Powershell 7                                          [23] WinPE Sergei Strelect
-echo:             [4] Adobe Acrobat Pro DC 2026                             [24] MAGIX Vegas Pro 2026
+echo:             [4] Adobe Acrobat Pro 2026                                [24] MAGIX Vegas Pro 2026
 echo:             [5] Adobe Photoshop 2026                                  [25] WinPE Macrium Reflect X
 echo:             [6] Adobe Premiere Pro 2026                               [26] ABBYY FineReader Corporate
 echo:             [7] Adobe Illustrator 2026                                [27] WeMod Patcher
@@ -1184,7 +1184,7 @@ if "%extraChoice%"=="3" (
     goto Extra
 )
 if "%extraChoice%"=="4" (
-    start "" "https://www.mediafire.com/file/6q886u40rnt0wkr/Adobe+Acrobat+2026+(v26.1.21367).7z/file"
+    start "" "https://www.mediafire.com/file/nq0lda74yeuprr0/Adobe+Acrobat+2026+(v26.1.21411)+x64+Multilingual+[FileCR].zip/file"
     goto Extra
 )
 if "%extraChoice%"=="5" (
