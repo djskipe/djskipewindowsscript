@@ -1244,7 +1244,7 @@ if "%extraChoice%"=="18" (
     goto Extra
 )
 if "%extraChoice%"=="19" (
-    start "" "https://www.mediafire.com/file/qgm7qfd3lttkczu/AIDA64+8.00.8000⁄AIDA64+8.00.8000.7z/file"
+    start "" "https://www.mediafire.com/file/qyy10qfgrc9dnm9/Aida64.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="20" (
