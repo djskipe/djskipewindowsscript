@@ -1134,8 +1134,8 @@ echo:                            Extra
 echo:
 echo:             [1] Adobe Suite Crack                                     [21] Revo Uninstaller Pro Portable          
 echo:             [2] Wise Care 365                                         [22] WinPE Acronis True Image 
-echo:             [3] Powershell 7 Installer by dj skipe                    [23] WinPE Sergei Strelect
-echo:             [4] Adobe Acrobat Pro DC 2025                             [24] MAGIX Vegas Pro
+echo:             [3] Powershell 7                                          [23] WinPE Sergei Strelect
+echo:             [4] Adobe Acrobat Pro DC 2026                             [24] MAGIX Vegas Pro
 echo:             [5] Adobe Photoshop 2026                                  [25] WinPE Macrium Reflect X
 echo:             [6] Adobe Premiere Pro 2026                               [26] ABBYY FineReader Corporate
 echo:             [7] Adobe Illustrator 2026                                [27] WeMod Patcher
@@ -1171,39 +1171,20 @@ if "%extraChoice%"=="0" goto :MainMenu
 
 
 if "%extraChoice%"=="1" (
-    start "" "https://gen.paramore.su/GenP.v3.8.0-CGP.zip"
+    start "" "https://www.mediafire.com/file/k8jfak21rkad4a2/GenP-v4.0.0.exe/file"
     goto Extra
 )
 
 if "%extraChoice%"=="2" (
-    start "" "https://www.mediafire.com/file/xl9yf7wlg0pkkey/Wise_Care_365_Pro_7.3.2.716.7z/file"
+    start "" "https://www.mediafire.com/file/8jb9umrepirypaq/Wise+Care+365+Pro+7.3.5.722.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="3" (
-    if "%LANG%"=="EN" (
-        echo Installing PowerShell 7...
-    ) else (
-        echo Installazione di PowerShell 7 in corso...
-    )
-    winget install --id Microsoft.Powershell --source winget --silent --accept-package-agreements --accept-source-agreements
-    
-    if %errorlevel% neq 0 (
-        if "%LANG%"=="EN" (
-            echo Error occurred while installing PowerShell. Try disabling your firewall or antivirus temporarily.
-        ) else (
-            echo Errore durante l'installazione di PowerShell. Prova a disabilitare temporaneamente il firewall o l'antivirus.
-        )
-    ) else (
-        if "%LANG%"=="EN" (
-            echo PowerShell 7 has been successfully installed.
-        ) else (
-            echo PowerShell 7 e' stato installato con successo.
-        )
-    )
+    start "" "https://github.com/PowerShell/PowerShell/releases/download/v7.6.0/PowerShell-7.6.0-win-x64.msi"
     goto Extra
 )
 if "%extraChoice%"=="4" (
-    start "" "https://transfer.it/t/NThyY483nTbS"
+    start "" "https://www.mediafire.com/file/6q886u40rnt0wkr/Adobe+Acrobat+2026+(v26.1.21367).7z/file"
     goto Extra
 )
 if "%extraChoice%"=="5" (
@@ -1223,11 +1204,11 @@ if "%extraChoice%"=="8" (
     goto Extra
 )
 if "%extraChoice%"=="9" (
-    start "" "https://www.mediafire.com/file/819r2n0t9tqu269/MiniTool+Partition+Wizard+All+Editions+13.0+RePack+(&+Portable).exe.7z/file"
+    start "" "https://www.mediafire.com/file/ahtw5ijxk44yvar/MiniTool+Partition+Wizard+Technician+13.6.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="10" (
-    start "" "https://www.mediafire.com/file/zqg6656neuszlm9/RevoUninstallerPro5.4.7.7z/file"
+    start "" "https://www.mediafire.com/file/obqo7l20a05izn0/Revo+Uninstaller+Pro+5.4.7.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="11" (
@@ -1275,7 +1256,7 @@ if "%extraChoice%"=="21" (
     goto Extra
 )
 if "%extraChoice%"=="22" (
-    start "" "https://www.mediafire.com/file/b05pzu1t2e21mcb/Acronis+True+Image+Build+42386+Multilingual+Bootable+ISO.iso/file"
+    start "" "https://www.mediafire.com/file/lq1j5csak1ebwlu/Acronis+True+Image+Build+42902+Bootable+ISO.iso/file"
     goto Extra
 )
 if "%extraChoice%"=="23" (
