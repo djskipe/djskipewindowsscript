@@ -1224,11 +1224,11 @@ if "%extraChoice%"=="13" (
     goto Extra
 )
 if "%extraChoice%"=="14" (
-    start "" "https://www.mediafire.com/file/f9eg3matld4h2c1/WinRAR7.20x64.7z/file"
+    start "" "https://www.mediafire.com/file/esxb3qixd0lvio0/WinRAR+7.21+Beta+1.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="15" (
-    start "" "https://www.mediafire.com/file/9evqtaki0586tqj/TopazVideoAI7.1.6x64TeamV.R.7z/file"
+    start "" "https://www.mediafire.com/file/6yrorkbxr1s4pjx/Topaz+Video+AI+Pro+7.1.6.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="16" (
