@@ -3,7 +3,7 @@
 setlocal enabledelayedexpansion
 
 :: Version information
-set "CURRENT_VERSION=2.1.1"
+set "CURRENT_VERSION=2.2.0"
 set "GITHUB_API_URL=https://api.github.com/repos/djskipe/djskipewindowsscript/releases/latest"
 
 :: Check for updates before showing the menu
@@ -137,7 +137,7 @@ echo:
 echo:       ______________________________________________________________
 echo:
 if "%LANG%"=="EN" (
-    echo:                 DJ SKIPE WINDOWS SCRIPT v2.1.1
+    echo:                 DJ SKIPE WINDOWS SCRIPT v2.2.0
     echo:
     echo          This script allows you to easily run the Windows
     echo          debloater from this CMD. It also allows you to
@@ -157,7 +157,7 @@ if "%LANG%"=="EN" (
     echo:             [10] Change Language
     echo:             [0] Exit
 ) else (
-    echo:                 DJ SKIPE WINDOWS SCRIPT v2.1.1
+    echo:                 DJ SKIPE WINDOWS SCRIPT v2.2.0
     echo:
     echo          Questo script ti permette di eseguire il debloater 
     echo          di Windows in facilita' direttamente da questo CMD.
@@ -201,36 +201,104 @@ goto :MainMenu
 
 :RunDebloater
 if "%LANG%"=="EN" (
-    echo Running Windows 11 debloater...
+    echo Downloading Windows 11 debloater...
 ) else (
-    echo Avvio del debloater di Windows 11...
+    echo Download del debloater di Windows 11...
 )
-powershell -NoProfile -Command "& ([scriptblock]::Create((irm 'https://win11debloat.raphi.re/')))"
+
+set "TEMP_DIR=%TEMP%\win11debloat"
+set "ZIP_FILE=%TEMP_DIR%\main.zip"
+
+if exist "%TEMP_DIR%" rmdir /s /q "%TEMP_DIR%"
+mkdir "%TEMP_DIR%"
+
+REM Download ZIP
+echo Downloading...
+powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; (New-Object System.Net.WebClient).DownloadFile('https://github.com/raphire/win11debloat/archive/refs/heads/master.zip', '%ZIP_FILE%')"
+
+if not exist "%ZIP_FILE%" (
+    if "%LANG%"=="EN" (
+        echo Download failed
+    ) else (
+        echo Download fallito
+    )
+    pause
+    goto :MainMenu
+)
+
+REM Extract
+echo Extracting...
+powershell -Command "Expand-Archive -Path '%ZIP_FILE%' -DestinationPath '%TEMP_DIR%'"
+
+REM Find and run first .bat file
+echo Launching...
+for /r "%TEMP_DIR%\win11debloat-master" %%F in (*.bat) do (
+    powershell -Command "Start-Process '%%F' -Verb RunAs"
+    goto :Success
+)
+
+if "%LANG%"=="EN" (
+    echo No batch file found
+) else (
+    echo Nessun file batch trovato
+)
 pause
 goto :MainMenu
 
+:Success
+pause
+goto :MainMenu
+
+
 :InstallBaseSoftwareCustomEdition
+
 if "%LANG%"=="EN" (
-    echo Installing PowerShell...
+    echo Downloading latest PowerShell...
 ) else (
-    echo Installazione di PowerShell in corso...
+    echo Download dell'ultima versione di PowerShell...
 )
-winget install --id Microsoft.PowerShell --source winget --silent --accept-package-agreements --accept-source-agreements
-if %errorlevel% neq 0 (
+
+curl -L -o "%TEMP%\PowerShell-latest-win-x64.msi" "https://github.com/PowerShell/PowerShell/releases/latest/download/PowerShell-win-x64.msi"
+
+if exist "%TEMP%\PowerShell-latest-win-x64.msi" (
+
     if "%LANG%"=="EN" (
-        echo Error installing PowerShell. Try temporarily disabling firewall or antivirus.
+        echo Installing PowerShell...
     ) else (
-        echo Errore durante l'installazione di PowerShell. Prova a disabilitare temporaneamente il firewall o l'antivirus.
+        echo Installazione di PowerShell in corso...
     )
+
+    msiexec /i "%TEMP%\PowerShell-latest-win-x64.msi" /qn /norestart
+
+    if %errorlevel% neq 0 (
+        if "%LANG%"=="EN" (
+            echo Error installing PowerShell.
+        ) else (
+            echo Errore durante l'installazione di PowerShell.
+        )
+    ) else (
+        if "%LANG%"=="EN" (
+            echo PowerShell has been successfully installed.
+        ) else (
+            echo PowerShell è stato installato con successo.
+        )
+    )
+
+    :: Elimina il file MSI
+    del /f /q "%TEMP%\PowerShell-latest-win-x64.msi"
+
 ) else (
+
     if "%LANG%"=="EN" (
-        echo PowerShell has been successfully installed.
+        echo Failed to download PowerShell.
     ) else (
-        echo PowerShell è stato installato con successo.
+        echo Download di PowerShell non riuscito.
     )
+
 )
 
 if "%LANG%"=="EN" (
+    echo.
     echo Installing base software...
     echo Downloading and installing Tixati...
     echo Downloading Telegram, WhatsApp and WeChat from Microsoft Store...
@@ -241,6 +309,7 @@ if "%LANG%"=="EN" (
     echo Installing Custom Edition Software by dj skipe.
     echo Done.
 ) else (
+    echo.
     echo Installazione del software base in corso...
     echo Download e installazione di Tixati in corso...
     echo Scarico Telegram, WhatsApp e WeChat dal Microsoft Store...
@@ -252,17 +321,63 @@ if "%LANG%"=="EN" (
     echo Fine.
 )
 
-start "" "https://ninite.com/7zip-brave-discord-handbrake-notepadplusplus-operaChromium-python3-steam-teamviewer15-vlc-vscode/"
-curl -L -o "%USERPROFILE%\Downloads\tixati-3.32-1.win64-install.exe" "https://download.tixati.com/tixati-3.32-1.win64-install.exe" && "%USERPROFILE%\Downloads\tixati-3.32-1.win64-install.exe" /S
+:: Ninite
+start "" "https://ninite.com/7zip-brave-discord-epic-handbrake-notepadplusplus-operaChromium-putty-python3-steam-teamviewer15-vlc/"
+
+:: Tixati (silent)
+curl -L -o "%USERPROFILE%\Downloads\tixati-3.44-1.win64-install.exe" "https://tixati.com/download/tixati-3.44-1.win64-install"
+if exist "%USERPROFILE%\Downloads\tixati-3.44-1.win64-install.exe" (
+    "%USERPROFILE%\Downloads\tixati-3.44-1.win64-install.exe" /S
+)
+
+:: EA App
+curl -L -o "%USERPROFILE%\Downloads\EAappInstaller.exe" "https://origin-a.akamaihd.net/EA-Desktop-Client-Download/installer-releases/EAappInstaller.exe"
+if exist "%USERPROFILE%\Downloads\EAappInstaller.exe" (
+    start "" "%USERPROFILE%\Downloads\EAappInstaller.exe"
+)
+
+:: GOG Galaxy
+curl -L -o "%USERPROFILE%\Downloads\GOG_Galaxy_2.0.exe" "https://webinstallers.gog-statics.com/download/GOG_Galaxy_2.0.exe"
+if exist "%USERPROFILE%\Downloads\GOG_Galaxy_2.0.exe" (
+    start "" "%USERPROFILE%\Downloads\GOG_Galaxy_2.0.exe"
+)
+
+:: Ubisoft Connect
+curl -L -o "%USERPROFILE%\Downloads\Ubisoft_Connect.exe" "https://ubi.li/4vxt9"
+if exist "%USERPROFILE%\Downloads\Ubisoft_Connect.exe" (
+    start "" "%USERPROFILE%\Downloads\Ubisoft_Connect.exe"
+)
+
+:: Rockstar Games Launcher
+curl -L -o "%USERPROFILE%\Downloads\Rockstar-Games-Launcher.exe" "https://gamedownloads.rockstargames.com/public/installer/Rockstar-Games-Launcher.exe"
+if exist "%USERPROFILE%\Downloads\Rockstar-Games-Launcher.exe" (
+    start "" "%USERPROFILE%\Downloads\Rockstar-Games-Launcher.exe"
+)
+
+:: Amazon Games
+curl -L -o "%USERPROFILE%\Downloads\AmazonGamesSetup.exe" "https://download.amazongames.com/AmazonGamesSetup.exe"
+if exist "%USERPROFILE%\Downloads\AmazonGamesSetup.exe" (
+    start "" "%USERPROFILE%\Downloads\AmazonGamesSetup.exe"
+)
+
+:: Telegram
 powershell -NoProfile -Command "winget install -e --id Telegram.TelegramDesktop"
+
+:: WhatsApp
 curl -L -o "%USERPROFILE%\Downloads\WhatsApp Installer.exe" "https://get.microsoft.com/installer/download/9NKSQGP7F2NH?cid=website_cta_psi/"
 if exist "%USERPROFILE%\Downloads\WhatsApp Installer.exe" (
     start "" "%USERPROFILE%\Downloads\WhatsApp Installer.exe"
 )
+
+:: WeChat
 powershell -NoProfile -Command "winget install -e --id Tencent.WeChat"
-powershell -NoProfile -Command "winget install --id=WinsiderSS.SystemInformer -e"
+
+:: System Informer
+powershell -NoProfile -Command "winget install -e --id WinsiderSS.SystemInformer"
+
 pause
 goto :MainMenu
+
 
 :InstallBaseSoftware
 if "%LANG%"=="EN" (
@@ -784,7 +899,7 @@ if "%LANG%"=="EN" (
 if "%winChoice%"=="1" (
     cls
     echo: Downloading Windows 11...
-    start "" "https://buzzheavier.com/9v2qpkr6ljem"
+    start "" "https://buzzheavier.com/b9gv4d2lt8x5"
     goto :DownWindows
 )
 
@@ -1099,27 +1214,27 @@ if "%LANG%"=="EN" (
 )
 
 if "%editionChoice%"=="1" (
-    start "" "https://buzzheavier.com/ybm8btt90db5"
+    start "" "https://buzzheavier.com/nha1fymh8qa3"
     goto WinServer
 )
 if "%editionChoice%"=="2" (
-    start "" "https://buzzheavier.com/2uevnsrbf3gn"
+    start "" "https://buzzheavier.com/ib7su6egmcs6"
     goto WinServer
 )
 if "%editionChoice%"=="3" (
-    start "" "https://drive.massgrave.dev/it-it_windows_server_2019_x64_dvd_454267de.iso"
+    start "" "https://buzzheavier.com/p2fll4bgh2yf"
     goto WinServer
 )
 if "%editionChoice%"=="4" (
-    start "" "https://drive.massgrave.dev/it_windows_server_2016_vl_x64_dvd_11636710.iso"
+    start "" "https://archive.org/download/WinSrv2016ITA/it_windows_server_2016_x64_dvd_9720043.iso"
     goto WinServer
 )
 if "%editionChoice%"=="5" (
-    start "" "https://drive.massgrave.dev/it_windows_server_2012_r2_vl_with_update_x64_dvd_6052792.iso"
+    start "" "https://archive.org/download/WinServer2012x64ITA/it_windows_server_2012_x64_dvd_915486.iso"
     goto WinServer
 )
 if "%editionChoice%"=="6" (
-    start "" "https://drive.massgrave.dev/it_windows_server_2008_r2_with_sp1_vl_build_x64_dvd_619596.iso"
+    start "" "https://archive.org/download/WinServer2008R2SP1x64ITA/it_windows_server_2008_r2_with_sp1_x64_dvd_617391.iso"
     goto WinServer
 )
 if "%editionChoice%"=="0" goto :DownWindows
@@ -1171,44 +1286,44 @@ if "%extraChoice%"=="0" goto :MainMenu
 
 
 if "%extraChoice%"=="1" (
-    start "" "https://www.mediafire.com/file/k8jfak21rkad4a2/GenP-v4.0.0.exe/file"
+    start "" "https://www.mediafire.com/file/tnsa8dgu6p8cj5b/GenP-v4.2.0.exe/file"
     goto Extra
 )
 
 if "%extraChoice%"=="2" (
-    start "" "https://www.mediafire.com/file/8jb9umrepirypaq/Wise+Care+365+Pro+7.3.5.722.7z/file"
+    start "" "https://www.mediafire.com/file/b7vyr1p2td6zud1/Wise+Care+365+Pro+8.0.4.732.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="3" (
-    start "" "https://github.com/PowerShell/PowerShell/releases/download/v7.6.0/PowerShell-7.6.0-win-x64.msi"
+    start "" "https://github.com/PowerShell/PowerShell/releases/download/v7.6.3/PowerShell-7.6.3-win-x64.msi"
     goto Extra
 )
 if "%extraChoice%"=="4" (
-    start "" "https://www.mediafire.com/file/nq0lda74yeuprr0/Adobe+Acrobat+2026+(v26.1.21411)+x64+Multilingual+[FileCR].zip/file"
+    start "" "https://www.mediafire.com/file/d7v2x0ke5ue342x/Adobe_Acrobat_2026_%2528v26.1.21691%2529.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="5" (
-    start "" "https://transfer.it/t/lDuZUw0XlZwR"
+    start "" "https://ts.fuckingfast.net/d/renvzzfidl1v?v=mryDpm7M9p170CBb4nR23H5lEMOqRRL_LtgDnEt14cH1AWSNBVHY_KtYeV-atbQ-p9jCTDkWCZ2n3BrtKPiqLknE9-v-Terpy2ixD5eyOQhEA4cKVLIjZBxOYDCxIJZ7SrKlgjbVMlbc9s8cnvNrBJN0-lJZcslUV-ElvERODLaD_FARkPoy3BGZf5EUDaKsuqR8tBDGvJQJUKCuipRLXieSSd_7hA"
     goto Extra
 )
 if "%extraChoice%"=="6" (
-    start "" "https://transfer.it/t/2lpUdxslDLxC"
+    start "" "https://ts.fuckingfast.net/d/r9vuyzc070tp?v=5O4Aav_R4cU_W1iHQ7DZeFEc1cNfwfC1qFAVuw0h6oMwBQE8vscZ1DTE80tZCN_fVyVdtu2PmeVTwJgjWQuUQ7soMKbOcxqLq-3ff4_GrsRAoy8F5oWF-4GSMLZ-J_e_Ut7-vEadsMcluTHrrfhyqlAqBI_gczdlC7zwAR0xbfVIFS0-TyPWvp3DrRX2HG2ZcgdG0V5fLXEn0Rxt9wo3UFZeB60YdovJdnE"
     goto Extra
 )
 if "%extraChoice%"=="7" (
-    start "" "https://transfer.it/t/IjIY01sTQTJR"
+    start "" "https://ts.fuckingfast.net/d/qsuftm3wxarz?v=4Le7YskJ_vvC4o6ktXoVcxVVSSoAWZSvUJufKuc6Q0d1eyNVgGlaMvT9hODAadQ1BOC7w7NFHMSy00CIFR3TibFj1HyrntVxbQ_FH-4nKXzYKc7Rpfrl6iqf6EzezrTm6Sfweh6MIOzvpSNWkEpu-6n8QQf6n7fVziHPAstZym1PCuYjomDRe5rTuy4hdJHQqFXb9rLq5fA1cBpvK0c6j0qccpO4o-dnSiRkkw"
     goto Extra
 )
 if "%extraChoice%"=="8" (
-    start "" "https://ranoz.gg/file/NyGtDYhy"
+    start "" "https://ts.fuckingfast.net/d/00lyc1htt0sd?v=cbyIDUPTId_lIruX0g1r5oHl9ncMHZNswY7QYS6O_kO3bdlRs0tV5VUsipsKjStd-fm1J6ZlA5WSpMpophTzgVoN_gV_MpsdhNmZII3y63bBO32bM8DW4dOxwEP6zkqSour5vfARpYpWzphGc3QTnXot-N5yz3x9ueedlpmO12yzqyoGIaUdKPjzd4PDIkL7DF-SLT8qLSNyk-kdmS8"
     goto Extra
 )
 if "%extraChoice%"=="9" (
-    start "" "https://www.mediafire.com/file/ahtw5ijxk44yvar/MiniTool+Partition+Wizard+Technician+13.6.7z/file"
+    start "" "https://www.mediafire.com/file/qahgt1972hkgq7e/MiniTool+Partition+Wizard+Technician+13.9.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="10" (
-    start "" "https://www.mediafire.com/file/obqo7l20a05izn0/Revo+Uninstaller+Pro+5.4.7.7z/file"
+    start "" "https://www.mediafire.com/file/nwk8wpu08tij75b/Revo_Uninstaller_Pro_5.5.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="11" (
@@ -1216,7 +1331,7 @@ if "%extraChoice%"=="11" (
     goto Extra
 )
 if "%extraChoice%"=="12" (
-    start "" "https://download2388.mediafire.com/9k0l3cdx4mpgWXSpL4__11B-7xZFvlUyPWcJte1ADHgiTc7fcTkWa1TamhafLO-_Kx5KuhZcFYBsbI8dnxnbrmDIb7WwYKu3wb1vhJe4d563A-f_sX06cgYv4g70kVQqhtFPiIvvXrnoD_8D2v1GjXzdM5q4R5eGTzvyA4SmiA28eLU/9wsxxcvrn4bpz6g/Glasswire3.4.768.exe.xz"
+    start "" "https://www.mediafire.com/file/hvj5tcpk83eifne/GlassWire+Elite+3.8.1061.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="13" (
@@ -1224,7 +1339,7 @@ if "%extraChoice%"=="13" (
     goto Extra
 )
 if "%extraChoice%"=="14" (
-    start "" "https://www.mediafire.com/file/esxb3qixd0lvio0/WinRAR+7.21+Beta+1.7z/file"
+    start "" "https://www.mediafire.com/file/1x1xoprde5nrhi3/WinRAR7.23x64.exe/file"
     goto Extra
 )
 if "%extraChoice%"=="15" (
@@ -1232,11 +1347,11 @@ if "%extraChoice%"=="15" (
     goto Extra
 )
 if "%extraChoice%"=="16" (
-    start "" "https://www.mediafire.com/file/vqkpgkhj6b7ef7k/StartAllBack+3.9.22.5362.7z/file"
+    start "" "https://www.mediafire.com/file/hrpdwoiv79e492m/StartAllBack++3.9.23.5366x64.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="17" (
-    start "" "https://www.mediafire.com/file/7omoxq81jmzwolz/HardDiskSentinelPro6.4.0.7z/file"
+    start "" "https://www.mediafire.com/file/dhem4gx44xwd8fn/Hard_Disk_Sentinel_Pro_6.40.3.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="18" (
@@ -1244,7 +1359,7 @@ if "%extraChoice%"=="18" (
     goto Extra
 )
 if "%extraChoice%"=="19" (
-    start "" "https://www.mediafire.com/file/qyy10qfgrc9dnm9/Aida64.7z/file"
+    start "" "https://www.mediafire.com/file/geus9eb3wyysg4r/AIDA64Business8.30.8300x64.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="20" (
@@ -1252,7 +1367,7 @@ if "%extraChoice%"=="20" (
     goto Extra
 )
 if "%extraChoice%"=="21" (
-    start "" "https://www.mediafire.com/file/aiylijjoeqx04rg/Revo_Uninstaller_Pro_Portable_5.4.7.zip/file"
+    start "" "https://www.mediafire.com/file/gy0johehw3q9x32/Revo.Uninstaller.Pro.5.5.Portable.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="22" (
@@ -1260,11 +1375,11 @@ if "%extraChoice%"=="22" (
     goto Extra
 )
 if "%extraChoice%"=="23" (
-    start "" "https://mega.nz/file/x7RXwbJA#NPuJOMOxO2vakk3BQ3b75BJLAbfIYK1i0g_NZIIzXPk"
+    start "" "https://www.mediafire.com/file/i3gjydlmg1fe91a/WinPE11_10_8_Sergei_Strelec_x86_x64_2026.07.09_English.rar/file"
     goto Extra
 )
 if "%extraChoice%"=="24" (
-    start "" "https://www.mediafire.com/file/0yg03ftca97cqyk/Boris+FX+VEGAS+Pro+2026.0.0.66.7z/file"
+    start "" "https://www.mediafire.com/file/8n11aqj6g63ysdr/BorisFXVEGASPro2026.0.0.143x64.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="25" (
@@ -1275,7 +1390,7 @@ if "%extraChoice%"=="26" (
     goto Extra
 )
 if "%extraChoice%"=="27" (
-    start "" "https://github.com/k1tbyte/Wemod-Patcher/releases/download/1.0.6.0/WeModPatcher.exe"
+    start "" "https://www.mediafire.com/file/hq1im1p6t2mi622/WandEnhancer-unsigned.zip/file"
     goto Extra
 )
 
