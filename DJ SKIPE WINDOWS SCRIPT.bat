@@ -510,8 +510,34 @@ if "%LANG%"=="EN" (
     echo Fine.
 )
 
-:: Ninite
-start "" "https://ninite.com/7zip-brave-discord-epic-handbrake-notepadplusplus-operaChromium-putty-python3-steam-teamviewer15-vlc/"
+:: Ninite (browser required — winget fallback if no browser)
+if "%BROWSER_FOUND%"=="1" (
+    start "" "https://ninite.com/7zip-brave-discord-handbrake-notepadplusplus-operaChromium-python3-qbittorrent-teamviewer15-vlc/"
+) else (
+    if "%WINGET_FOUND%"=="1" (
+        if "%LANG%"=="EN" (
+            echo No browser detected: installing Ninite apps via winget...
+        ) else (
+            echo Nessun browser rilevato: installazione delle app Ninite tramite winget...
+        )
+        powershell -NoProfile -Command "winget install -e --id 7zip.7zip              --accept-package-agreements --accept-source-agreements -h"
+        powershell -NoProfile -Command "winget install -e --id Brave.Brave            --accept-package-agreements --accept-source-agreements -h"
+        powershell -NoProfile -Command "winget install -e --id Discord.Discord        --accept-package-agreements --accept-source-agreements -h"
+        powershell -NoProfile -Command "winget install -e --id HandBrake.HandBrake    --accept-package-agreements --accept-source-agreements -h"
+        powershell -NoProfile -Command "winget install -e --id Notepad++.Notepad++   --accept-package-agreements --accept-source-agreements -h"
+        powershell -NoProfile -Command "winget install -e --id Opera.Opera            --accept-package-agreements --accept-source-agreements -h"
+        powershell -NoProfile -Command "winget install -e --id Python.Python.3        --accept-package-agreements --accept-source-agreements -h"
+        powershell -NoProfile -Command "winget install -e --id qBittorrent.qBittorrent --accept-package-agreements --accept-source-agreements -h"
+        powershell -NoProfile -Command "winget install -e --id TeamViewer.TeamViewer  --accept-package-agreements --accept-source-agreements -h"
+        powershell -NoProfile -Command "winget install -e --id VideoLAN.VLC           --accept-package-agreements --accept-source-agreements -h"
+    ) else (
+        if "%LANG%"=="EN" (
+            echo No browser or winget available: skipping Ninite apps.
+        ) else (
+            echo Nessun browser o winget disponibile: app Ninite saltate.
+        )
+    )
+)
 
 :: EA App
 curl -L -o "%USERPROFILE%\Downloads\EAappInstaller.exe" "https://origin-a.akamaihd.net/EA-Desktop-Client-Download/installer-releases/EAappInstaller.exe"
@@ -544,37 +570,15 @@ if exist "%USERPROFILE%\Downloads\AmazonGamesSetup.exe" (
 )
 
 :: Steam
-if "%LANG%"=="EN" (
-    echo Installing Steam...
-) else (
-    echo Installazione di Steam in corso...
-)
-if "%BROWSER_FOUND%"=="1" (
-    start "" "https://cdn.akamai.steamstatic.com/client/installer/SteamSetup.exe"
-) else (
-    if "%WINGET_FOUND%"=="1" (
-        powershell -NoProfile -Command "winget install -e --id Valve.Steam --accept-package-agreements --accept-source-agreements -h"
-    ) else (
-        curl -L --progress-bar -o "%USERPROFILE%\Downloads\SteamSetup.exe" "https://cdn.akamai.steamstatic.com/client/installer/SteamSetup.exe"
-        if exist "%USERPROFILE%\Downloads\SteamSetup.exe" start "" "%USERPROFILE%\Downloads\SteamSetup.exe"
-    )
+curl -L -o "%USERPROFILE%\Downloads\SteamSetup.exe" "https://cdn.akamai.steamstatic.com/client/installer/SteamSetup.exe"
+if exist "%USERPROFILE%\Downloads\SteamSetup.exe" (
+    start "" "%USERPROFILE%\Downloads\SteamSetup.exe"
 )
 
 :: Epic Games Launcher
-if "%LANG%"=="EN" (
-    echo Installing Epic Games Launcher...
-) else (
-    echo Installazione di Epic Games Launcher in corso...
-)
-if "%BROWSER_FOUND%"=="1" (
-    start "" "https://launcher-public-service-prod06.ol.epicgames.com/launcher/api/installer/download/EpicGamesLauncherInstaller.exe"
-) else (
-    if "%WINGET_FOUND%"=="1" (
-        powershell -NoProfile -Command "winget install -e --id EpicGames.EpicGamesLauncher --accept-package-agreements --accept-source-agreements -h"
-    ) else (
-        curl -L --progress-bar -o "%USERPROFILE%\Downloads\EpicGamesLauncherInstaller.exe" "https://launcher-public-service-prod06.ol.epicgames.com/launcher/api/installer/download/EpicGamesLauncherInstaller.exe"
-        if exist "%USERPROFILE%\Downloads\EpicGamesLauncherInstaller.exe" start "" "%USERPROFILE%\Downloads\EpicGamesLauncherInstaller.exe"
-    )
+curl -L -o "%USERPROFILE%\Downloads\EpicGamesLauncherInstaller.exe" "https://launcher-public-service-prod06.ol.epicgames.com/launcher/api/installer/download/EpicGamesLauncherInstaller.exe"
+if exist "%USERPROFILE%\Downloads\EpicGamesLauncherInstaller.exe" (
+    start "" "%USERPROFILE%\Downloads\EpicGamesLauncherInstaller.exe"
 )
 
 :: Telegram
