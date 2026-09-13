@@ -1,9 +1,17 @@
-
 @echo off
+
+:: --- Auto-elevazione a amministratore ---
+net session >nul 2>&1
+if %errorlevel% neq 0 (
+    echo Richiesta privilegi di amministratore...
+    powershell -Command "Start-Process '%~f0' -Verb RunAs"
+    exit /b
+)
+
 setlocal enabledelayedexpansion
 
 :: Version information
-set "CURRENT_VERSION=2.3.0"
+set "CURRENT_VERSION=2.3.1"
 set "GITHUB_API_URL=https://api.github.com/repos/djskipe/djskipewindowsscript/releases/latest"
 
 :: Check for updates before showing the menu
@@ -35,13 +43,10 @@ goto :LanguageSelect
 :CheckForUpdates
 echo Checking for updates...
 
-:: Create a temporary file to store the API response
 set "temp_file=%temp%\github_response.txt"
 
-:: Use PowerShell to fetch and parse the latest release information
 powershell -NoProfile -Command "try { $response = Invoke-RestMethod -Uri '%GITHUB_API_URL%' -UseBasicParsing; Write-Host $response.tag_name; Write-Host $response.assets[0].browser_download_url } catch { Write-Host 'ERROR'; Write-Host 'ERROR' }" > "%temp_file%"
 
-:: Read the response
 set "line_count=0"
 for /f "tokens=*" %%a in (%temp_file%) do (
     set /a line_count+=1
@@ -49,10 +54,8 @@ for /f "tokens=*" %%a in (%temp_file%) do (
     if !line_count!==2 set "DOWNLOAD_URL=%%a"
 )
 
-:: Remove the temporary file
-del "%temp_file%"
+del "%temp_file%" >nul 2>&1
 
-:: Check if we got valid data
 if "%LATEST_VERSION%"=="ERROR" (
     echo Unable to check for updates. Continuing...
     goto :eof
@@ -63,33 +66,25 @@ if "%LATEST_VERSION%"=="" (
     goto :eof
 )
 
-:: Normalize LATEST_VERSION: strip any leading non-numeric prefix
-:: (GitHub tags can be "v2.2.0", "V.2.2.0", etc.)
 for /f %%a in ('powershell -NoProfile -Command "('%LATEST_VERSION%' -replace '^[^0-9]+','')"') do set "LATEST_VERSION=%%a"
 
-:: Compare versions
 if not "%LATEST_VERSION%"=="%CURRENT_VERSION%" (
     cls
     echo:
     echo  New version available: %LATEST_VERSION% ^(Current: %CURRENT_VERSION%^)
     echo:
     set /p "UPDATE_CHOICE=Do you want to update now? (Y/N): "
-    
+
     if /i "!UPDATE_CHOICE!"=="Y" (
-        :: Download the new version
         echo Downloading update...
         powershell -Command "Invoke-WebRequest -Uri '%DOWNLOAD_URL%' -OutFile '%~dp0update.bat'"
 
-        :: Check if the update.bat file exists
         if exist "%~dp0update.bat" (
-            :: Create an updater script in a temporary location
             echo @echo off > "%temp%\update_script.bat"
             echo timeout /t 2 /nobreak ^> nul >> "%temp%\update_script.bat"
             echo move /y "%~dp0update.bat" "%~nx0" >> "%temp%\update_script.bat"
             echo start "" "%~nx0" >> "%temp%\update_script.bat"
             echo del "%temp%\update_script.bat" >> "%temp%\update_script.bat"
-            
-            :: Run the updater script
             start cmd /c "%temp%\update_script.bat"
             exit
         ) else (
@@ -106,73 +101,50 @@ if not "%LATEST_VERSION%"=="%CURRENT_VERSION%" (
 goto :eof
 
 :: -----------------------------------------------------------------------
-:: Checks browser presence (Chrome, Firefox, Edge, Brave, Opera).
-:: Sets BROWSER_FOUND=1 if at least one is found, 0 otherwise.
+:: Rileva browser installato.
 :: -----------------------------------------------------------------------
 :CheckBrowserInstalled
 set "BROWSER_FOUND=0"
-:: --- Chrome ---
-if exist "%ProgramFiles%\Google\Chrome\Application\chrome.exe"              set "BROWSER_FOUND=1"
-if exist "%ProgramFiles(x86)%\Google\Chrome\Application\chrome.exe"        set "BROWSER_FOUND=1"
-if exist "%LocalAppData%\Google\Chrome\Application\chrome.exe"              set "BROWSER_FOUND=1"
-:: --- Firefox ---
-if exist "%ProgramFiles%\Mozilla Firefox\firefox.exe"                         set "BROWSER_FOUND=1"
+if exist "%ProgramFiles%\Google\Chrome\Application\chrome.exe"               set "BROWSER_FOUND=1"
+if exist "%ProgramFiles(x86)%\Google\Chrome\Application\chrome.exe"         set "BROWSER_FOUND=1"
+if exist "%LocalAppData%\Google\Chrome\Application\chrome.exe"               set "BROWSER_FOUND=1"
+if exist "%ProgramFiles%\Mozilla Firefox\firefox.exe"                        set "BROWSER_FOUND=1"
 if exist "%ProgramFiles(x86)%\Mozilla Firefox\firefox.exe"                   set "BROWSER_FOUND=1"
-:: --- Microsoft Edge ---
-if exist "%ProgramFiles%\Microsoft\Edge\Application\msedge.exe"             set "BROWSER_FOUND=1"
-if exist "%ProgramFiles(x86)%\Microsoft\Edge\Application\msedge.exe"       set "BROWSER_FOUND=1"
-:: --- Brave ---
-if exist "%LocalAppData%\BraveSoftware\Brave-Browser\Application\brave.exe" set "BROWSER_FOUND=1"
-if exist "%ProgramFiles%\BraveSoftware\Brave-Browser\Application\brave.exe" set "BROWSER_FOUND=1"
-:: --- Opera / Opera GX ---
-if exist "%ProgramFiles%\Opera\launcher.exe"                                  set "BROWSER_FOUND=1"
+if exist "%ProgramFiles%\Microsoft\Edge\Application\msedge.exe"              set "BROWSER_FOUND=1"
+if exist "%ProgramFiles(x86)%\Microsoft\Edge\Application\msedge.exe"         set "BROWSER_FOUND=1"
+if exist "%LocalAppData%\BraveSoftware\Brave-Browser\Application\brave.exe"  set "BROWSER_FOUND=1"
+if exist "%ProgramFiles%\BraveSoftware\Brave-Browser\Application\brave.exe"  set "BROWSER_FOUND=1"
+if exist "%ProgramFiles%\Opera\launcher.exe"                                 set "BROWSER_FOUND=1"
 if exist "%LocalAppData%\Programs\Opera\launcher.exe"                        set "BROWSER_FOUND=1"
-if exist "%LocalAppData%\Programs\Opera GX\launcher.exe"                    set "BROWSER_FOUND=1"
+if exist "%LocalAppData%\Programs\Opera GX\launcher.exe"                     set "BROWSER_FOUND=1"
 if exist "%ProgramFiles%\Opera GX\launcher.exe"                              set "BROWSER_FOUND=1"
-:: --- Vivaldi ---
 if exist "%LocalAppData%\Vivaldi\Application\vivaldi.exe"                    set "BROWSER_FOUND=1"
 if exist "%ProgramFiles%\Vivaldi\Application\vivaldi.exe"                    set "BROWSER_FOUND=1"
-:: --- Chromium ---
 if exist "%LocalAppData%\Chromium\Application\chrome.exe"                    set "BROWSER_FOUND=1"
 if exist "%ProgramFiles%\Chromium\Application\chrome.exe"                    set "BROWSER_FOUND=1"
-:: --- LibreWolf ---
-if exist "%ProgramFiles%\LibreWolf\librewolf.exe"                             set "BROWSER_FOUND=1"
-if exist "%LocalAppData%\LibreWolf\librewolf.exe"                             set "BROWSER_FOUND=1"
-:: --- Waterfox ---
-if exist "%ProgramFiles%\Waterfox\waterfox.exe"                               set "BROWSER_FOUND=1"
+if exist "%ProgramFiles%\LibreWolf\librewolf.exe"                            set "BROWSER_FOUND=1"
+if exist "%LocalAppData%\LibreWolf\librewolf.exe"                            set "BROWSER_FOUND=1"
+if exist "%ProgramFiles%\Waterfox\waterfox.exe"                              set "BROWSER_FOUND=1"
 if exist "%ProgramFiles(x86)%\Waterfox\waterfox.exe"                         set "BROWSER_FOUND=1"
-:: --- Pale Moon ---
-if exist "%ProgramFiles%\Pale Moon\palemoon.exe"                              set "BROWSER_FOUND=1"
+if exist "%ProgramFiles%\Pale Moon\palemoon.exe"                             set "BROWSER_FOUND=1"
 if exist "%ProgramFiles(x86)%\Pale Moon\palemoon.exe"                        set "BROWSER_FOUND=1"
-:: --- Maxthon ---
 if exist "%LocalAppData%\Maxthon\Application\maxthon.exe"                    set "BROWSER_FOUND=1"
 if exist "%ProgramFiles%\Maxthon\Bin\Maxthon.exe"                            set "BROWSER_FOUND=1"
-:: --- UC Browser ---
 if exist "%LocalAppData%\UCBrowser\Application\UCBrowser.exe"                set "BROWSER_FOUND=1"
-:: --- Slimjet ---
-if exist "%ProgramFiles%\Slimjet\slimjet.exe"                                 set "BROWSER_FOUND=1"
+if exist "%ProgramFiles%\Slimjet\slimjet.exe"                                set "BROWSER_FOUND=1"
 if exist "%ProgramFiles(x86)%\Slimjet\slimjet.exe"                           set "BROWSER_FOUND=1"
-:: --- Comodo Dragon / IceDragon ---
 if exist "%ProgramFiles%\Comodo\Dragon\dragon.exe"                           set "BROWSER_FOUND=1"
-if exist "%ProgramFiles(x86)%\Comodo\Dragon\dragon.exe"                     set "BROWSER_FOUND=1"
-if exist "%ProgramFiles%\Comodo\IceDragon\icedragon.exe"                    set "BROWSER_FOUND=1"
-:: --- Torch ---
+if exist "%ProgramFiles(x86)%\Comodo\Dragon\dragon.exe"                      set "BROWSER_FOUND=1"
+if exist "%ProgramFiles%\Comodo\IceDragon\icedragon.exe"                     set "BROWSER_FOUND=1"
 if exist "%LocalAppData%\Torch\Application\torch.exe"                        set "BROWSER_FOUND=1"
-:: --- Fallback: Windows Registry (catches any browser not listed above) ---
 if "%BROWSER_FOUND%"=="0" (
-    powershell -NoProfile -Command ^
-        "$paths=@('HKLM:\SOFTWARE\Clients\StartMenuInternet','HKCU:\SOFTWARE\Clients\StartMenuInternet');" ^
-        "foreach($p in $paths){if(Test-Path $p){$k=Get-ChildItem $p -EA SilentlyContinue;if($k.Count -gt 0){[IO.File]::WriteAllText('%TEMP%\browser_reg.tmp','1');break}}}"
-    if exist "%TEMP%\browser_reg.tmp" (
-        set "BROWSER_FOUND=1"
-        del "%TEMP%\browser_reg.tmp"
-    )
+    reg query "HKLM\SOFTWARE\Clients\StartMenuInternet" >nul 2>&1 && set "BROWSER_FOUND=1"
+    reg query "HKCU\SOFTWARE\Clients\StartMenuInternet" >nul 2>&1 && set "BROWSER_FOUND=1"
 )
 goto :eof
 
 :: -----------------------------------------------------------------------
-:: If no browser is found, installs Brave (preferred) via winget first,
-:: then via direct curl download. Falls back to curl for all URL-opens.
+:: Se nessun browser, tenta di installare Brave (winget, poi curl).
 :: -----------------------------------------------------------------------
 :EnsureBrowserAvailable
 if "%BROWSER_FOUND%"=="1" goto :eof
@@ -200,11 +172,6 @@ if "%BRAVE_OK%"=="0" (
     )
 )
 if "%BRAVE_OK%"=="1" (
-    if "%LANG%"=="EN" (
-        echo Brave installed. Re-checking browser availability...
-    ) else (
-        echo Brave installato. Nuovo controllo della disponibilita' del browser...
-    )
     call :CheckBrowserInstalled
 ) else (
     if "%LANG%"=="EN" (
@@ -216,24 +183,20 @@ if "%BRAVE_OK%"=="1" (
 goto :eof
 
 :: -----------------------------------------------------------------------
-:: Checks whether the Microsoft Store app is registered on this machine.
-:: winget and Store-based installers depend on it, so if it's missing
-:: (common after aggressive debloating) it tries to re-register/restore it.
-:: Sets MSSTORE_FOUND=1 if present or successfully restored, 0 otherwise.
+:: Verifica Microsoft Store (basato su exit code PowerShell).
 :: -----------------------------------------------------------------------
 :CheckMicrosoftStore
 set "MSSTORE_FOUND=0"
-powershell -NoProfile -Command "if (Get-AppxPackage -Name Microsoft.WindowsStore) { exit 0 } else { exit 1 }" >nul 2>&1
-if %errorlevel%==0 set "MSSTORE_FOUND=1"
-
+powershell -NoProfile -Command "if (Get-AppxPackage Microsoft.WindowsStore) { exit 0 } else { exit 1 }" >nul 2>&1
+if !errorlevel!==0 set "MSSTORE_FOUND=1"
 if "%MSSTORE_FOUND%"=="0" (
     if "%LANG%"=="EN" (
         echo Microsoft Store not found. Attempting to restore it...
     ) else (
         echo Microsoft Store non trovato. Tentativo di ripristino in corso...
     )
-	    powershell -NoProfile -Command "Get-AppxPackage -AllUsers Microsoft.WindowsStore | ForEach-Object { Add-AppxPackage -DisableDevelopmentMode -Register ($_.InstallLocation + '\AppXManifest.xml') }" >nul 2>&1
-    powershell -NoProfile -Command "if (Get-AppxPackage -Name Microsoft.WindowsStore) { exit 0 } else { exit 1 }" >nul 2>&1
+    powershell -NoProfile -Command "Get-AppxPackage -AllUsers Microsoft.WindowsStore | ForEach-Object { Add-AppxPackage -DisableDevelopmentMode -Register ($_.InstallLocation + '\AppXManifest.xml') }" >nul 2>&1
+    powershell -NoProfile -Command "if (Get-AppxPackage Microsoft.WindowsStore) { exit 0 } else { exit 1 }" >nul 2>&1
     if !errorlevel!==0 (
         set "MSSTORE_FOUND=1"
         if "%LANG%"=="EN" (
@@ -245,16 +208,14 @@ if "%MSSTORE_FOUND%"=="0" (
         if "%LANG%"=="EN" (
             echo Could not restore Microsoft Store automatically. Store-dependent installs may fail.
         ) else (
-            echo Impossibile ripristinare automaticamente il Microsoft Store. Le installazioni che ne dipendono potrebbero fallire.
+            echo Impossibile ripristinare automaticamente il Microsoft Store.
         )
     )
 )
 goto :eof
 
 :: -----------------------------------------------------------------------
-:: Checks whether winget (App Installer) is available and installs it
-:: if missing, since several installs below rely on it.
-:: Sets WINGET_FOUND=1 if available (or successfully installed), 0 otherwise.
+:: Verifica winget, lo installa se manca.
 :: -----------------------------------------------------------------------
 :CheckWinget
 set "WINGET_FOUND=0"
@@ -267,7 +228,7 @@ if %errorlevel%==0 (
     ) else (
         echo winget non e' stato trovato. Tentativo di installazione dell'App Installer in corso...
     )
-    powershell -NoProfile -Command "$ProgressPreference='SilentlyContinue'; Invoke-WebRequest -Uri 'https://aka.ms/getwinget' -OutFile \"$env:TEMP\AppInstaller.msixbundle\"; Add-AppxPackage -Path \"$env:TEMP\AppInstaller.msixbundle\"" >nul 2>&1
+    powershell -NoProfile -Command "$ProgressPreference='SilentlyContinue'; Invoke-WebRequest -Uri 'https://aka.ms/getwinget' -OutFile ($env:TEMP + '\AppInstaller.msixbundle'); Add-AppxPackage -Path ($env:TEMP + '\AppInstaller.msixbundle')" >nul 2>&1
     where winget >nul 2>&1
     if !errorlevel!==0 (
         set "WINGET_FOUND=1"
@@ -287,38 +248,13 @@ if %errorlevel%==0 (
 goto :eof
 
 
-setlocal enabledelayedexpansion
-
-:LanguageSelect
-cls
-echo:
-echo:       ______________________________________________________________
-echo:
-echo:                 SELECT LANGUAGE / SELEZIONA LINGUA
-echo:
-echo:             [1] English
-echo:             [2] Italiano
-echo:       ______________________________________________________________
-echo:
-set /p langChoice="Choose your language / Scegli la tua lingua [1-2]: "
-
-if "%langChoice%"=="1" (
-    set "LANG=EN"
-    goto :MainMenu
-)
-if "%langChoice%"=="2" (
-    set "LANG=IT"
-    goto :MainMenu
-)
-goto :LanguageSelect
-
 :MainMenu
 cls
 echo:
 echo:       ______________________________________________________________
 echo:
 if "%LANG%"=="EN" (
-    echo:                 DJ SKIPE WINDOWS SCRIPT v2.3.0
+    echo:                 DJ SKIPE WINDOWS SCRIPT v2.3.1
     echo:
     echo          This script allows you to easily run the Windows
     echo          debloater from this CMD. It also allows you to
@@ -338,7 +274,7 @@ if "%LANG%"=="EN" (
     echo:             [10] Change Language
     echo:             [0] Exit
 ) else (
-    echo:                 DJ SKIPE WINDOWS SCRIPT v2.3.0
+    echo:                 DJ SKIPE WINDOWS SCRIPT v2.3.1
     echo:
     echo          Questo script ti permette di eseguire il debloater 
     echo          di Windows in facilita' direttamente da questo CMD.
@@ -393,7 +329,6 @@ set "ZIP_FILE=%TEMP_DIR%\main.zip"
 if exist "%TEMP_DIR%" rmdir /s /q "%TEMP_DIR%"
 mkdir "%TEMP_DIR%"
 
-REM Download ZIP
 echo Downloading...
 powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; (New-Object System.Net.WebClient).DownloadFile('https://github.com/raphire/win11debloat/archive/refs/heads/master.zip', '%ZIP_FILE%')"
 
@@ -407,11 +342,9 @@ if not exist "%ZIP_FILE%" (
     goto :MainMenu
 )
 
-REM Extract
 echo Extracting...
 powershell -Command "Expand-Archive -Path '%ZIP_FILE%' -DestinationPath '%TEMP_DIR%'"
 
-REM Find and run first .bat file
 echo Launching...
 for /r "%TEMP_DIR%\win11debloat-master" %%F in (*.bat) do (
     powershell -Command "Start-Process '%%F' -Verb RunAs"
@@ -443,15 +376,27 @@ call :CheckMicrosoftStore
 call :CheckWinget
 call :EnsureBrowserAvailable
 
+:: =========================================================
+:: POWERSHELL 7
+:: =========================================================
 if "%LANG%"=="EN" (
     echo Downloading latest PowerShell...
 ) else (
     echo Download dell'ultima versione di PowerShell...
 )
 
-curl -L -o "%TEMP%\PowerShell-latest-win-x64.msi" "https://github.com/PowerShell/PowerShell/releases/latest/download/PowerShell-win-x64.msi"
+set "PS_MSI=%TEMP%\PowerShell-latest-win-x64.msi"
+if exist "!PS_MSI!" del /f /q "!PS_MSI!"
 
-if exist "%TEMP%\PowerShell-latest-win-x64.msi" (
+powershell -NoProfile -Command ^
+  "$ProgressPreference='SilentlyContinue';" ^
+  "$r = Invoke-RestMethod -Uri 'https://api.github.com/repos/PowerShell/PowerShell/releases/latest' -UseBasicParsing;" ^
+  "$a = $r.assets | Where-Object { $_.name -like 'PowerShell-*-win-x64.msi' } | Select-Object -First 1;" ^
+  "if (-not $a) { Write-Host 'ASSET_NOT_FOUND'; exit 1 };" ^
+  "Write-Host ('Downloading ' + $a.name + ' ...');" ^
+  "Invoke-WebRequest -Uri $a.browser_download_url -OutFile '!PS_MSI!' -UseBasicParsing"
+
+if exist "!PS_MSI!" (
 
     if "%LANG%"=="EN" (
         echo Installing PowerShell...
@@ -459,24 +404,28 @@ if exist "%TEMP%\PowerShell-latest-win-x64.msi" (
         echo Installazione di PowerShell in corso...
     )
 
-    msiexec /i "%TEMP%\PowerShell-latest-win-x64.msi" /qn /norestart
+    set "PS_LOG=%TEMP%\ps_install.log"
+    if exist "!PS_LOG!" del /f /q "!PS_LOG!" >nul 2>&1
 
-    if %errorlevel% neq 0 (
+    start /wait "" msiexec /i "!PS_MSI!" /qn /norestart /l*v "!PS_LOG!"
+
+    if !errorlevel! neq 0 (
         if "%LANG%"=="EN" (
-            echo Error installing PowerShell.
+            echo Error installing PowerShell. MSI exit code: !errorlevel!
+            echo Log file: !PS_LOG!
         ) else (
-            echo Errore durante l'installazione di PowerShell.
+            echo Errore durante l'installazione di PowerShell. Codice errore MSI: !errorlevel!
+            echo File di log: !PS_LOG!
         )
     ) else (
         if "%LANG%"=="EN" (
             echo PowerShell has been successfully installed.
         ) else (
-            echo PowerShell è stato installato con successo.
+            echo PowerShell e' stato installato con successo.
         )
     )
 
-    :: Elimina il file MSI
-    del /f /q "%TEMP%\PowerShell-latest-win-x64.msi"
+    del /f /q "!PS_MSI!" >nul 2>&1
 
 ) else (
 
@@ -488,29 +437,99 @@ if exist "%TEMP%\PowerShell-latest-win-x64.msi" (
 
 )
 
-if "%LANG%"=="EN" (
-    echo.
-    echo Installing base software...
-    echo Downloading Telegram, WhatsApp and WeChat, using the browser or winget depending on what's available...
-    echo Installing System Informer...
-    echo Downloads completed.
-    echo.
-    echo Base software installed.
-    echo Installing Custom Edition Software by dj skipe.
-    echo Done.
-) else (
-    echo.
-    echo Installazione del software base in corso...
-    echo Scarico Telegram, WhatsApp e WeChat, usando il browser o winget a seconda di cosa e' disponibile...
-    echo Installazione di System Informer in corso...
-    echo Download completati.
-    echo.
-    echo Software base installato.
-    echo Installazione del Software Custom Edition by dj skipe.
-    echo Fine.
+:: --- Collegamento PowerShell sul desktop + voci menu contestuale ---
+set "PWSH_EXE="
+if exist "%ProgramFiles%\PowerShell\7\pwsh.exe" set "PWSH_EXE=%ProgramFiles%\PowerShell\7\pwsh.exe"
+if exist "%ProgramFiles(x86)%\PowerShell\7\pwsh.exe" set "PWSH_EXE=%ProgramFiles(x86)%\PowerShell\7\pwsh.exe"
+if exist "%LocalAppData%\Microsoft\WindowsApps\pwsh.exe" set "PWSH_EXE=%LocalAppData%\Microsoft\WindowsApps\pwsh.exe"
+
+if not "!PWSH_EXE!"=="" (
+    if "%LANG%"=="EN" (echo Creating PowerShell desktop shortcut...) else (echo Creazione collegamento PowerShell sul desktop...)
+    powershell -NoProfile -Command "$ws = New-Object -ComObject WScript.Shell; $sc = $ws.CreateShortcut([Environment]::GetFolderPath('Desktop') + '\PowerShell 7.lnk'); $sc.TargetPath = '!PWSH_EXE!'; $sc.Save()" >nul 2>&1
+
+    if "%LANG%"=="EN" (echo Adding 'Open with PowerShell' to context menus...) else (echo Aggiunta 'Apri con PowerShell' al menu contestuale...)
+    reg add "HKCR\Directory\shell\OpenWithPowerShell" /ve /d "Apri con PowerShell" /f >nul 2>&1
+    reg add "HKCR\Directory\shell\OpenWithPowerShell\command" /ve /d "\"!PWSH_EXE!\" -NoExit -Command Set-Location -LiteralPath '%%V'" /f >nul 2>&1
+    reg add "HKCR\Directory\Background\shell\OpenWithPowerShell" /ve /d "Apri con PowerShell" /f >nul 2>&1
+    reg add "HKCR\Directory\Background\shell\OpenWithPowerShell\command" /ve /d "\"!PWSH_EXE!\" -NoExit -Command Set-Location -LiteralPath '%%V'" /f >nul 2>&1
 )
 
-:: Ninite (browser required — winget fallback if no browser)
+:: =========================================================
+:: GITHUB DESKTOP (winget → MSI fallback)
+:: =========================================================
+if "%LANG%"=="EN" (echo Installing GitHub Desktop...) else (echo Installazione di GitHub Desktop...)
+
+set "GH_OK=0"
+
+if "%WINGET_FOUND%"=="1" (
+    powershell -NoProfile -Command "winget install -e --id GitHub.GitHubDesktop --accept-package-agreements --accept-source-agreements -h"
+    if !errorlevel! equ 0 set "GH_OK=1"
+)
+
+if "!GH_OK!"=="0" (
+    if "%LANG%"=="EN" (echo winget unavailable, using direct MSI download...) else (echo winget non disponibile, uso il download MSI diretto...)
+    set "GH_MSI_URL="
+    for /f "usebackq delims=" %%u in (`powershell -NoProfile -Command "(Invoke-RestMethod 'https://api.github.com/repos/desktop/desktop/releases/latest' -UseBasicParsing).assets ^| Where-Object { $_.name -like 'GitHubDesktopSetup-x64.msi' } ^| Select-Object -First 1 -ExpandProperty browser_download_url"`) do set "GH_MSI_URL=%%u"
+
+    if not "!GH_MSI_URL!"=="" (
+        curl -L -o "%USERPROFILE%\Downloads\GitHubDesktopSetup-x64.msi" "!GH_MSI_URL!"
+        if exist "%USERPROFILE%\Downloads\GitHubDesktopSetup-x64.msi" (
+            powershell -NoProfile -Command "Unblock-File -Path '%USERPROFILE%\Downloads\GitHubDesktopSetup-x64.msi'" >nul 2>&1
+            start /wait "" msiexec /i "%USERPROFILE%\Downloads\GitHubDesktopSetup-x64.msi" /qn /norestart ALLUSERS=1
+            if !errorlevel! equ 0 (
+                set "GH_OK=1"
+            ) else (
+                if "%LANG%"=="EN" (echo MSI install failed. Exit code: !errorlevel!) else (echo Installazione MSI fallita. Codice: !errorlevel!)
+            )
+            del /f /q "%USERPROFILE%\Downloads\GitHubDesktopSetup-x64.msi" >nul 2>&1
+        ) else (
+            if "%LANG%"=="EN" (echo Failed to download GitHub Desktop MSI.) else (echo Download del MSI di GitHub Desktop non riuscito.)
+        )
+    ) else (
+        if "%LANG%"=="EN" (echo Could not resolve GitHub Desktop MSI URL.) else (echo Impossibile ottenere l'URL del MSI di GitHub Desktop.)
+    )
+)
+
+if "!GH_OK!"=="1" (
+    if "%LANG%"=="EN" (echo GitHub Desktop installed successfully.) else (echo GitHub Desktop installato con successo.)
+) else (
+    if "%LANG%"=="EN" (echo GitHub Desktop installation failed.) else (echo Installazione di GitHub Desktop non riuscita.)
+)
+
+:: =========================================================
+:: VISUAL STUDIO CODE (con tutte le opzioni flaggate)
+:: =========================================================
+if "%LANG%"=="EN" (echo Downloading Visual Studio Code...) else (echo Download di Visual Studio Code...)
+
+set "VSCODE_URL=https://update.code.visualstudio.com/latest/win32-x64-user/stable"
+curl -L -o "%USERPROFILE%\Downloads\VSCodeSetup-x64.exe" "%VSCODE_URL%"
+
+if exist "%USERPROFILE%\Downloads\VSCodeSetup-x64.exe" (
+    if "%LANG%"=="EN" (echo Installing Visual Studio Code...) else (echo Installazione di Visual Studio Code...)
+    start /wait "" "%USERPROFILE%\Downloads\VSCodeSetup-x64.exe" /VERYSILENT /NORESTART /MERGETASKS="!runcode,desktopicon,addcontextmenufiles,addcontextmenufolders,associatewithfiles,addtopath"
+    if !errorlevel! neq 0 (
+        if "%LANG%"=="EN" (echo Error installing Visual Studio Code. Exit code: !errorlevel!) else (echo Errore durante l'installazione di Visual Studio Code. Codice: !errorlevel!)
+    ) else (
+        if "%LANG%"=="EN" (echo Visual Studio Code installed successfully.) else (echo Visual Studio Code installato con successo.)
+    )
+    del /f /q "%USERPROFILE%\Downloads\VSCodeSetup-x64.exe" >nul 2>&1
+) else (
+    if "%LANG%"=="EN" (echo Failed to download Visual Studio Code.) else (echo Download di Visual Studio Code non riuscito.)
+)
+
+:: =========================================================
+:: NINITE BUNDLE / WINGET FALLBACK
+:: =========================================================
+if "%LANG%"=="EN" (
+    echo.
+    echo Installing additional Custom Edition software. Please wait...
+    echo.
+) else (
+    echo.
+    echo Installazione del resto del Software Custom Edition in corso. Attendi...
+    echo.
+)
+
 if "%BROWSER_FOUND%"=="1" (
     start "" "https://ninite.com/7zip-brave-discord-handbrake-notepadplusplus-operaChromium-python3-qbittorrent-teamviewer15-vlc/"
 ) else (
@@ -520,16 +539,16 @@ if "%BROWSER_FOUND%"=="1" (
         ) else (
             echo Nessun browser rilevato: installazione delle app Ninite tramite winget...
         )
-        powershell -NoProfile -Command "winget install -e --id 7zip.7zip              --accept-package-agreements --accept-source-agreements -h"
-        powershell -NoProfile -Command "winget install -e --id Brave.Brave            --accept-package-agreements --accept-source-agreements -h"
-        powershell -NoProfile -Command "winget install -e --id Discord.Discord        --accept-package-agreements --accept-source-agreements -h"
-        powershell -NoProfile -Command "winget install -e --id HandBrake.HandBrake    --accept-package-agreements --accept-source-agreements -h"
-        powershell -NoProfile -Command "winget install -e --id Notepad++.Notepad++   --accept-package-agreements --accept-source-agreements -h"
-        powershell -NoProfile -Command "winget install -e --id Opera.Opera            --accept-package-agreements --accept-source-agreements -h"
-        powershell -NoProfile -Command "winget install -e --id Python.Python.3        --accept-package-agreements --accept-source-agreements -h"
+        powershell -NoProfile -Command "winget install -e --id 7zip.7zip --accept-package-agreements --accept-source-agreements -h"
+        powershell -NoProfile -Command "winget install -e --id Brave.Brave --accept-package-agreements --accept-source-agreements -h"
+        powershell -NoProfile -Command "winget install -e --id Discord.Discord --accept-package-agreements --accept-source-agreements -h"
+        powershell -NoProfile -Command "winget install -e --id HandBrake.HandBrake --accept-package-agreements --accept-source-agreements -h"
+        powershell -NoProfile -Command "winget install -e --id Notepad++.Notepad++ --accept-package-agreements --accept-source-agreements -h"
+        powershell -NoProfile -Command "winget install -e --id Opera.Opera --accept-package-agreements --accept-source-agreements -h"
+        powershell -NoProfile -Command "winget install -e --id Python.Python.3 --accept-package-agreements --accept-source-agreements -h"
         powershell -NoProfile -Command "winget install -e --id qBittorrent.qBittorrent --accept-package-agreements --accept-source-agreements -h"
-        powershell -NoProfile -Command "winget install -e --id TeamViewer.TeamViewer  --accept-package-agreements --accept-source-agreements -h"
-        powershell -NoProfile -Command "winget install -e --id VideoLAN.VLC           --accept-package-agreements --accept-source-agreements -h"
+        powershell -NoProfile -Command "winget install -e --id TeamViewer.TeamViewer --accept-package-agreements --accept-source-agreements -h"
+        powershell -NoProfile -Command "winget install -e --id VideoLAN.VLC --accept-package-agreements --accept-source-agreements -h"
     ) else (
         if "%LANG%"=="EN" (
             echo No browser or winget available: skipping Ninite apps.
@@ -539,139 +558,97 @@ if "%BROWSER_FOUND%"=="1" (
     )
 )
 
-:: EA App
+:: --- EA App ---
 curl -L -o "%USERPROFILE%\Downloads\EAappInstaller.exe" "https://origin-a.akamaihd.net/EA-Desktop-Client-Download/installer-releases/EAappInstaller.exe"
 if exist "%USERPROFILE%\Downloads\EAappInstaller.exe" (
     start "" "%USERPROFILE%\Downloads\EAappInstaller.exe"
 )
 
-:: GOG Galaxy
+:: --- GOG Galaxy ---
 curl -L -o "%USERPROFILE%\Downloads\GOG_Galaxy_2.0.exe" "https://webinstallers.gog-statics.com/download/GOG_Galaxy_2.0.exe"
 if exist "%USERPROFILE%\Downloads\GOG_Galaxy_2.0.exe" (
     start "" "%USERPROFILE%\Downloads\GOG_Galaxy_2.0.exe"
 )
 
-:: Ubisoft Connect
+:: --- Ubisoft Connect ---
 curl -L -o "%USERPROFILE%\Downloads\Ubisoft_Connect.exe" "https://ubi.li/4vxt9"
 if exist "%USERPROFILE%\Downloads\Ubisoft_Connect.exe" (
     start "" "%USERPROFILE%\Downloads\Ubisoft_Connect.exe"
 )
 
-:: Rockstar Games Launcher
+:: --- Rockstar Games Launcher ---
 curl -L -o "%USERPROFILE%\Downloads\Rockstar-Games-Launcher.exe" "https://gamedownloads.rockstargames.com/public/installer/Rockstar-Games-Launcher.exe"
 if exist "%USERPROFILE%\Downloads\Rockstar-Games-Launcher.exe" (
     start "" "%USERPROFILE%\Downloads\Rockstar-Games-Launcher.exe"
 )
 
-:: Amazon Games
+:: --- Amazon Games ---
 curl -L -o "%USERPROFILE%\Downloads\AmazonGamesSetup.exe" "https://download.amazongames.com/AmazonGamesSetup.exe"
 if exist "%USERPROFILE%\Downloads\AmazonGamesSetup.exe" (
     start "" "%USERPROFILE%\Downloads\AmazonGamesSetup.exe"
 )
 
-:: Steam
+:: --- Steam ---
 curl -L -o "%USERPROFILE%\Downloads\SteamSetup.exe" "https://cdn.akamai.steamstatic.com/client/installer/SteamSetup.exe"
 if exist "%USERPROFILE%\Downloads\SteamSetup.exe" (
     start "" "%USERPROFILE%\Downloads\SteamSetup.exe"
 )
 
-:: Epic Games Launcher
+:: --- Epic Games Launcher ---
 curl -L -o "%USERPROFILE%\Downloads\EpicGamesLauncherInstaller.exe" "https://launcher-public-service-prod06.ol.epicgames.com/launcher/api/installer/download/EpicGamesLauncherInstaller.exe"
 if exist "%USERPROFILE%\Downloads\EpicGamesLauncherInstaller.exe" (
     start "" "%USERPROFILE%\Downloads\EpicGamesLauncherInstaller.exe"
 )
 
-:: Telegram
-if "%BROWSER_FOUND%"=="1" (
-    if "%LANG%"=="EN" (
-        echo Browser detected: opening Telegram download page...
-    ) else (
-        echo Browser rilevato: apertura pagina di download di Telegram...
-    )
-    start "" "https://telegram.org/dl/desktop/win64"
-) else (
-    if "%WINGET_FOUND%"=="1" (
-        if "%LANG%"=="EN" (
-            echo No browser detected: installing Telegram via winget...
-        ) else (
-            echo Nessun browser rilevato: installazione di Telegram tramite winget in corso...
-        )
-        powershell -NoProfile -Command "winget install -e --id Telegram.TelegramDesktop --accept-package-agreements --accept-source-agreements -h"
-    ) else (
-        if "%LANG%"=="EN" (
-            echo No browser and no winget detected: downloading Telegram directly...
-        ) else (
-            echo Nessun browser e nessun winget rilevati: download diretto di Telegram in corso...
-        )
-        curl -L -o "%USERPROFILE%\Downloads\TelegramSetup.exe" "https://telegram.org/dl/desktop/win64"
-        if exist "%USERPROFILE%\Downloads\TelegramSetup.exe" start "" "%USERPROFILE%\Downloads\TelegramSetup.exe"
-    )
-)
-
-:: WhatsApp
-if "%BROWSER_FOUND%"=="1" (
-    if "%LANG%"=="EN" (
-        echo Browser detected: opening WhatsApp download page...
-    ) else (
-        echo Browser rilevato: apertura pagina di download di WhatsApp...
-    )
-    start "" "https://get.microsoft.com/installer/download/9NKSQGP7F2NH?cid=website_cta_psi"
-) else (
-    if "%LANG%"=="EN" (
-        echo No browser detected: downloading WhatsApp via command line...
-    ) else (
-        echo Nessun browser rilevato: download di WhatsApp da linea di comando in corso...
-    )
-    curl -L -o "%USERPROFILE%\Downloads\WhatsApp Installer.exe" "https://get.microsoft.com/installer/download/9NKSQGP7F2NH?cid=website_cta_psi/"
-    if exist "%USERPROFILE%\Downloads\WhatsApp Installer.exe" (
-        start "" "%USERPROFILE%\Downloads\WhatsApp Installer.exe"
-    )
-)
-
-:: WeChat
-:: WeChat is the one most likely to silently fail: winget without the
-:: agreement flags can hang waiting for a confirmation the script can't
-:: give it. We pass the flags, check the actual exit code, and fall back
-:: to a direct download if winget is unavailable or still fails.
-if "%LANG%"=="EN" (
-    echo Installing WeChat...
-) else (
-    echo Installazione di WeChat in corso...
-)
-set "WECHAT_OK=0"
+:: --- Telegram ---
 if "%WINGET_FOUND%"=="1" (
+    if "%LANG%"=="EN" (echo Installing Telegram via winget...) else (echo Installazione di Telegram tramite winget...)
+    powershell -NoProfile -Command "winget install -e --id Telegram.TelegramDesktop --accept-package-agreements --accept-source-agreements -h"
+) else (
+    if "%LANG%"=="EN" (echo Downloading Telegram...) else (echo Download di Telegram...)
+    curl -L -o "%USERPROFILE%\Downloads\TelegramSetup.exe" "https://telegram.org/dl/desktop/win64"
+    if exist "%USERPROFILE%\Downloads\TelegramSetup.exe" start "" "%USERPROFILE%\Downloads\TelegramSetup.exe"
+)
+
+:: --- WhatsApp ---
+if "%LANG%"=="EN" (echo Downloading WhatsApp...) else (echo Download di WhatsApp...)
+curl -L -o "%USERPROFILE%\Downloads\WhatsAppInstaller.exe" "https://get.microsoft.com/installer/download/9NKSQGP7F2NH?cid=website_cta_psi"
+if exist "%USERPROFILE%\Downloads\WhatsAppInstaller.exe" (
+    start "" "%USERPROFILE%\Downloads\WhatsAppInstaller.exe"
+) else (
+    if "%LANG%"=="EN" (echo Failed to download WhatsApp.) else (echo Download di WhatsApp fallito.)
+)
+
+:: --- WeChat ---
+if "%WINGET_FOUND%"=="1" (
+    if "%LANG%"=="EN" (echo Installing WeChat via winget...) else (echo Installazione di WeChat tramite winget...)
     powershell -NoProfile -Command "winget install -e --id Tencent.WeChat --accept-package-agreements --accept-source-agreements -h"
-    if !errorlevel! equ 0 set "WECHAT_OK=1"
-)
-if "%WECHAT_OK%"=="0" (
-    if "%LANG%"=="EN" (
-        echo winget install for WeChat failed or is unavailable, falling back to a direct download...
-    ) else (
-        echo Installazione di WeChat tramite winget non riuscita o non disponibile, download diretto in corso come alternativa...
-    )
+) else (
+    if "%LANG%"=="EN" (echo Downloading WeChat...) else (echo Download di WeChat...)
     curl -L -o "%USERPROFILE%\Downloads\WeChatSetup.exe" "https://dldir1.qq.com/weixin/Windows/WeChatSetup.exe"
-    if exist "%USERPROFILE%\Downloads\WeChatSetup.exe" (
-        start "" "%USERPROFILE%\Downloads\WeChatSetup.exe"
-    ) else (
-        if "%LANG%"=="EN" (
-            echo Failed to download WeChat automatically. Please install it manually.
-        ) else (
-            echo Download automatico di WeChat non riuscito. Installalo manualmente.
-        )
-    )
+    if exist "%USERPROFILE%\Downloads\WeChatSetup.exe" start "" "%USERPROFILE%\Downloads\WeChatSetup.exe"
 )
 
-:: System Informer
+:: --- System Informer ---
 if "%WINGET_FOUND%"=="1" (
+    if "%LANG%"=="EN" (echo Installing System Informer via winget...) else (echo Installazione di System Informer tramite winget...)
     powershell -NoProfile -Command "winget install -e --id WinsiderSS.SystemInformer --accept-package-agreements --accept-source-agreements -h"
 ) else (
-    if "%LANG%"=="EN" (
-        echo winget is not available: skipping System Informer installation.
-    ) else (
-        echo winget non disponibile: installazione di System Informer saltata.
+    if "%LANG%"=="EN" (echo Downloading System Informer...) else (echo Download di System Informer...)
+    curl -L -o "%USERPROFILE%\Downloads\SystemInformer.zip" "https://sourceforge.net/projects/systeminformer/files/latest/download"
+    if exist "%USERPROFILE%\Downloads\SystemInformer.zip" (
+        if "%LANG%"=="EN" (echo Extracting System Informer...) else (echo Estrazione di System Informer...)
+        powershell -NoProfile -Command "Expand-Archive -Path '%USERPROFILE%\Downloads\SystemInformer.zip' -DestinationPath '%USERPROFILE%\Downloads\SystemInformer' -Force"
     )
 )
 
+if "%LANG%"=="EN" (
+    echo.
+    echo Custom Edition installation complete.
+) else (
+    echo.
+    echo Installazione Software Custom Edition completata.
+)
 pause
 goto :MainMenu
 
@@ -698,7 +675,6 @@ if "%LANG%"=="EN" (
 )
 
 if "%BROWSER_FOUND%"=="1" (
-    :: Browser available: Ninite handles everything in one shot
     if "%LANG%"=="EN" (
         echo Browser detected: opening Ninite bundle...
     ) else (
@@ -706,19 +682,18 @@ if "%BROWSER_FOUND%"=="1" (
     )
     start "" "https://ninite.com/7zip-brave-foxit-openoffice-vlc/"
 ) else (
-    :: No browser: install each app via winget
     if "%WINGET_FOUND%"=="1" (
         if "%LANG%"=="EN" (
             echo No browser: installing apps via winget...
         ) else (
             echo Nessun browser: installazione tramite winget...
         )
-        powershell -NoProfile -Command "winget install -e --id 7zip.7zip              --accept-package-agreements --accept-source-agreements -h"
-        powershell -NoProfile -Command "winget install -e --id VideoLAN.VLC           --accept-package-agreements --accept-source-agreements -h"
-        powershell -NoProfile -Command "winget install -e --id Notepad++.Notepad++    --accept-package-agreements --accept-source-agreements -h"
-        powershell -NoProfile -Command "winget install -e --id Foxit.FoxitReader      --accept-package-agreements --accept-source-agreements -h"
-        powershell -NoProfile -Command "winget install -e --id Apache.OpenOffice      --accept-package-agreements --accept-source-agreements -h"
-        powershell -NoProfile -Command "winget install -e --id Brave.Brave            --accept-package-agreements --accept-source-agreements -h"
+        powershell -NoProfile -Command "winget install -e --id 7zip.7zip --accept-package-agreements --accept-source-agreements -h"
+        powershell -NoProfile -Command "winget install -e --id VideoLAN.VLC --accept-package-agreements --accept-source-agreements -h"
+        powershell -NoProfile -Command "winget install -e --id Notepad++.Notepad++ --accept-package-agreements --accept-source-agreements -h"
+        powershell -NoProfile -Command "winget install -e --id Foxit.FoxitReader --accept-package-agreements --accept-source-agreements -h"
+        powershell -NoProfile -Command "winget install -e --id Apache.OpenOffice --accept-package-agreements --accept-source-agreements -h"
+        powershell -NoProfile -Command "winget install -e --id Brave.Brave --accept-package-agreements --accept-source-agreements -h"
     ) else (
         if "%LANG%"=="EN" (
             echo Neither browser nor winget is available. Please install software manually.
@@ -743,7 +718,6 @@ set "downloadPath=%UserProfile%\Downloads\OfficeToolPlus.zip"
 set "extractPath=%UserProfile%\Downloads\OTP"
 set "urlFile=%TEMP%\otp_url.txt"
 
-:: ---- Step 1: resolve latest release URL via GitHub API ----
 if "%LANG%"=="EN" (
     echo [1/4] Contacting GitHub API to find the latest release...
 ) else (
@@ -770,7 +744,6 @@ if not exist "%urlFile%" (
     goto :MainMenu
 )
 
-:: Read the URL from the temp file into OTP_URL
 set /p OTP_URL=<"%urlFile%"
 del "%urlFile%"
 
@@ -780,7 +753,6 @@ if "%LANG%"=="EN" (
     echo     Trovato: %OTP_URL%
 )
 
-:: ---- Step 2: download with curl (shows native progress bar) ----
 if "%LANG%"=="EN" (
     echo [2/4] Downloading...
 ) else (
@@ -807,7 +779,6 @@ if "%LANG%"=="EN" (
     echo     Download completato.
 )
 
-:: ---- Step 3: extract ----
 if "%LANG%"=="EN" (
     echo [3/4] Extracting files...
 ) else (
@@ -825,15 +796,13 @@ if "%LANG%"=="EN" (
     echo     Estrazione completata.
 )
 
-:: ---- Step 4: launch ----
 if "%LANG%"=="EN" (
     echo [4/4] Launching Office Tool Plus...
 ) else (
     echo [4/4] Avvio di Office Tool Plus...
 )
 
-:: Use PowerShell to find and start the exe — handles spaces in path reliably
-powershell -NoProfile -Command "$exe = Get-ChildItem -Path '%extractPath%' -Recurse -Filter 'Office Tool Plus.exe' -ErrorAction SilentlyContinue | Select-Object -First 1; if ($exe) { Write-Host ('    Found: ' + $exe.FullName); Start-Process $exe.FullName } else { Write-Host 'ERRORE: Office Tool Plus.exe non trovato dopo l estrazione.' }"
+powershell -NoProfile -Command "$exe = Get-ChildItem -Path '%extractPath%' -Recurse -Filter 'Office Tool Plus.exe' -ErrorAction SilentlyContinue | Select-Object -First 1; if ($exe) { Start-Process $exe.FullName } else { Write-Host 'ERRORE: Office Tool Plus.exe non trovato dopo l estrazione.' }"
 
 :OTPDone
 pause
@@ -950,6 +919,7 @@ if "%editionChoice%"=="5" (
     goto Office365
 )
 if "%editionChoice%"=="0" goto :DownOffice
+goto :Office365
 
 :Office2024
 cls
@@ -999,7 +969,7 @@ if "%editionChoice%"=="4" (
     goto Office2024
 )
 if "%editionChoice%"=="0" goto :DownOffice
-goto :Office2024 
+goto :Office2024
 
 :Office2021
 cls
@@ -1675,12 +1645,10 @@ echo:
 
 if "%extraChoice%"=="0" goto :MainMenu
 
-
 if "%extraChoice%"=="1" (
     start "" "https://github.com/TheMythologist/GenP/releases/download/v4.2.1-hotfix/GenP-v4.2.1.exe"
     goto Extra
 )
-
 if "%extraChoice%"=="2" (
     start "" "https://www.mediafire.com/file/fjdzbjnkqto0cby/Wise+Care+365+Pro+8.0.5.733.zip/file"
     goto Extra
@@ -1785,7 +1753,6 @@ if "%extraChoice%"=="27" (
     goto Extra
 )
 
-
 goto :Extra
 
 :MacriumSubmenu
@@ -1831,8 +1798,6 @@ if "%LANG%"=="EN" (
 )
 pause
 goto MacriumSubmenu
-
-goto :Extra
 
 :SoftwareUtili
 cls
@@ -2031,7 +1996,7 @@ if "%softwareChoice%"=="33" (
     start "" "https://github.com/lostindark/DriverStoreExplorer/releases/download/v0.12.145/DriverStoreExplorer.v0.12.145.zip"
     goto SoftwareUtili
 )
-
+goto :SoftwareUtili
 
 
 :Exit
@@ -2043,4 +2008,3 @@ if "%LANG%"=="EN" (
 )
 pause
 exit
-
