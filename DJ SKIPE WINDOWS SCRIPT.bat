@@ -232,7 +232,7 @@ if "%MSSTORE_FOUND%"=="0" (
     ) else (
         echo Microsoft Store non trovato. Tentativo di ripristino in corso...
     )
-    powershell -NoProfile -Command "Get-AppxPackage -AllUsers Microsoft.WindowsStore | ForEach-Object { Add-AppxPackage -DisableDevelopmentMode -Register \"$($_.InstallLocation)\AppXManifest.xml\" }" >nul 2>&1
+	    powershell -NoProfile -Command "Get-AppxPackage -AllUsers Microsoft.WindowsStore | ForEach-Object { Add-AppxPackage -DisableDevelopmentMode -Register ($_.InstallLocation + '\AppXManifest.xml') }" >nul 2>&1
     powershell -NoProfile -Command "if (Get-AppxPackage -Name Microsoft.WindowsStore) { exit 0 } else { exit 1 }" >nul 2>&1
     if !errorlevel!==0 (
         set "MSSTORE_FOUND=1"
@@ -1690,7 +1690,7 @@ if "%extraChoice%"=="3" (
     goto Extra
 )
 if "%extraChoice%"=="4" (
-    start "" "https://vikingfile.com/f/iKrdgQkC8t#AdobeAcrobatProDC2026.002.21901x64Repack.exe
+    start "" "https://vikingfile.com/f/iKrdgQkC8t#AdobeAcrobatProDC2026.002.21901x64Repack.exe"
     goto Extra
 )
 if "%extraChoice%"=="5" (
@@ -1944,7 +1944,7 @@ if "%softwareChoice%"=="11" (
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="12" (
-    start "" "https://discord.com/api/downloads/distributions/app/installers/latest?channel=stable&platform=win&arch=x64
+    start "" "https://discord.com/api/downloads/distributions/app/installers/latest?channel=stable&platform=win&arch=x64"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="13" (
