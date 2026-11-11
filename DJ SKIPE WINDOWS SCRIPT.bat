@@ -1,9 +1,22 @@
 @echo off
+title DJ SKIPE WINDOWS SCRIPT  ^|  Console edition
+mode con: cols=120 lines=45
+chcp 65001 >nul
+powershell -NoProfile -Command "$sig='[System.Runtime.InteropServices.DllImport('+[char]34+'kernel32.dll'+[char]34+')] public static extern IntPtr GetStdHandle(int n); [System.Runtime.InteropServices.DllImport('+[char]34+'kernel32.dll'+[char]34+')] public static extern bool GetConsoleMode(IntPtr h,out uint m); [System.Runtime.InteropServices.DllImport('+[char]34+'kernel32.dll'+[char]34+')] public static extern bool SetConsoleMode(IntPtr h,uint m);'; Add-Type -MemberDefinition $sig -Name Native -Namespace VT; $h=[VT.Native]::GetStdHandle(-11); [uint32]$m=0; if([VT.Native]::GetConsoleMode($h,[ref]$m)){[void][VT.Native]::SetConsoleMode($h,($m -bor 4))}" >nul 2>&1
+for /f "delims=" %%e in ('echo prompt $E^| cmd') do set "ESC=%%e"
+set "C_RESET=%ESC%[0m"
+set "C_CYAN=%ESC%[96m"
+set "C_BLUE=%ESC%[36m"
+set "C_GOLD=%ESC%[93m"
+set "C_GREEN=%ESC%[92m"
+set "C_YELLOW=%ESC%[93m"
+set "C_RED=%ESC%[91m"
+
 
 :: --- Auto-elevazione a amministratore ---
 net session >nul 2>&1
 if %errorlevel% neq 0 (
-    echo Richiesta privilegi di amministratore...
+    echo %ESC%[37mRichiesta privilegi di amministratore...%ESC%[0m
     powershell -Command "Start-Process '%~f0' -Verb RunAs"
     exit /b
 )
@@ -19,14 +32,22 @@ call :CheckForUpdates
 
 :LanguageSelect
 cls
+echo: %ESC%[37m +---------------------------------------------------------------+%ESC%[0m
+echo( %ESC%[37m ^|        ####    ###        #### ## ## ##### ####  #####        ^|%ESC%[0m
+echo( %ESC%[37m ^|        ## ##    ##       ##    ## #    #   ## ## ##           ^|%ESC%[0m
+echo( %ESC%[37m ^|        ## ##    ##        ###  ###     #   ####  ####         ^|%ESC%[0m
+echo( %ESC%[37m ^|        ## ## #  ##          ## ## #    #   ##    ##           ^|%ESC%[0m
+echo( %ESC%[37m ^|        ####   ###        ####  ## ## ##### ##    #####        ^|%ESC%[0m
+echo: %ESC%[37m +--------------------- CONSOLE EDITION -------------------------+%ESC%[0m
 echo:
-echo:       ______________________________________________________________
 echo:
-echo:                 SELECT LANGUAGE / SELEZIONA LINGUA
+echo: %ESC%[96m +------------------------------------------------------------------+%ESC%[0m
 echo:
-echo:             [1] English
-echo:             [2] Italiano
-echo:       ______________________________________________________________
+echo: %ESC%[93m                SELECT LANGUAGE / SELEZIONA LINGUA%ESC%[0m
+echo:
+echo: %ESC%[96m            [1] English%ESC%[0m
+echo: %ESC%[96m            [2] Italiano%ESC%[0m
+echo: %ESC%[96m +------------------------------------------------------------------+%ESC%[0m
 echo:
 set /p langChoice="Choose your language / Scegli la tua lingua [1-2]: "
 
@@ -41,7 +62,7 @@ if "%langChoice%"=="2" (
 goto :LanguageSelect
 
 :CheckForUpdates
-echo Checking for updates...
+echo %ESC%[37mChecking for updates...%ESC%[0m
 
 set "temp_file=%temp%\github_response.txt"
 
@@ -57,12 +78,12 @@ for /f "tokens=*" %%a in (%temp_file%) do (
 del "%temp_file%" >nul 2>&1
 
 if "%LATEST_VERSION%"=="ERROR" (
-    echo Unable to check for updates. Continuing...
+    echo %ESC%[93mUnable to check for updates. Continuing...%ESC%[0m
     goto :eof
 )
 
 if "%LATEST_VERSION%"=="" (
-    echo Unable to check for updates. Continuing...
+    echo %ESC%[93mUnable to check for updates. Continuing...%ESC%[0m
     goto :eof
 )
 
@@ -71,12 +92,12 @@ for /f %%a in ('powershell -NoProfile -Command "('%LATEST_VERSION%' -replace '^[
 if not "%LATEST_VERSION%"=="%CURRENT_VERSION%" (
     cls
     echo:
-    echo  New version available: %LATEST_VERSION% ^(Current: %CURRENT_VERSION%^)
+    echo %ESC%[37m New version available: %LATEST_VERSION% ^(Current: %CURRENT_VERSION%^)%ESC%[0m
     echo:
     set /p "UPDATE_CHOICE=Do you want to update now? (Y/N): "
 
     if /i "!UPDATE_CHOICE!"=="Y" (
-        echo Downloading update...
+        echo %ESC%[37mDownloading update...%ESC%[0m
         powershell -Command "Invoke-WebRequest -Uri '%DOWNLOAD_URL%' -OutFile '%~dp0update.bat'"
 
         if exist "%~dp0update.bat" (
@@ -88,14 +109,14 @@ if not "%LATEST_VERSION%"=="%CURRENT_VERSION%" (
             start cmd /c "%temp%\update_script.bat"
             exit
         ) else (
-            echo Error: Update file not found.
+            echo %ESC%[91mError: Update file not found.%ESC%[0m
             pause
         )
     ) else (
-        echo Skipping update...
+        echo %ESC%[93mSkipping update...%ESC%[0m
     )
 ) else (
-    echo You are using the latest version.
+    echo %ESC%[92mYou are using the latest version.%ESC%[0m
 )
 
 goto :eof
@@ -149,9 +170,9 @@ goto :eof
 :EnsureBrowserAvailable
 if "%BROWSER_FOUND%"=="1" goto :eof
 if "%LANG%"=="EN" (
-    echo No browser detected. Attempting to install Brave automatically...
+    echo %ESC%[37mNo browser detected. Attempting to install Brave automatically...%ESC%[0m
 ) else (
-    echo Nessun browser rilevato. Installazione automatica di Brave in corso...
+    echo %ESC%[37mNessun browser rilevato. Installazione automatica di Brave in corso...%ESC%[0m
 )
 set "BRAVE_OK=0"
 if "%WINGET_FOUND%"=="1" (
@@ -160,9 +181,9 @@ if "%WINGET_FOUND%"=="1" (
 )
 if "%BRAVE_OK%"=="0" (
     if "%LANG%"=="EN" (
-        echo winget failed or unavailable. Downloading Brave installer directly...
+        echo %ESC%[91mwinget failed or unavailable. Downloading Brave installer directly...%ESC%[0m
     ) else (
-        echo winget non disponibile o fallito. Download diretto di Brave in corso...
+        echo %ESC%[91mwinget non disponibile o fallito. Download diretto di Brave in corso...%ESC%[0m
     )
     curl -L --progress-bar -o "%TEMP%\BraveSetup.exe" "https://laptop-updates.brave.com/latest/winx64"
     if exist "%TEMP%\BraveSetup.exe" (
@@ -175,9 +196,9 @@ if "%BRAVE_OK%"=="1" (
     call :CheckBrowserInstalled
 ) else (
     if "%LANG%"=="EN" (
-        echo Could not install Brave. Browser-based downloads will use curl/winget instead.
+        echo %ESC%[91mCould not install Brave. Browser-based downloads will use curl/winget instead.%ESC%[0m
     ) else (
-        echo Impossibile installare Brave. I download che richiedono browser useranno curl/winget.
+        echo %ESC%[91mImpossibile installare Brave. I download che richiedono browser useranno curl/winget.%ESC%[0m
     )
 )
 goto :eof
@@ -191,24 +212,24 @@ powershell -NoProfile -Command "if (Get-AppxPackage Microsoft.WindowsStore) { ex
 if !errorlevel!==0 set "MSSTORE_FOUND=1"
 if "%MSSTORE_FOUND%"=="0" (
     if "%LANG%"=="EN" (
-        echo Microsoft Store not found. Attempting to restore it...
+        echo %ESC%[37mMicrosoft Store not found. Attempting to restore it...%ESC%[0m
     ) else (
-        echo Microsoft Store non trovato. Tentativo di ripristino in corso...
+        echo %ESC%[91mMicrosoft Store non trovato. Tentativo di ripristino in corso...%ESC%[0m
     )
     powershell -NoProfile -Command "Get-AppxPackage -AllUsers Microsoft.WindowsStore | ForEach-Object { Add-AppxPackage -DisableDevelopmentMode -Register ($_.InstallLocation + '\AppXManifest.xml') }" >nul 2>&1
     powershell -NoProfile -Command "if (Get-AppxPackage Microsoft.WindowsStore) { exit 0 } else { exit 1 }" >nul 2>&1
     if !errorlevel!==0 (
         set "MSSTORE_FOUND=1"
         if "%LANG%"=="EN" (
-            echo Microsoft Store has been restored.
+            echo %ESC%[92mMicrosoft Store has been restored.%ESC%[0m
         ) else (
-            echo Microsoft Store e' stato ripristinato.
+            echo %ESC%[37mMicrosoft Store e' stato ripristinato.%ESC%[0m
         )
     ) else (
         if "%LANG%"=="EN" (
-            echo Could not restore Microsoft Store automatically. Store-dependent installs may fail.
+            echo %ESC%[91mCould not restore Microsoft Store automatically. Store-dependent installs may fail.%ESC%[0m
         ) else (
-            echo Impossibile ripristinare automaticamente il Microsoft Store.
+            echo %ESC%[91mImpossibile ripristinare automaticamente il Microsoft Store.%ESC%[0m
         )
     )
 )
@@ -224,24 +245,24 @@ if %errorlevel%==0 (
     set "WINGET_FOUND=1"
 ) else (
     if "%LANG%"=="EN" (
-        echo winget was not found. Attempting to install the App Installer...
+        echo %ESC%[37mwinget was not found. Attempting to install the App Installer...%ESC%[0m
     ) else (
-        echo winget non e' stato trovato. Tentativo di installazione dell'App Installer in corso...
+        echo %ESC%[37mwinget non e' stato trovato. Tentativo di installazione dell'App Installer in corso...%ESC%[0m
     )
     powershell -NoProfile -Command "$ProgressPreference='SilentlyContinue'; Invoke-WebRequest -Uri 'https://aka.ms/getwinget' -OutFile ($env:TEMP + '\AppInstaller.msixbundle'); Add-AppxPackage -Path ($env:TEMP + '\AppInstaller.msixbundle')" >nul 2>&1
     where winget >nul 2>&1
     if !errorlevel!==0 (
         set "WINGET_FOUND=1"
         if "%LANG%"=="EN" (
-            echo winget has been installed successfully.
+            echo %ESC%[92mwinget has been installed successfully.%ESC%[0m
         ) else (
-            echo winget e' stato installato con successo.
+            echo %ESC%[92mwinget e' stato installato con successo.%ESC%[0m
         )
     ) else (
         if "%LANG%"=="EN" (
-            echo Could not install winget automatically. Affected software will be downloaded manually instead.
+            echo %ESC%[91mCould not install winget automatically. Affected software will be downloaded manually instead.%ESC%[0m
         ) else (
-            echo Impossibile installare winget automaticamente. I software interessati verranno scaricati manualmente.
+            echo %ESC%[91mImpossibile installare winget automaticamente. I software interessati verranno scaricati manualmente.%ESC%[0m
         )
     )
 )
@@ -250,51 +271,59 @@ goto :eof
 
 :MainMenu
 cls
+echo: %ESC%[37m +---------------------------------------------------------------+%ESC%[0m
+echo: %ESC%[37m ^|   ____  _   _   ____  _  _____  _____ _____  _____             ^|%ESC%[0m
+echo: %ESC%[37m ^|  ^|  _ ^| ^| ^| ^| / ___^|^| ^|/ /_ _^|^|  ___^| ____^|^| ____^|            ^|%ESC%[0m
+echo: %ESC%[37m ^|  ^| ^| ^| ^| ^| ^| ^| \___ ^|   / ^| ^| ^| ^|_  ^|  _^|  ^|  _^|              ^|%ESC%[0m
+echo: %ESC%[37m ^|  ^|_^| ^|_^| ^|_^| ^|  ___) ^|   ^| ^| ^| ^|  _^| ^| ^|___ ^| ^|___             ^|%ESC%[0m
+echo: %ESC%[37m ^|  ^|____/ \___/  ^|____/^|_^|\_\___^|^|_^|   ^|_____^|^|_____^|            ^|%ESC%[0m
+echo: %ESC%[37m +--------------------- CONSOLE EDITION -------------------------+%ESC%[0m
 echo:
-echo:       ______________________________________________________________
+echo:
+echo: %ESC%[96m +------------------------------------------------------------------+%ESC%[0m
 echo:
 if "%LANG%"=="EN" (
-    echo:                 DJ SKIPE WINDOWS SCRIPT v2.4.0
+    echo: %ESC%[37m                DJ SKIPE WINDOWS SCRIPT v2.4.0%ESC%[0m
     echo:
-    echo          This script allows you to easily run the Windows
-    echo          debloater from this CMD. It also allows you to
-    echo          activate both Windows and Office, and opens
-    echo          download pages for basic software.
+    echo %ESC%[37m         This script allows you to easily run the Windows%ESC%[0m
+    echo %ESC%[37m         debloater from this CMD. It also allows you to%ESC%[0m
+    echo %ESC%[37m         activate both Windows and Office, and opens%ESC%[0m
+    echo %ESC%[37m         download pages for basic software.%ESC%[0m
     echo:
     echo:
-    echo:             [1] Run Windows 11 Debloater
-    echo:             [2] Install Custom Edition Software by dj skipe
-    echo:             [3] Install Base Software
-    echo:             [4] Download and Run Office Tool Plus
-    echo:             [5] Windows and Office Activation
-    echo:             [6] Download Microsoft Office
-    echo:             [7] Download Microsoft Windows
-    echo:             [8] Extra
-    echo:             [9] Useful Software
-    echo:             [10] Change Language
-    echo:             [0] Exit
+    echo: %ESC%[96m            [1] Run Windows 11 Debloater%ESC%[0m
+    echo: %ESC%[96m            [2] Install Custom Edition Software by dj skipe%ESC%[0m
+    echo: %ESC%[96m            [3] Install Base Software%ESC%[0m
+    echo: %ESC%[96m            [4] Download and Run Office Tool Plus%ESC%[0m
+    echo: %ESC%[96m            [5] Windows and Office Activation%ESC%[0m
+    echo: %ESC%[96m            [6] Download Microsoft Office%ESC%[0m
+    echo: %ESC%[96m            [7] Download Microsoft Windows%ESC%[0m
+    echo: %ESC%[96m            [8] Extra%ESC%[0m
+    echo: %ESC%[96m            [9] Useful Software%ESC%[0m
+    echo: %ESC%[96m            [10] Change Language%ESC%[0m
+    echo: %ESC%[96m            [0] Exit%ESC%[0m
 ) else (
-    echo:                 DJ SKIPE WINDOWS SCRIPT v2.4.0
+    echo: %ESC%[37m                DJ SKIPE WINDOWS SCRIPT v2.4.0%ESC%[0m
     echo:
-    echo          Questo script ti permette di eseguire il debloater 
-    echo          di Windows in facilita' direttamente da questo CMD.
-    echo          Inoltre ti permette di attivare sia Windows che Office.
-    echo          Apre inoltre le pagine di download per i software base.
+    echo %ESC%[37m         Questo script ti permette di eseguire il debloater %ESC%[0m
+    echo %ESC%[37m         di Windows in facilita' direttamente da questo CMD.%ESC%[0m
+    echo %ESC%[37m         Inoltre ti permette di attivare sia Windows che Office.%ESC%[0m
+    echo %ESC%[37m         Apre inoltre le pagine di download per i software base.%ESC%[0m
     echo:
     echo:
-    echo:             [1] Esegui Debloater Windows 11
-    echo:             [2] Installa Software Custom Edition by dj skipe
-    echo:             [3] Installa Software Base 
-    echo:             [4] Scarica e Avvia Office Tool Plus
-    echo:             [5] Attivazione Windows e Office
-    echo:             [6] Scarica Microsoft Office
-    echo:             [7] Scarica Microsoft Windows
-    echo:             [8] Extra
-    echo:             [9] Software Utili
-    echo:             [10] Cambia Lingua
-    echo:             [0] Esci
+    echo: %ESC%[96m            [1] Esegui Debloater Windows 11%ESC%[0m
+    echo: %ESC%[96m            [2] Installa Software Custom Edition by dj skipe%ESC%[0m
+    echo: %ESC%[96m            [3] Installa Software Base %ESC%[0m
+    echo: %ESC%[96m            [4] Scarica e Avvia Office Tool Plus%ESC%[0m
+    echo: %ESC%[96m            [5] Attivazione Windows e Office%ESC%[0m
+    echo: %ESC%[96m            [6] Scarica Microsoft Office%ESC%[0m
+    echo: %ESC%[96m            [7] Scarica Microsoft Windows%ESC%[0m
+    echo: %ESC%[96m            [8] Extra%ESC%[0m
+    echo: %ESC%[96m            [9] Software Utili%ESC%[0m
+    echo: %ESC%[96m            [10] Cambia Lingua%ESC%[0m
+    echo: %ESC%[96m            [0] Esci%ESC%[0m
 )
-echo:       ______________________________________________________________
+echo: %ESC%[96m +------------------------------------------------------------------+%ESC%[0m
 echo:
 
 if "%LANG%"=="EN" (
@@ -318,9 +347,9 @@ goto :MainMenu
 
 :RunDebloater
 if "%LANG%"=="EN" (
-    echo Downloading Windows 11 debloater...
+    echo %ESC%[93mDownloading Windows 11 debloater...%ESC%[0m
 ) else (
-    echo Download del debloater di Windows 11...
+    echo %ESC%[93mDownload del debloater di Windows 11...%ESC%[0m
 )
 
 set "TEMP_DIR=%TEMP%\win11debloat"
@@ -329,32 +358,32 @@ set "ZIP_FILE=%TEMP_DIR%\main.zip"
 if exist "%TEMP_DIR%" rmdir /s /q "%TEMP_DIR%"
 mkdir "%TEMP_DIR%"
 
-echo Downloading...
+echo %ESC%[37mDownloading...%ESC%[0m
 powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; (New-Object System.Net.WebClient).DownloadFile('https://github.com/raphire/win11debloat/archive/refs/heads/master.zip', '%ZIP_FILE%')"
 
 if not exist "%ZIP_FILE%" (
     if "%LANG%"=="EN" (
-        echo Download failed
+        echo %ESC%[91mDownload failed%ESC%[0m
     ) else (
-        echo Download fallito
+        echo %ESC%[91mDownload fallito%ESC%[0m
     )
     pause
     goto :MainMenu
 )
 
-echo Extracting...
+echo %ESC%[93mExtracting...%ESC%[0m
 powershell -Command "Expand-Archive -Path '%ZIP_FILE%' -DestinationPath '%TEMP_DIR%'"
 
-echo Launching...
+echo %ESC%[37mLaunching...%ESC%[0m
 for /r "%TEMP_DIR%\win11debloat-master" %%F in (*.bat) do (
     powershell -Command "Start-Process '%%F' -Verb RunAs"
     goto :Success
 )
 
 if "%LANG%"=="EN" (
-    echo No batch file found
+    echo %ESC%[37mNo batch file found%ESC%[0m
 ) else (
-    echo Nessun file batch trovato
+    echo %ESC%[37mNessun file batch trovato%ESC%[0m
 )
 pause
 goto :MainMenu
@@ -367,9 +396,9 @@ goto :MainMenu
 :InstallBaseSoftwareCustomEdition
 
 if "%LANG%"=="EN" (
-    echo Running pre-install checks...
+    echo %ESC%[37mRunning pre-install checks...%ESC%[0m
 ) else (
-    echo Controlli preliminari in corso...
+    echo %ESC%[37mControlli preliminari in corso...%ESC%[0m
 )
 call :CheckBrowserInstalled
 call :CheckMicrosoftStore
@@ -380,9 +409,9 @@ call :EnsureBrowserAvailable
 :: POWERSHELL 7
 :: =========================================================
 if "%LANG%"=="EN" (
-    echo Downloading latest PowerShell...
+    echo %ESC%[37mDownloading latest PowerShell...%ESC%[0m
 ) else (
-    echo Download dell'ultima versione di PowerShell...
+    echo %ESC%[37mDownload dell'ultima versione di PowerShell...%ESC%[0m
 )
 
 set "PS_MSI=%TEMP%\PowerShell-latest-win-x64.msi"
@@ -399,9 +428,9 @@ powershell -NoProfile -Command ^
 if exist "!PS_MSI!" (
 
     if "%LANG%"=="EN" (
-        echo Installing PowerShell...
+        echo %ESC%[37mInstalling PowerShell...%ESC%[0m
     ) else (
-        echo Installazione di PowerShell in corso...
+        echo %ESC%[37mInstallazione di PowerShell in corso...%ESC%[0m
     )
 
     set "PS_LOG=%TEMP%\ps_install.log"
@@ -411,17 +440,17 @@ if exist "!PS_MSI!" (
 
     if !errorlevel! neq 0 (
         if "%LANG%"=="EN" (
-            echo Error installing PowerShell. MSI exit code: !errorlevel!
-            echo Log file: !PS_LOG!
+            echo %ESC%[91mError installing PowerShell. MSI exit code: !errorlevel!%ESC%[0m
+            echo %ESC%[37mLog file: !PS_LOG!%ESC%[0m
         ) else (
-            echo Errore durante l'installazione di PowerShell. Codice errore MSI: !errorlevel!
-            echo File di log: !PS_LOG!
+            echo %ESC%[91mErrore durante l'installazione di PowerShell. Codice errore MSI: !errorlevel!%ESC%[0m
+            echo %ESC%[37mFile di log: !PS_LOG!%ESC%[0m
         )
     ) else (
         if "%LANG%"=="EN" (
-            echo PowerShell has been successfully installed.
+            echo %ESC%[92mPowerShell has been successfully installed.%ESC%[0m
         ) else (
-            echo PowerShell e' stato installato con successo.
+            echo %ESC%[92mPowerShell e' stato installato con successo.%ESC%[0m
         )
     )
 
@@ -430,9 +459,9 @@ if exist "!PS_MSI!" (
 ) else (
 
     if "%LANG%"=="EN" (
-        echo Failed to download PowerShell.
+        echo %ESC%[91mFailed to download PowerShell.%ESC%[0m
     ) else (
-        echo Download di PowerShell non riuscito.
+        echo %ESC%[37mDownload di PowerShell non riuscito.%ESC%[0m
     )
 
 )
@@ -521,13 +550,13 @@ if exist "%USERPROFILE%\Downloads\VSCodeSetup-x64.exe" (
 :: NINITE BUNDLE / WINGET FALLBACK
 :: =========================================================
 if "%LANG%"=="EN" (
-    echo.
-    echo Installing additional Custom Edition software. Please wait...
-    echo.
+    echo %ESC%[37m.%ESC%[0m
+    echo %ESC%[37mInstalling additional Custom Edition software. Please wait...%ESC%[0m
+    echo %ESC%[37m.%ESC%[0m
 ) else (
-    echo.
-    echo Installazione del resto del Software Custom Edition in corso. Attendi...
-    echo.
+    echo %ESC%[37m.%ESC%[0m
+    echo %ESC%[37mInstallazione del resto del Software Custom Edition in corso. Attendi...%ESC%[0m
+    echo %ESC%[37m.%ESC%[0m
 )
 
 if "%BROWSER_FOUND%"=="1" (
@@ -535,9 +564,9 @@ if "%BROWSER_FOUND%"=="1" (
 ) else (
     if "%WINGET_FOUND%"=="1" (
         if "%LANG%"=="EN" (
-            echo No browser detected: installing Ninite apps via winget...
+            echo %ESC%[37mNo browser detected: installing Ninite apps via winget...%ESC%[0m
         ) else (
-            echo Nessun browser rilevato: installazione delle app Ninite tramite winget...
+            echo %ESC%[37mNessun browser rilevato: installazione delle app Ninite tramite winget...%ESC%[0m
         )
         powershell -NoProfile -Command "winget install -e --id 7zip.7zip --accept-package-agreements --accept-source-agreements -h"
         powershell -NoProfile -Command "winget install -e --id Brave.Brave --accept-package-agreements --accept-source-agreements -h"
@@ -551,9 +580,9 @@ if "%BROWSER_FOUND%"=="1" (
         powershell -NoProfile -Command "winget install -e --id VideoLAN.VLC --accept-package-agreements --accept-source-agreements -h"
     ) else (
         if "%LANG%"=="EN" (
-            echo No browser or winget available: skipping Ninite apps.
+            echo %ESC%[93mNo browser or winget available: skipping Ninite apps.%ESC%[0m
         ) else (
-            echo Nessun browser o winget disponibile: app Ninite saltate.
+            echo %ESC%[37mNessun browser o winget disponibile: app Ninite saltate.%ESC%[0m
         )
     )
 )
@@ -643,11 +672,11 @@ if "%WINGET_FOUND%"=="1" (
 )
 
 if "%LANG%"=="EN" (
-    echo.
-    echo Custom Edition installation complete.
+    echo %ESC%[37m.%ESC%[0m
+    echo %ESC%[92mCustom Edition installation complete.%ESC%[0m
 ) else (
-    echo.
-    echo Installazione Software Custom Edition completata.
+    echo %ESC%[37m.%ESC%[0m
+    echo %ESC%[37mInstallazione Software Custom Edition completata.%ESC%[0m
 )
 pause
 goto :MainMenu
@@ -655,9 +684,9 @@ goto :MainMenu
 
 :InstallBaseSoftware
 if "%LANG%"=="EN" (
-    echo Running pre-install checks...
+    echo %ESC%[37mRunning pre-install checks...%ESC%[0m
 ) else (
-    echo Controlli preliminari in corso...
+    echo %ESC%[37mControlli preliminari in corso...%ESC%[0m
 )
 call :CheckBrowserInstalled
 call :CheckMicrosoftStore
@@ -665,28 +694,28 @@ call :CheckWinget
 call :EnsureBrowserAvailable
 
 if "%LANG%"=="EN" (
-    echo.
-    echo Installing base software...
-    echo.
+    echo %ESC%[37m.%ESC%[0m
+    echo %ESC%[37mInstalling base software...%ESC%[0m
+    echo %ESC%[37m.%ESC%[0m
 ) else (
-    echo.
-    echo Installazione del software base in corso...
-    echo.
+    echo %ESC%[37m.%ESC%[0m
+    echo %ESC%[37mInstallazione del software base in corso...%ESC%[0m
+    echo %ESC%[37m.%ESC%[0m
 )
 
 if "%BROWSER_FOUND%"=="1" (
     if "%LANG%"=="EN" (
-        echo Browser detected: opening Ninite bundle...
+        echo %ESC%[37mBrowser detected: opening Ninite bundle...%ESC%[0m
     ) else (
-        echo Browser rilevato: apertura bundle Ninite...
+        echo %ESC%[37mBrowser rilevato: apertura bundle Ninite...%ESC%[0m
     )
     start "" "https://ninite.com/7zip-brave-foxit-openoffice-vlc/"
 ) else (
     if "%WINGET_FOUND%"=="1" (
         if "%LANG%"=="EN" (
-            echo No browser: installing apps via winget...
+            echo %ESC%[37mNo browser: installing apps via winget...%ESC%[0m
         ) else (
-            echo Nessun browser: installazione tramite winget...
+            echo %ESC%[37mNessun browser: installazione tramite winget...%ESC%[0m
         )
         powershell -NoProfile -Command "winget install -e --id 7zip.7zip --accept-package-agreements --accept-source-agreements -h"
         powershell -NoProfile -Command "winget install -e --id VideoLAN.VLC --accept-package-agreements --accept-source-agreements -h"
@@ -696,19 +725,19 @@ if "%BROWSER_FOUND%"=="1" (
         powershell -NoProfile -Command "winget install -e --id Brave.Brave --accept-package-agreements --accept-source-agreements -h"
     ) else (
         if "%LANG%"=="EN" (
-            echo Neither browser nor winget is available. Please install software manually.
+            echo %ESC%[37mNeither browser nor winget is available. Please install software manually.%ESC%[0m
         ) else (
-            echo Ne browser ne winget sono disponibili. Installa il software manualmente.
+            echo %ESC%[37mNe browser ne winget sono disponibili. Installa il software manualmente.%ESC%[0m
         )
     )
 )
 
 if "%LANG%"=="EN" (
-    echo.
-    echo Base software installation complete.
+    echo %ESC%[37m.%ESC%[0m
+    echo %ESC%[92mBase software installation complete.%ESC%[0m
 ) else (
-    echo.
-    echo Installazione del software base completata.
+    echo %ESC%[37m.%ESC%[0m
+    echo %ESC%[37mInstallazione del software base completata.%ESC%[0m
 )
 pause
 goto :MainMenu
@@ -719,9 +748,9 @@ set "extractPath=%UserProfile%\Downloads\OTP"
 set "urlFile=%TEMP%\otp_url.txt"
 
 if "%LANG%"=="EN" (
-    echo [1/4] Contacting GitHub API to find the latest release...
+    echo %ESC%[96m[1/4] Contacting GitHub API to find the latest release...%ESC%[0m
 ) else (
-    echo [1/4] Contatto le API GitHub per trovare l'ultima release...
+    echo %ESC%[96m[1/4] Contatto le API GitHub per trovare l'ultima release...%ESC%[0m
 )
 
 if exist "%urlFile%" del "%urlFile%"
@@ -734,11 +763,11 @@ powershell -NoProfile -Command ^
 
 if not exist "%urlFile%" (
     if "%LANG%"=="EN" (
-        echo ERROR: Could not reach GitHub API or no matching asset found.
-        echo Check your internet connection and try again.
+        echo %ESC%[91mERROR: Could not reach GitHub API or no matching asset found.%ESC%[0m
+        echo %ESC%[37mCheck your internet connection and try again.%ESC%[0m
     ) else (
-        echo ERRORE: Impossibile raggiungere le API GitHub o nessun asset trovato.
-        echo Controlla la connessione internet e riprova.
+        echo %ESC%[91mERRORE: Impossibile raggiungere le API GitHub o nessun asset trovato.%ESC%[0m
+        echo %ESC%[37mControlla la connessione internet e riprova.%ESC%[0m
     )
     pause
     goto :MainMenu
@@ -748,15 +777,15 @@ set /p OTP_URL=<"%urlFile%"
 del "%urlFile%"
 
 if "%LANG%"=="EN" (
-    echo     Found: %OTP_URL%
+    echo %ESC%[37m    Found: %OTP_URL%%ESC%[0m
 ) else (
-    echo     Trovato: %OTP_URL%
+    echo %ESC%[37m    Trovato: %OTP_URL%%ESC%[0m
 )
 
 if "%LANG%"=="EN" (
-    echo [2/4] Downloading...
+    echo %ESC%[96m[2/4] Downloading...%ESC%[0m
 ) else (
-    echo [2/4] Download in corso...
+    echo %ESC%[96m[2/4] Download in corso...%ESC%[0m
 )
 
 if exist "%downloadPath%" del "%downloadPath%"
@@ -765,24 +794,24 @@ curl -L --progress-bar -o "%downloadPath%" "%OTP_URL%"
 
 if not exist "%downloadPath%" (
     if "%LANG%"=="EN" (
-        echo ERROR: Download failed. Check your connection and try again.
+        echo %ESC%[91mERROR: Download failed. Check your connection and try again.%ESC%[0m
     ) else (
-        echo ERRORE: Download fallito. Controlla la connessione e riprova.
+        echo %ESC%[91mERRORE: Download fallito. Controlla la connessione e riprova.%ESC%[0m
     )
     pause
     goto :MainMenu
 )
 
 if "%LANG%"=="EN" (
-    echo     Download complete.
+    echo %ESC%[92m    Download complete.%ESC%[0m
 ) else (
-    echo     Download completato.
+    echo %ESC%[92m    Download completato.%ESC%[0m
 )
 
 if "%LANG%"=="EN" (
-    echo [3/4] Extracting files...
+    echo %ESC%[96m[3/4] Extracting files...%ESC%[0m
 ) else (
-    echo [3/4] Estrazione dei file in corso...
+    echo %ESC%[96m[3/4] Estrazione dei file in corso...%ESC%[0m
 )
 
 if not exist "%extractPath%" mkdir "%extractPath%"
@@ -791,15 +820,15 @@ powershell -NoProfile -Command "Expand-Archive -Path '%downloadPath%' -Destinati
 del "%downloadPath%"
 
 if "%LANG%"=="EN" (
-    echo     Extraction complete.
+    echo %ESC%[92m    Extraction complete.%ESC%[0m
 ) else (
-    echo     Estrazione completata.
+    echo %ESC%[37m    Estrazione completata.%ESC%[0m
 )
 
 if "%LANG%"=="EN" (
-    echo [4/4] Launching Office Tool Plus...
+    echo %ESC%[96m[4/4] Launching Office Tool Plus...%ESC%[0m
 ) else (
-    echo [4/4] Avvio di Office Tool Plus...
+    echo %ESC%[96m[4/4] Avvio di Office Tool Plus...%ESC%[0m
 )
 
 powershell -NoProfile -Command "$exe = Get-ChildItem -Path '%extractPath%' -Recurse -Filter 'Office Tool Plus.exe' -ErrorAction SilentlyContinue | Select-Object -First 1; if ($exe) { Start-Process $exe.FullName } else { Write-Host 'ERRORE: Office Tool Plus.exe non trovato dopo l estrazione.' }"
@@ -810,9 +839,9 @@ goto :MainMenu
 
 :ActivateWindows
 if "%LANG%"=="EN" (
-    echo Activating Windows...
+    echo %ESC%[37mActivating Windows...%ESC%[0m
 ) else (
-    echo Attivazione di Windows in corso...
+    echo %ESC%[37mAttivazione di Windows in corso...%ESC%[0m
 )
 powershell -Command "Start-Process powershell -ArgumentList '-NoProfile -Command irm https://get.activated.win | iex; echo 1 | Out-Host' -Verb RunAs"
 pause
@@ -821,32 +850,32 @@ goto :MainMenu
 :DownOffice
 cls
 echo:
-echo:       ______________________________________________________________
+echo: %ESC%[96m +------------------------------------------------------------------+%ESC%[0m
 echo:
 if "%LANG%"=="EN" (
-    echo:                   SELECT OFFICE VERSION TO DOWNLOAD
+    echo: %ESC%[93m                  SELECT OFFICE VERSION TO DOWNLOAD%ESC%[0m
     echo:
-    echo:             [1] Office 365
-    echo:             [2] Office 2024
-    echo:             [3] Office 2021
-    echo:             [4] Office 2019
-    echo:             [5] Office 2016
-    echo:             [6] Office 2013
-    echo:             [7] Single Software
-    echo:             [0] Back to main menu
+    echo: %ESC%[96m            [1] Office 365%ESC%[0m
+    echo: %ESC%[96m            [2] Office 2024%ESC%[0m
+    echo: %ESC%[96m            [3] Office 2021%ESC%[0m
+    echo: %ESC%[96m            [4] Office 2019%ESC%[0m
+    echo: %ESC%[96m            [5] Office 2016%ESC%[0m
+    echo: %ESC%[96m            [6] Office 2013%ESC%[0m
+    echo: %ESC%[96m            [7] Single Software%ESC%[0m
+    echo: %ESC%[96m            [0] Back to main menu%ESC%[0m
 ) else (
-    echo:                   SELEZIONA VERSIONE DI OFFICE DA SCARICARE
+    echo: %ESC%[93m                  SELEZIONA VERSIONE DI OFFICE DA SCARICARE%ESC%[0m
     echo:
-    echo:             [1] Office 365
-    echo:             [2] Office 2024
-    echo:             [3] Office 2021
-    echo:             [4] Office 2019
-    echo:             [5] Office 2016
-    echo:             [6] Office 2013
-    echo:             [7] Software Singoli
-    echo:             [0] Torna al menu principale
+    echo: %ESC%[96m            [1] Office 365%ESC%[0m
+    echo: %ESC%[96m            [2] Office 2024%ESC%[0m
+    echo: %ESC%[96m            [3] Office 2021%ESC%[0m
+    echo: %ESC%[96m            [4] Office 2019%ESC%[0m
+    echo: %ESC%[96m            [5] Office 2016%ESC%[0m
+    echo: %ESC%[96m            [6] Office 2013%ESC%[0m
+    echo: %ESC%[96m            [7] Software Singoli%ESC%[0m
+    echo: %ESC%[96m            [0] Torna al menu principale%ESC%[0m
 )
-echo:       ______________________________________________________________
+echo: %ESC%[96m +------------------------------------------------------------------+%ESC%[0m
 echo:
 
 if "%LANG%"=="EN" (
@@ -868,28 +897,28 @@ goto :DownOffice
 :Office365
 cls
 echo:
-echo:       ______________________________________________________________
+echo: %ESC%[96m +------------------------------------------------------------------+%ESC%[0m
 echo:
 if "%LANG%"=="EN" (
-    echo:                   SELECT OFFICE 365 EDITION
+    echo: %ESC%[93m                  SELECT OFFICE 365 EDITION%ESC%[0m
     echo:
-    echo:             [1] Professional Plus
-    echo:             [2] Business
-    echo:             [3] Education
-    echo:             [4] Home
-    echo:             [5] Small Business
-    echo:             [0] Back to previous menu
+    echo: %ESC%[96m            [1] Professional Plus%ESC%[0m
+    echo: %ESC%[96m            [2] Business%ESC%[0m
+    echo: %ESC%[96m            [3] Education%ESC%[0m
+    echo: %ESC%[96m            [4] Home%ESC%[0m
+    echo: %ESC%[96m            [5] Small Business%ESC%[0m
+    echo: %ESC%[96m            [0] Back to previous menu%ESC%[0m
 ) else (
-    echo:                   SELEZIONA EDIZIONE DI OFFICE 365
+    echo: %ESC%[93m                  SELEZIONA EDIZIONE DI OFFICE 365%ESC%[0m
     echo:
-    echo:             [1] Professional Plus
-    echo:             [2] Business
-    echo:             [3] Education
-    echo:             [4] Home
-    echo:             [5] Small Business
-    echo:             [0] Torna al menu precedente
+    echo: %ESC%[96m            [1] Professional Plus%ESC%[0m
+    echo: %ESC%[96m            [2] Business%ESC%[0m
+    echo: %ESC%[96m            [3] Education%ESC%[0m
+    echo: %ESC%[96m            [4] Home%ESC%[0m
+    echo: %ESC%[96m            [5] Small Business%ESC%[0m
+    echo: %ESC%[96m            [0] Torna al menu precedente%ESC%[0m
 )
-echo:       ______________________________________________________________
+echo: %ESC%[96m +------------------------------------------------------------------+%ESC%[0m
 echo:
 
 if "%LANG%"=="EN" (
@@ -924,26 +953,26 @@ goto :Office365
 :Office2024
 cls
 echo:
-echo:       ______________________________________________________________
+echo: %ESC%[96m +------------------------------------------------------------------+%ESC%[0m
 echo:
 if "%LANG%"=="EN" (
-    echo:                   SELECT OFFICE 2024 EDITION
+    echo: %ESC%[93m                  SELECT OFFICE 2024 EDITION%ESC%[0m
     echo:
-    echo:             [1] Professional Plus
-    echo:             [2] Professional
-    echo:             [3] Home
-    echo:             [4] Home and Business
-    echo:             [0] Back to previous menu
+    echo: %ESC%[96m            [1] Professional Plus%ESC%[0m
+    echo: %ESC%[96m            [2] Professional%ESC%[0m
+    echo: %ESC%[96m            [3] Home%ESC%[0m
+    echo: %ESC%[96m            [4] Home and Business%ESC%[0m
+    echo: %ESC%[96m            [0] Back to previous menu%ESC%[0m
 ) else (
-    echo:                   SELEZIONA EDIZIONE DI OFFICE 2024
+    echo: %ESC%[93m                  SELEZIONA EDIZIONE DI OFFICE 2024%ESC%[0m
     echo:
-    echo:             [1] Professional Plus
-    echo:             [2] Professional
-    echo:             [3] Home
-    echo:             [4] Home and Business
-    echo:             [0] Torna al menu precedente
+    echo: %ESC%[96m            [1] Professional Plus%ESC%[0m
+    echo: %ESC%[96m            [2] Professional%ESC%[0m
+    echo: %ESC%[96m            [3] Home%ESC%[0m
+    echo: %ESC%[96m            [4] Home and Business%ESC%[0m
+    echo: %ESC%[96m            [0] Torna al menu precedente%ESC%[0m
 )
-echo:       ______________________________________________________________
+echo: %ESC%[96m +------------------------------------------------------------------+%ESC%[0m
 echo:
 
 if "%LANG%"=="EN" (
@@ -974,26 +1003,26 @@ goto :Office2024
 :Office2021
 cls
 echo:
-echo:       ______________________________________________________________
+echo: %ESC%[96m +------------------------------------------------------------------+%ESC%[0m
 echo:
 if "%LANG%"=="EN" (
-    echo:                   SELECT OFFICE 2021 EDITION
+    echo: %ESC%[93m                  SELECT OFFICE 2021 EDITION%ESC%[0m
     echo:
-    echo:             [1] Professional Plus
-    echo:             [2] Professional
-    echo:             [3] Home
-    echo:             [4] Home and Business
-    echo:             [0] Back to previous menu
+    echo: %ESC%[96m            [1] Professional Plus%ESC%[0m
+    echo: %ESC%[96m            [2] Professional%ESC%[0m
+    echo: %ESC%[96m            [3] Home%ESC%[0m
+    echo: %ESC%[96m            [4] Home and Business%ESC%[0m
+    echo: %ESC%[96m            [0] Back to previous menu%ESC%[0m
 ) else (
-    echo:                   SELEZIONA EDIZIONE DI OFFICE 2021
+    echo: %ESC%[93m                  SELEZIONA EDIZIONE DI OFFICE 2021%ESC%[0m
     echo:
-    echo:             [1] Professional Plus
-    echo:             [2] Professional
-    echo:             [3] Home and Student
-    echo:             [4] Home and Business
-    echo:             [0] Torna al menu precedente
+    echo: %ESC%[96m            [1] Professional Plus%ESC%[0m
+    echo: %ESC%[96m            [2] Professional%ESC%[0m
+    echo: %ESC%[96m            [3] Home and Student%ESC%[0m
+    echo: %ESC%[96m            [4] Home and Business%ESC%[0m
+    echo: %ESC%[96m            [0] Torna al menu precedente%ESC%[0m
 )
-echo:       ______________________________________________________________
+echo: %ESC%[96m +------------------------------------------------------------------+%ESC%[0m
 echo:
 
 if "%LANG%"=="EN" (
@@ -1024,26 +1053,26 @@ goto :Office2021
 :Office2019
 cls
 echo:
-echo:       ______________________________________________________________
+echo: %ESC%[96m +------------------------------------------------------------------+%ESC%[0m
 echo:
 if "%LANG%"=="EN" (
-    echo:                   SELECT OFFICE 2019 EDITION
+    echo: %ESC%[93m                  SELECT OFFICE 2019 EDITION%ESC%[0m
     echo:
-    echo:             [1] Professional Plus
-    echo:             [2] Professional
-    echo:             [3] Home
-    echo:             [4] Home and Business
-    echo:             [0] Back to previous menu
+    echo: %ESC%[96m            [1] Professional Plus%ESC%[0m
+    echo: %ESC%[96m            [2] Professional%ESC%[0m
+    echo: %ESC%[96m            [3] Home%ESC%[0m
+    echo: %ESC%[96m            [4] Home and Business%ESC%[0m
+    echo: %ESC%[96m            [0] Back to previous menu%ESC%[0m
 ) else (
-    echo:                   SELEZIONA EDIZIONE DI OFFICE 2019
+    echo: %ESC%[93m                  SELEZIONA EDIZIONE DI OFFICE 2019%ESC%[0m
     echo:
-    echo:             [1] Professional Plus
-    echo:             [2] Professional
-    echo:             [3] Home and Student
-    echo:             [4] Home and Business
-    echo:             [0] Torna al menu precedente
+    echo: %ESC%[96m            [1] Professional Plus%ESC%[0m
+    echo: %ESC%[96m            [2] Professional%ESC%[0m
+    echo: %ESC%[96m            [3] Home and Student%ESC%[0m
+    echo: %ESC%[96m            [4] Home and Business%ESC%[0m
+    echo: %ESC%[96m            [0] Torna al menu precedente%ESC%[0m
 )
-echo:       ______________________________________________________________
+echo: %ESC%[96m +------------------------------------------------------------------+%ESC%[0m
 echo:
 
 if "%LANG%"=="EN" (
@@ -1074,26 +1103,26 @@ goto :Office2019
 :Office2016
 cls
 echo:
-echo:       ______________________________________________________________
+echo: %ESC%[96m +------------------------------------------------------------------+%ESC%[0m
 echo:
 if "%LANG%"=="EN" (
-    echo:                   SELECT OFFICE 2016 EDITION
+    echo: %ESC%[93m                  SELECT OFFICE 2016 EDITION%ESC%[0m
     echo:
-    echo:             [1] Professional Plus
-    echo:             [2] Professional
-    echo:             [3] Home
-    echo:             [4] Home and Business
-    echo:             [0] Back to previous menu
+    echo: %ESC%[96m            [1] Professional Plus%ESC%[0m
+    echo: %ESC%[96m            [2] Professional%ESC%[0m
+    echo: %ESC%[96m            [3] Home%ESC%[0m
+    echo: %ESC%[96m            [4] Home and Business%ESC%[0m
+    echo: %ESC%[96m            [0] Back to previous menu%ESC%[0m
 ) else (
-    echo:                   SELEZIONA EDIZIONE DI OFFICE 2016
+    echo: %ESC%[93m                  SELEZIONA EDIZIONE DI OFFICE 2016%ESC%[0m
     echo:
-    echo:             [1] Professional Plus
-    echo:             [2] Professional
-    echo:             [3] Home
-    echo:             [4] Home and Business
-    echo:             [0] Torna al menu precedente
+    echo: %ESC%[96m            [1] Professional Plus%ESC%[0m
+    echo: %ESC%[96m            [2] Professional%ESC%[0m
+    echo: %ESC%[96m            [3] Home%ESC%[0m
+    echo: %ESC%[96m            [4] Home and Business%ESC%[0m
+    echo: %ESC%[96m            [0] Torna al menu precedente%ESC%[0m
 )
-echo:       ______________________________________________________________
+echo: %ESC%[96m +------------------------------------------------------------------+%ESC%[0m
 echo:
 
 if "%LANG%"=="EN" (
@@ -1124,24 +1153,24 @@ goto :Office2016
 :Office2013
 cls
 echo:
-echo:       ______________________________________________________________
+echo: %ESC%[96m +------------------------------------------------------------------+%ESC%[0m
 echo:
 if "%LANG%"=="EN" (
-    echo:                   SELECT OFFICE 2013 EDITION
+    echo: %ESC%[93m                  SELECT OFFICE 2013 EDITION%ESC%[0m
     echo:
-    echo:             [1] Professional
-    echo:             [2] Home and Student
-    echo:             [3] Home and Business
-    echo:             [0] Back to previous menu
+    echo: %ESC%[96m            [1] Professional%ESC%[0m
+    echo: %ESC%[96m            [2] Home and Student%ESC%[0m
+    echo: %ESC%[96m            [3] Home and Business%ESC%[0m
+    echo: %ESC%[96m            [0] Back to previous menu%ESC%[0m
 ) else (
-    echo:                   SELEZIONA EDIZIONE DI OFFICE 2013
+    echo: %ESC%[93m                  SELEZIONA EDIZIONE DI OFFICE 2013%ESC%[0m
     echo:
-    echo:             [1] Professional
-    echo:             [2] Home and Student
-    echo:             [3] Home and Business
-    echo:             [0] Torna al menu precedente
+    echo: %ESC%[96m            [1] Professional%ESC%[0m
+    echo: %ESC%[96m            [2] Home and Student%ESC%[0m
+    echo: %ESC%[96m            [3] Home and Business%ESC%[0m
+    echo: %ESC%[96m            [0] Torna al menu precedente%ESC%[0m
 )
-echo:       ______________________________________________________________
+echo: %ESC%[96m +------------------------------------------------------------------+%ESC%[0m
 echo:
 
 if "%LANG%"=="EN" (
@@ -1168,30 +1197,30 @@ goto :Office2013
 :SoftwareSingoli
 cls
 echo:
-echo:       ______________________________________________________________
+echo: %ESC%[96m +------------------------------------------------------------------+%ESC%[0m
 echo:
 if "%LANG%"=="EN" (
-    echo:                 SELECT OFFICE SOFTWARE TO DOWNLOAD
-    echo:                             (only 2024)
+    echo: %ESC%[93m                SELECT OFFICE SOFTWARE TO DOWNLOAD%ESC%[0m
+    echo: %ESC%[37m                            (only 2024)%ESC%[0m
     echo:
-    echo:             [1] Word
-    echo:             [2] Powerpoint
-    echo:             [3] Excel
-    echo:             [4] Outlook
-    echo:             [5] Access
-    echo:             [0] Back to previous menu
+    echo: %ESC%[96m            [1] Word%ESC%[0m
+    echo: %ESC%[96m            [2] Powerpoint%ESC%[0m
+    echo: %ESC%[96m            [3] Excel%ESC%[0m
+    echo: %ESC%[96m            [4] Outlook%ESC%[0m
+    echo: %ESC%[96m            [5] Access%ESC%[0m
+    echo: %ESC%[96m            [0] Back to previous menu%ESC%[0m
 ) else (
-    echo:                 SELEZIONA SOFTWARE DI OFFICE DA SCARICARE
-    echo:                             (solo 2024)
+    echo: %ESC%[93m                SELEZIONA SOFTWARE DI OFFICE DA SCARICARE%ESC%[0m
+    echo: %ESC%[37m                            (solo 2024)%ESC%[0m
     echo:
-    echo:             [1] Word
-    echo:             [2] Powerpoint
-    echo:             [3] Excel
-    echo:             [4] Outlook
-    echo:             [5] Access
-    echo:             [0] Torna al menu precedente
+    echo: %ESC%[96m            [1] Word%ESC%[0m
+    echo: %ESC%[96m            [2] Powerpoint%ESC%[0m
+    echo: %ESC%[96m            [3] Excel%ESC%[0m
+    echo: %ESC%[96m            [4] Outlook%ESC%[0m
+    echo: %ESC%[96m            [5] Access%ESC%[0m
+    echo: %ESC%[96m            [0] Torna al menu precedente%ESC%[0m
 )
-echo:       ______________________________________________________________
+echo: %ESC%[96m +------------------------------------------------------------------+%ESC%[0m
 echo:
 
 if "%LANG%"=="EN" (
@@ -1226,29 +1255,29 @@ goto :SoftwareSingoli
 :DownWindows
 cls
 echo:
-echo:       ______________________________________________________________
+echo: %ESC%[96m +------------------------------------------------------------------+%ESC%[0m
 if "%LANG%"=="EN" (
-    echo:                   SELECT WINDOWS VERSION TO DOWNLOAD
+    echo: %ESC%[93m                  SELECT WINDOWS VERSION TO DOWNLOAD%ESC%[0m
     echo:
-    echo:             [1] Windows 11
-    echo:             [2] Windows 10
-    echo:             [3] Windows 8.1
-    echo:             [4] Windows 7
-    echo:             [5] Windows XP
-    echo:             [6] Windows Server 
-    echo:             [0] Back to main menu
+    echo: %ESC%[96m            [1] Windows 11%ESC%[0m
+    echo: %ESC%[96m            [2] Windows 10%ESC%[0m
+    echo: %ESC%[96m            [3] Windows 8.1%ESC%[0m
+    echo: %ESC%[96m            [4] Windows 7%ESC%[0m
+    echo: %ESC%[96m            [5] Windows XP%ESC%[0m
+    echo: %ESC%[96m            [6] Windows Server %ESC%[0m
+    echo: %ESC%[96m            [0] Back to main menu%ESC%[0m
 ) else (
-    echo:                   SELEZIONA VERSIONE DI WINDOWS DA SCARICARE
+    echo: %ESC%[93m                  SELEZIONA VERSIONE DI WINDOWS DA SCARICARE%ESC%[0m
     echo:
-    echo:             [1] Windows 11
-    echo:             [2] Windows 10
-    echo:             [3] Windows 8.1
-    echo:             [4] Windows 7
-    echo:             [5] Windows XP
-    echo:             [6] Windows Server 
-    echo:             [0] Torna al menu principale
+    echo: %ESC%[96m            [1] Windows 11%ESC%[0m
+    echo: %ESC%[96m            [2] Windows 10%ESC%[0m
+    echo: %ESC%[96m            [3] Windows 8.1%ESC%[0m
+    echo: %ESC%[96m            [4] Windows 7%ESC%[0m
+    echo: %ESC%[96m            [5] Windows XP%ESC%[0m
+    echo: %ESC%[96m            [6] Windows Server %ESC%[0m
+    echo: %ESC%[96m            [0] Torna al menu principale%ESC%[0m
 )
-echo:       ______________________________________________________________
+echo: %ESC%[96m +------------------------------------------------------------------+%ESC%[0m
 echo:
 
 if "%LANG%"=="EN" (
@@ -1259,21 +1288,21 @@ if "%LANG%"=="EN" (
 
 if "%winChoice%"=="1" (
     cls
-    echo: Downloading Windows 11...
+    echo: %ESC%[93mDownloading Windows 11...%ESC%[0m
     start "" "https://buzzheavier.com/b9gv4d2lt8x5"
     goto :DownWindows
 )
 
 if "%winChoice%"=="2" (
     cls
-    echo: Downloading Windows 10...
+    echo: %ESC%[93mDownloading Windows 10...%ESC%[0m
     start "" "https://buzzheavier.com/1yn7wu9kb5sg"
     goto :DownWindows
 )
 
 if "%winChoice%"=="3" (
     cls
-    echo: Downloading Windows 8.1...
+    echo: %ESC%[93mDownloading Windows 8.1...%ESC%[0m
     start "" "https://archive.org/download/Win8.1AIOITA/Microsoft.Windows.8.1.AiO.6in1.Core.Prof.ProWMC.X86.X64.RTM.9600.ITA%2BACT.iso"
     goto :DownWindows
 )
@@ -1287,20 +1316,20 @@ goto :DownWindows
 :Win7
 cls
 echo:
-echo:       ______________________________________________________________
+echo: %ESC%[96m +------------------------------------------------------------------+%ESC%[0m
 if "%LANG%"=="EN" (
-    echo:                   SELECT WINDOWS 7 EDITION
+    echo: %ESC%[93m                  SELECT WINDOWS 7 EDITION%ESC%[0m
 ) else (
-    echo:                   SELEZIONA EDIZIONE DI WINDOWS 7
+    echo: %ESC%[93m                  SELEZIONA EDIZIONE DI WINDOWS 7%ESC%[0m
 )
 echo:
-echo:             [1] Professional
-echo:             [2] Enterprise
-echo:             [3] Ultimate
-echo:             [4] Home Premium
-echo:             [5] All in One Version 32/64 bit
-echo:             [0] Back to previous menu
-echo:       ______________________________________________________________
+echo: %ESC%[96m            [1] Professional%ESC%[0m
+echo: %ESC%[96m            [2] Enterprise%ESC%[0m
+echo: %ESC%[96m            [3] Ultimate%ESC%[0m
+echo: %ESC%[96m            [4] Home Premium%ESC%[0m
+echo: %ESC%[96m            [5] All in One Version 32/64 bit%ESC%[0m
+echo: %ESC%[96m            [0] Back to previous menu%ESC%[0m
+echo: %ESC%[96m +------------------------------------------------------------------+%ESC%[0m
 echo:
 
 if "%LANG%"=="EN" (
@@ -1323,19 +1352,19 @@ goto Win7
 :Win7Pro
 cls
 echo:
-echo:       ______________________________________________________________
+echo: %ESC%[96m +------------------------------------------------------------------+%ESC%[0m
 if "%LANG%"=="EN" (
-    echo:                   SELECT WINDOWS 7 PROFESSIONAL EDITION
+    echo: %ESC%[93m                  SELECT WINDOWS 7 PROFESSIONAL EDITION%ESC%[0m
 ) else (
-    echo:                   SELEZIONA EDIZIONE WINDOWS 7 PROFESSIONAL
+    echo: %ESC%[93m                  SELEZIONA EDIZIONE WINDOWS 7 PROFESSIONAL%ESC%[0m
 )
 echo:
-echo:             [1] Windows 7 Professional x64
-echo:             [2] Windows 7 Professional x86
+echo: %ESC%[96m            [1] Windows 7 Professional x64%ESC%[0m
+echo: %ESC%[96m            [2] Windows 7 Professional x86%ESC%[0m
 if "%LANG%"=="EN" (
-    echo          [0] Back to previous menu
+    echo %ESC%[96m         [0] Back to previous menu%ESC%[0m
 ) else (
-    echo          [0] Torna al menu precedente
+    echo %ESC%[96m         [0] Torna al menu precedente%ESC%[0m
 )
 
 echo:
@@ -1360,19 +1389,19 @@ goto Win7Pro
 :Win7Enterprise
 cls
 echo:
-echo:       ______________________________________________________________
+echo: %ESC%[96m +------------------------------------------------------------------+%ESC%[0m
 if "%LANG%"=="EN" (
-    echo:                   SELECT WINDOWS 7 ENTERPRISE EDITION
+    echo: %ESC%[93m                  SELECT WINDOWS 7 ENTERPRISE EDITION%ESC%[0m
 ) else (
-    echo:                   SELEZIONA EDIZIONE WINDOWS 7 ENTERPRISE
+    echo: %ESC%[93m                  SELEZIONA EDIZIONE WINDOWS 7 ENTERPRISE%ESC%[0m
 )
 echo:
-echo:             [1] Windows 7 Enterprise x64
-echo:             [2] Windows 7 Enterprise x86
+echo: %ESC%[96m            [1] Windows 7 Enterprise x64%ESC%[0m
+echo: %ESC%[96m            [2] Windows 7 Enterprise x86%ESC%[0m
 if "%LANG%"=="EN" (
-echo              [0] Back to previous menu
+echo %ESC%[96m             [0] Back to previous menu%ESC%[0m
 ) else (
-echo             [0] Torna al menu precedente
+echo %ESC%[96m            [0] Torna al menu precedente%ESC%[0m
 )
 
 echo:
@@ -1397,19 +1426,19 @@ goto Win7Enterprise
 :Win7Ultimate
 cls
 echo:
-echo:       ______________________________________________________________
+echo: %ESC%[96m +------------------------------------------------------------------+%ESC%[0m
 if "%LANG%"=="EN" (
-    echo:                   SELECT WINDOWS 7 ULTIMATE EDITION
+    echo: %ESC%[93m                  SELECT WINDOWS 7 ULTIMATE EDITION%ESC%[0m
 ) else (
-    echo:                   SELEZIONA EDIZIONE WINDOWS 7 ULTIMATE
+    echo: %ESC%[93m                  SELEZIONA EDIZIONE WINDOWS 7 ULTIMATE%ESC%[0m
 )
 echo:
-echo:             [1] Windows 7 Ultimate x64
-echo:             [2] Windows 7 Ultimate x86
+echo: %ESC%[96m            [1] Windows 7 Ultimate x64%ESC%[0m
+echo: %ESC%[96m            [2] Windows 7 Ultimate x86%ESC%[0m
 if "%LANG%"=="EN" (
-echo              [0] Back to previous menu
+echo %ESC%[96m             [0] Back to previous menu%ESC%[0m
 ) else (
-echo              [0] Torna al menu precedente
+echo %ESC%[96m             [0] Torna al menu precedente%ESC%[0m
 )
 
 
@@ -1435,19 +1464,19 @@ goto Win7Ultimate
 :Win7HomePremium
 cls
 echo:
-echo:       ______________________________________________________________
+echo: %ESC%[96m +------------------------------------------------------------------+%ESC%[0m
 if "%LANG%"=="EN" (
-    echo:                   SELECT WINDOWS 7 HOME PREMIUM EDITION
+    echo: %ESC%[93m                  SELECT WINDOWS 7 HOME PREMIUM EDITION%ESC%[0m
 ) else (
-    echo:                   SELEZIONA EDIZIONE WINDOWS 7 HOME PREMIUM
+    echo: %ESC%[93m                  SELEZIONA EDIZIONE WINDOWS 7 HOME PREMIUM%ESC%[0m
 )
 echo:
-echo:             [1] Windows 7 Home Premium x64
-echo:             [2] Windows 7 Home Premium x86
+echo: %ESC%[96m            [1] Windows 7 Home Premium x64%ESC%[0m
+echo: %ESC%[96m            [2] Windows 7 Home Premium x86%ESC%[0m
 if "%LANG%"=="EN" (
-echo              [0] Back to previous menu
+echo %ESC%[96m             [0] Back to previous menu%ESC%[0m
 ) else (
-echo              [0] Torna al menu precedente
+echo %ESC%[96m             [0] Torna al menu precedente%ESC%[0m
 )
 
 echo:
@@ -1472,20 +1501,20 @@ goto Win7HomePremium
 :WinXP
 cls
 echo:
-echo:       ______________________________________________________________
+echo: %ESC%[96m +------------------------------------------------------------------+%ESC%[0m
 if "%LANG%"=="EN" (
-    echo:                   SELECT WINDOWS XP EDITION
+    echo: %ESC%[93m                  SELECT WINDOWS XP EDITION%ESC%[0m
 ) else (
-    echo:                   SELEZIONA EDIZIONE DI WINDOWS XP
+    echo: %ESC%[93m                  SELEZIONA EDIZIONE DI WINDOWS XP%ESC%[0m
 )
 echo:
-echo:             [1] Professional
-echo:             [2] Home 
-echo:             [3] Media Center
+echo: %ESC%[96m            [1] Professional%ESC%[0m
+echo: %ESC%[96m            [2] Home %ESC%[0m
+echo: %ESC%[96m            [3] Media Center%ESC%[0m
 if "%LANG%"=="EN" (
-echo              [0] Back to previous menu
+echo %ESC%[96m             [0] Back to previous menu%ESC%[0m
 ) else (
-echo              [0] Torna al menu precedente
+echo %ESC%[96m             [0] Torna al menu precedente%ESC%[0m
 )
 
 echo:
@@ -1511,19 +1540,19 @@ goto :WinXP
 :WinXPProSP3
 cls
 echo:
-echo:       ______________________________________________________________
+echo: %ESC%[96m +------------------------------------------------------------------+%ESC%[0m
 if "%LANG%"=="EN" (
-    echo:                   SELECT WINDOWS XP PROFESSIONAL SP3 ARCHITECTURE
+    echo: %ESC%[93m                  SELECT WINDOWS XP PROFESSIONAL SP3 ARCHITECTURE%ESC%[0m
 ) else (
-    echo:                   SELEZIONA ARCHITETTURA WINDOWS XP PROFESSIONAL SP3
+    echo: %ESC%[93m                  SELEZIONA ARCHITETTURA WINDOWS XP PROFESSIONAL SP3%ESC%[0m
 )
 echo:
-echo:             [1] Windows XP Professional SP3 32-bit
-echo:             [2] Windows XP Professional SP2 64-bit (English only)
+echo: %ESC%[96m            [1] Windows XP Professional SP3 32-bit%ESC%[0m
+echo: %ESC%[96m            [2] Windows XP Professional SP2 64-bit (English only)%ESC%[0m
 if "%LANG%"=="EN" (
-    echo              [0] Back to previous menu
+    echo %ESC%[96m             [0] Back to previous menu%ESC%[0m
 ) else (
-    echo              [0] Torna al menu precedente
+    echo %ESC%[96m             [0] Torna al menu precedente%ESC%[0m
 )
 
 echo:
@@ -1547,23 +1576,23 @@ goto WinXPProSP3
 :WinServer
 cls
 echo:
-echo:       ______________________________________________________________
+echo: %ESC%[96m +------------------------------------------------------------------+%ESC%[0m
 if "%LANG%"=="EN" (
-    echo:                   SELECT WINDOWS SERVER VERSION
+    echo: %ESC%[93m                  SELECT WINDOWS SERVER VERSION%ESC%[0m
 ) else (
-    echo:                   SELEZIONA VERSIONE DI WINDOWS SERVER
+    echo: %ESC%[93m                  SELEZIONA VERSIONE DI WINDOWS SERVER%ESC%[0m
 )
 echo:
-echo:             [1] Windows Server 2025
-echo:             [2] Windows Server 2022
-echo:             [3] Windows Server 2019
-echo:             [4] Windows Server 2016
-echo:             [5] Windows Server 2012 
-echo:             [6] Windows Server 2008 R2
+echo: %ESC%[96m            [1] Windows Server 2025%ESC%[0m
+echo: %ESC%[96m            [2] Windows Server 2022%ESC%[0m
+echo: %ESC%[96m            [3] Windows Server 2019%ESC%[0m
+echo: %ESC%[96m            [4] Windows Server 2016%ESC%[0m
+echo: %ESC%[96m            [5] Windows Server 2012 %ESC%[0m
+echo: %ESC%[96m            [6] Windows Server 2008 R2%ESC%[0m
 if "%LANG%"=="EN" (
-echo              [0] Back to previous menu
+echo %ESC%[96m             [0] Back to previous menu%ESC%[0m
 ) else (
-echo              [0] Torna al menu precedente
+echo %ESC%[96m             [0] Torna al menu precedente%ESC%[0m
 )
 
 echo:
@@ -1604,41 +1633,41 @@ goto WinServer
 :Extra
 cls
 echo:
-echo:       ___________________________________________________________________________________________________________
+echo: %ESC%[96m +---------------------------------------------------------------------------------------------------------------+%ESC%[0m
 echo:
-echo:                            Extra
+echo: %ESC%[93m                           Extra%ESC%[0m
 echo:
-echo:             [1] Adobe Suite Crack                                     [21] Revo Uninstaller Pro Portable          
-echo:             [2] Wise Care 365                                         [22] WinPE Acronis True Image 
-echo:             [3] Powershell 7                                          [23] WinPE Sergei Strelect
-echo:             [4] Adobe Acrobat Pro 2026                                [24] MAGIX Vegas Pro 2026
-echo:             [5] Adobe Photoshop 2026                                  [25] WinPE Macrium Reflect X
-echo:             [6] Adobe Premiere Pro 2026                               [26] ABBYY FineReader Corporate
-echo:             [7] Adobe Illustrator 2026                                [27] WeMod Patcher
-echo:             [8] Adobe After Effects 2026                              [28] NitroPDF Pro
-echo:             [9] MiniTool Partition Wizard
-echo:             [10] Revo Uninstaller Pro
-echo:             [11] Poweroff
-echo:             [12] Glasswire
-echo:             [13] Windows XP Activator       
-echo:             [14] WinRar
-echo:             [15] Topaz Video AI 
-echo:             [16] StartAllBack 
-echo:             [17] Hard Disk Sentinel Pro 
-echo:             [18] Advanced IP Scanner
-echo:             [19] Aida64 
-echo:             [20] Any Excel Password Recovery
+echo: %ESC%[96m            [1] Adobe Suite Crack                                     [21] Revo Uninstaller Pro Portable          %ESC%[0m
+echo: %ESC%[96m            [2] Wise Care 365                                         [22] WinPE Acronis True Image %ESC%[0m
+echo: %ESC%[96m            [3] Powershell 7                                          [23] WinPE Sergei Strelect%ESC%[0m
+echo: %ESC%[96m            [4] Adobe Acrobat Pro 2026                                [24] MAGIX Vegas Pro 2026%ESC%[0m
+echo: %ESC%[96m            [5] Adobe Photoshop 2026                                  [25] WinPE Macrium Reflect X%ESC%[0m
+echo: %ESC%[96m            [6] Adobe Premiere Pro 2026                               [26] ABBYY FineReader Corporate%ESC%[0m
+echo: %ESC%[96m            [7] Adobe Illustrator 2026                                [27] WeMod Patcher%ESC%[0m
+echo: %ESC%[96m            [8] Adobe After Effects 2026                              [28] NitroPDF Pro%ESC%[0m
+echo: %ESC%[96m            [9] MiniTool Partition Wizard%ESC%[0m
+echo: %ESC%[96m            [10] Revo Uninstaller Pro%ESC%[0m
+echo: %ESC%[96m            [11] Poweroff%ESC%[0m
+echo: %ESC%[96m            [12] Glasswire%ESC%[0m
+echo: %ESC%[96m            [13] Windows XP Activator       %ESC%[0m
+echo: %ESC%[96m            [14] WinRar%ESC%[0m
+echo: %ESC%[96m            [15] Topaz Video AI %ESC%[0m
+echo: %ESC%[96m            [16] StartAllBack %ESC%[0m
+echo: %ESC%[96m            [17] Hard Disk Sentinel Pro %ESC%[0m
+echo: %ESC%[96m            [18] Advanced IP Scanner%ESC%[0m
+echo: %ESC%[96m            [19] Aida64 %ESC%[0m
+echo: %ESC%[96m            [20] Any Excel Password Recovery%ESC%[0m
 echo:
 if "%LANG%"=="EN" (
-echo              [0] Back to previous menu
-echo:      ___________________________________________________________________________________________________________
+echo %ESC%[96m             [0] Back to previous menu%ESC%[0m
+echo: %ESC%[96m +--------------------------------------------------------------------------------------------------------------+%ESC%[0m
 
 echo:
 	set /p extraChoice="      Choose Extra [1-21,0]: "
 	
 ) else (
-echo              [0] Torna al menu precedente
-echo:      ___________________________________________________________________________________________________________
+echo %ESC%[96m             [0] Torna al menu precedente%ESC%[0m
+echo: %ESC%[96m +--------------------------------------------------------------------------------------------------------------+%ESC%[0m
 echo:
     set /p extraChoice="      Scegli Extra [1-21,0]: "
 )
@@ -1761,20 +1790,20 @@ goto :Extra
 
 :MacriumSubmenu
 cls
-echo:       ___________________________________________________________________________________________________________
+echo: %ESC%[96m +---------------------------------------------------------------------------------------------------------------+%ESC%[0m
 echo:
-echo:                            WinPE Macrium Reflect X - Scegli Versione
+echo: %ESC%[37m                           WinPE Macrium Reflect X - Scegli Versione%ESC%[0m
 echo:
 if "%LANG%"=="EN" (
-    echo:             [1] Macrium Reflect X Windows 10 WinPE
-    echo:             [2] Macrium Reflect X Windows 11 WinPE
-    echo:             [0] Back to Extra menu
+    echo: %ESC%[96m            [1] Macrium Reflect X Windows 10 WinPE%ESC%[0m
+    echo: %ESC%[96m            [2] Macrium Reflect X Windows 11 WinPE%ESC%[0m
+    echo: %ESC%[96m            [0] Back to Extra menu%ESC%[0m
 ) else (
-    echo:             [1] Versione Windows 10
-    echo:             [2] Versione Windows 11
-    echo:             [0] Torna al menu Extra
+    echo: %ESC%[96m            [1] Versione Windows 10%ESC%[0m
+    echo: %ESC%[96m            [2] Versione Windows 11%ESC%[0m
+    echo: %ESC%[96m            [0] Torna al menu Extra%ESC%[0m
 )
-echo:      ___________________________________________________________________________________________________________
+echo: %ESC%[96m +--------------------------------------------------------------------------------------------------------------+%ESC%[0m
 echo:
 
 if "%LANG%"=="EN" (
@@ -1796,9 +1825,9 @@ if "%macriumChoice%"=="2" (
 )
 
 if "%LANG%"=="EN" (
-    echo Invalid choice. Please try again.
+    echo %ESC%[37mInvalid choice. Please try again.%ESC%[0m
 ) else (
-    echo Scelta non valida. Riprova.
+    echo %ESC%[37mScelta non valida. Riprova.%ESC%[0m
 )
 pause
 goto MacriumSubmenu
@@ -1806,58 +1835,58 @@ goto MacriumSubmenu
 :SoftwareUtili
 cls
 echo:
-echo:       ___________________________________________________________________________________________________________
+echo: %ESC%[96m +---------------------------------------------------------------------------------------------------------------+%ESC%[0m
 echo:
 if "%LANG%"=="EN" (
-    echo:                                          Useful Software
+    echo: %ESC%[93m                                         Useful Software%ESC%[0m
     echo:
-    echo:             [1] 7-Zip                                              [21] Ubisoft Connect
-    echo:             [2] Google Chrome                                      [22] Gog Launcher
-    echo:             [3] Firefox                                            [23] CrystalDiskInfo
-    echo:             [4] VLC Media Player                                   [24] Opera
-    echo:             [6] Notepad++                                          [25] Brave
-    echo:             [7] Visual Studio Code                                 [26] Handbrake
-    echo:             [8] OBS Studio                                         [27] KeePass Password Manager    
-    echo:             [9] Python                                             [28] OpenOffice
-    echo:             [10] CPU-Z                                             [29] Libreoffice
-    echo:             [11] GPU-Z                                             [30] qBittorent
-    echo:             [12] Discord                                           [31] Adobe Reader                                                           
-    echo:             [13] TeamViewer                                        [32] DDU - Display Driver Uninstaller
-    echo:             [14] Spotify                                           [33] Driver Store Explorer                                  
-    echo:             [15] Steam                                             
-    echo:             [16] Epic Games Launcher                               
-    echo:             [17] Telegram                                          
-    echo:             [18] WhatsApp                                                                                     
-    echo:             [19] EA App                                             
-    echo:             [20] HWiNFO
+    echo: %ESC%[96m            [1] 7-Zip                                              [21] Ubisoft Connect%ESC%[0m
+    echo: %ESC%[96m            [2] Google Chrome                                      [22] Gog Launcher%ESC%[0m
+    echo: %ESC%[96m            [3] Firefox                                            [23] CrystalDiskInfo%ESC%[0m
+    echo: %ESC%[96m            [4] VLC Media Player                                   [24] Opera%ESC%[0m
+    echo: %ESC%[96m            [6] Notepad++                                          [25] Brave%ESC%[0m
+    echo: %ESC%[96m            [7] Visual Studio Code                                 [26] Handbrake%ESC%[0m
+    echo: %ESC%[96m            [8] OBS Studio                                         [27] KeePass Password Manager    %ESC%[0m
+    echo: %ESC%[96m            [9] Python                                             [28] OpenOffice%ESC%[0m
+    echo: %ESC%[96m            [10] CPU-Z                                             [29] Libreoffice%ESC%[0m
+    echo: %ESC%[96m            [11] GPU-Z                                             [30] qBittorent%ESC%[0m
+    echo: %ESC%[96m            [12] Discord                                           [31] Adobe Reader                                                           %ESC%[0m
+    echo: %ESC%[96m            [13] TeamViewer                                        [32] DDU - Display Driver Uninstaller%ESC%[0m
+    echo: %ESC%[96m            [14] Spotify                                           [33] Driver Store Explorer                                  %ESC%[0m
+    echo: %ESC%[96m            [15] Steam                                             %ESC%[0m
+    echo: %ESC%[96m            [16] Epic Games Launcher                               %ESC%[0m
+    echo: %ESC%[96m            [17] Telegram                                          %ESC%[0m
+    echo: %ESC%[96m            [18] WhatsApp                                                                                     %ESC%[0m
+    echo: %ESC%[96m            [19] EA App                                             %ESC%[0m
+    echo: %ESC%[96m            [20] HWiNFO%ESC%[0m
     echo:
-    echo              [0] Back to main menu
+    echo %ESC%[96m             [0] Back to main menu%ESC%[0m
 ) else (
-    echo:                                          Software Utili
+    echo: %ESC%[93m                                         Software Utili%ESC%[0m
     echo:
-    echo:             [1] 7-Zip                                              [21] Ubisoft Connect
-    echo:             [2] Google Chrome                                      [22] Gog Launcher
-    echo:             [3] Firefox                                            [23] CrystalDiskInfo
-    echo:             [4] VLC Media Player                                   [24] Opera
-    echo:             [6] Notepad++                                          [25] Brave 
-    echo:             [7] Visual Studio Code                                 [26] Handbrake
-    echo:             [8] OBS Studio                                         [27] KeePass Password Manager  
-    echo:             [9] Python                                             [28] OpenOffice
-    echo:             [10] CPU-Z                                             [29] Libreoffice
-    echo:             [11] GPU-Z                                             [30] qBittorent
-    echo:             [12] Discord                                           [31] Adobe Reader                                                         
-    echo:             [13] TeamViewer                                        [32] DDU - Display Driver Uninstaller
-    echo:             [14] Spotify                                           [33] Driver Store Explorer
-    echo:             [15] Steam                                             
-    echo:             [16] Epic Games Launcher                               
-    echo:             [17] Telegram                                          
-    echo:             [18] WhatsApp                                                                                     
-    echo:             [19] EA App                                             
-    echo:             [20] HWiNFO
+    echo: %ESC%[96m            [1] 7-Zip                                              [21] Ubisoft Connect%ESC%[0m
+    echo: %ESC%[96m            [2] Google Chrome                                      [22] Gog Launcher%ESC%[0m
+    echo: %ESC%[96m            [3] Firefox                                            [23] CrystalDiskInfo%ESC%[0m
+    echo: %ESC%[96m            [4] VLC Media Player                                   [24] Opera%ESC%[0m
+    echo: %ESC%[96m            [6] Notepad++                                          [25] Brave %ESC%[0m
+    echo: %ESC%[96m            [7] Visual Studio Code                                 [26] Handbrake%ESC%[0m
+    echo: %ESC%[96m            [8] OBS Studio                                         [27] KeePass Password Manager  %ESC%[0m
+    echo: %ESC%[96m            [9] Python                                             [28] OpenOffice%ESC%[0m
+    echo: %ESC%[96m            [10] CPU-Z                                             [29] Libreoffice%ESC%[0m
+    echo: %ESC%[96m            [11] GPU-Z                                             [30] qBittorent%ESC%[0m
+    echo: %ESC%[96m            [12] Discord                                           [31] Adobe Reader                                                         %ESC%[0m
+    echo: %ESC%[96m            [13] TeamViewer                                        [32] DDU - Display Driver Uninstaller%ESC%[0m
+    echo: %ESC%[96m            [14] Spotify                                           [33] Driver Store Explorer%ESC%[0m
+    echo: %ESC%[96m            [15] Steam                                             %ESC%[0m
+    echo: %ESC%[96m            [16] Epic Games Launcher                               %ESC%[0m
+    echo: %ESC%[96m            [17] Telegram                                          %ESC%[0m
+    echo: %ESC%[96m            [18] WhatsApp                                                                                     %ESC%[0m
+    echo: %ESC%[96m            [19] EA App                                             %ESC%[0m
+    echo: %ESC%[96m            [20] HWiNFO%ESC%[0m
     echo:
-    echo              [0] Torna al menu principale
+    echo %ESC%[96m             [0] Torna al menu principale%ESC%[0m
 )
-echo:      ___________________________________________________________________________________________________________
+echo: %ESC%[96m +--------------------------------------------------------------------------------------------------------------+%ESC%[0m
 echo:
 
 if "%LANG%"=="EN" (
@@ -2006,9 +2035,9 @@ goto :SoftwareUtili
 :Exit
 
 if "%LANG%"=="EN" (
-    echo Exiting the program...
+    echo %ESC%[92mExiting the program...%ESC%[0m
 ) else (
-    echo Uscita dal programma...
+    echo %ESC%[92mUscita dal programma...%ESC%[0m
 )
 pause
 exit
