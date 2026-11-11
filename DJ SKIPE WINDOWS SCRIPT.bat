@@ -11,7 +11,7 @@ if %errorlevel% neq 0 (
 setlocal enabledelayedexpansion
 
 :: Version information
-set "CURRENT_VERSION=2.3.1"
+set "CURRENT_VERSION=2.4.0"
 set "GITHUB_API_URL=https://api.github.com/repos/djskipe/djskipewindowsscript/releases/latest"
 
 :: Check for updates before showing the menu
@@ -254,7 +254,7 @@ echo:
 echo:       ______________________________________________________________
 echo:
 if "%LANG%"=="EN" (
-    echo:                 DJ SKIPE WINDOWS SCRIPT v2.3.1
+    echo:                 DJ SKIPE WINDOWS SCRIPT v2.4.0
     echo:
     echo          This script allows you to easily run the Windows
     echo          debloater from this CMD. It also allows you to
@@ -274,7 +274,7 @@ if "%LANG%"=="EN" (
     echo:             [10] Change Language
     echo:             [0] Exit
 ) else (
-    echo:                 DJ SKIPE WINDOWS SCRIPT v2.3.1
+    echo:                 DJ SKIPE WINDOWS SCRIPT v2.4.0
     echo:
     echo          Questo script ti permette di eseguire il debloater 
     echo          di Windows in facilita' direttamente da questo CMD.
@@ -1575,27 +1575,27 @@ if "%LANG%"=="EN" (
 )
 
 if "%editionChoice%"=="1" (
-    start "" "https://buzzheavier.com/nha1fymh8qa3"
+    start "" "https://zerofs.link/f/T2MgcCsAcVogO8BaRUQvpJn3K-RMP5l0A-pZNeDuUJA-NgM/"
     goto WinServer
 )
 if "%editionChoice%"=="2" (
-    start "" "https://buzzheavier.com/ib7su6egmcs6"
+    start "" "https://zerofs.link/f/OuJVgrU2dwPgwe57pkhinz5LHVrsH9M__dosaIbaQWIiBQ0/"
     goto WinServer
 )
 if "%editionChoice%"=="3" (
-    start "" "https://buzzheavier.com/p2fll4bgh2yf"
+    start "" "https://tempdelivery.13376767.xyz/db/it-it_windows_server_2019_x64_dvd_454267de.iso?t=lp5FrH9LG3EkUcA5&a=207028&u=oHu2Up6avyweqOE3&sig=d8a2c9bfd8f80951297bd6750a0cae15ef520ce8eaf14d9a71af770ef914d543"
     goto WinServer
 )
 if "%editionChoice%"=="4" (
-    start "" "https://archive.org/download/WinSrv2016ITA/it_windows_server_2016_x64_dvd_9720043.iso"
+    start "" "https://tempdelivery.13376767.xyz/db/it_windows_server_2016_vl_x64_dvd_11636710.iso?t=lp5FrH9LG3EkUcA5&a=207028&u=4jbHex6DILh5yzD4&sig=66eba1237114eceec66314ea0fa5f4574aed6081a0f4299f33bbcac71b823d26"
     goto WinServer
 )
 if "%editionChoice%"=="5" (
-    start "" "https://archive.org/download/WinServer2012x64ITA/it_windows_server_2012_x64_dvd_915486.iso"
+    start "" "https://tempdelivery.13376767.xyz/db/it_windows_server_2012_r2_vl_with_update_x64_dvd_6052792.iso?t=lp5FrH9LG3EkUcA5&a=207028&u=58ZDaeUctQPpn3Yz&sig=c1ac2af59b4ddbf32e85883f98f41c6e3823ed2b0d0fa04f68771c88c67b93a6"
     goto WinServer
 )
 if "%editionChoice%"=="6" (
-    start "" "https://archive.org/download/WinServer2008R2SP1x64ITA/it_windows_server_2008_r2_with_sp1_x64_dvd_617391.iso"
+    start "" "https://tempdelivery.13376767.xyz/db/it_windows_server_2008_r2_with_sp1_vl_build_x64_dvd_619596.iso?t=lp5FrH9LG3EkUcA5&a=207028&u=EUEo6dKjadQNHC2f&sig=a6de4ee071c53c3e5fae07236f2ecc76acf4b28674d2455d039e1dcbb587f7cb"
     goto WinServer
 )
 if "%editionChoice%"=="0" goto :DownWindows
@@ -1615,7 +1615,7 @@ echo:             [4] Adobe Acrobat Pro 2026                                [24]
 echo:             [5] Adobe Photoshop 2026                                  [25] WinPE Macrium Reflect X
 echo:             [6] Adobe Premiere Pro 2026                               [26] ABBYY FineReader Corporate
 echo:             [7] Adobe Illustrator 2026                                [27] WeMod Patcher
-echo:             [8] Adobe After Effects 2026
+echo:             [8] Adobe After Effects 2026                              [28] NitroPDF Pro
 echo:             [9] MiniTool Partition Wizard
 echo:             [10] Revo Uninstaller Pro
 echo:             [11] Poweroff
@@ -1650,31 +1650,31 @@ if "%extraChoice%"=="1" (
     goto Extra
 )
 if "%extraChoice%"=="2" (
-    start "" "https://www.mediafire.com/file/fjdzbjnkqto0cby/Wise+Care+365+Pro+8.0.5.733.zip/file"
+    start "" "https://www.mediafire.com/file/rq2z6uinwmckuzl/Wise_Care_365_Pro_8.0.7.735.zip/file"
     goto Extra
 )
 if "%extraChoice%"=="3" (
-    start "" "https://github.com/PowerShell/PowerShell/releases/download/v7.6.6/PowerShell-7.6.6-win-x64.msi"
+    start "" "https://github.com/PowerShell/PowerShell/releases/download/v7.6.6/PowerShell-7.7.0-win-x64.msi"
     goto Extra
 )
 if "%extraChoice%"=="4" (
-    start "" "https://vikingfile.com/f/iKrdgQkC8t#AdobeAcrobatProDC2026.002.21901x64Repack.exe"
+    start "" "https://itsfileditchfiles.st/charlie58/4c961d221eb9f7cb7f90/AdobeAcrobatProDC2026.003.22075x64Repack.7z"
     goto Extra
 )
 if "%extraChoice%"=="5" (
-    start "" "https://vik1ngfile.site/f/cHTpRDGAgA#AdobePhotoshop2026v27.10.0.26x64Repack.exe"
+    start "" "https://fuckingfast.net/wlnr2huwhczd"
     goto Extra
 )
 if "%extraChoice%"=="6" (
-    start "" "https://fuckingfast.net/p8rsonalgmwi"
+    start "" "https://vik1ngfile.site/f/hhKzSnWJPS#AdobePremierePro2026v26.5.2.5x64Repack.exe"
     goto Extra
 )
 if "%extraChoice%"=="7" (
-    start "" "https://vik1ngfile.site/f/PFcPLrUGHn#AdobeIllustrator2026v30.8.1.1x64Repack.exe"
+    start "" "https://vik1ngfile.site/f/NrUl0W83mi#AdobeIllustrator2026v30.8.2.7x64Repack.exe"
     goto Extra
 )
 if "%extraChoice%"=="8" (
-    start "" "https://fuckingfast.net/00lyc1htt0sd"
+    start "" "https://vik1ngfile.site/f/nNDJvftuMK#AdobeAfterEffects2026v26.5.0.89x64.7z"
     goto Extra
 )
 if "%extraChoice%"=="9" (
@@ -1682,7 +1682,7 @@ if "%extraChoice%"=="9" (
     goto Extra
 )
 if "%extraChoice%"=="10" (
-    start "" "https://www.mediafire.com/file/4hh7on9sb309h13/Revo+Uninstaller+Pro+5.5.2.7z/file"
+    start "" "https://www.mediafire.com/file/cuupzv79quhyr78/Revo+Uninstaller+Pro+5.5.4.zip/file"
     goto Extra
 )
 if "%extraChoice%"=="11" (
@@ -1698,7 +1698,7 @@ if "%extraChoice%"=="13" (
     goto Extra
 )
 if "%extraChoice%"=="14" (
-    start "" "https://www.mediafire.com/file/rs2fkd9cl6kgoy6/WinRAR+7.30.zip/file"
+    start "" "https://www.mediafire.com/file/n0uesq46meh1rqt/WinRAR+7.30+Beta+2.zip/file"
     goto Extra
 )
 if "%extraChoice%"=="15" (
@@ -1706,11 +1706,11 @@ if "%extraChoice%"=="15" (
     goto Extra
 )
 if "%extraChoice%"=="16" (
-    start "" "https://www.mediafire.com/file/qe7vnx16wg6hwlh/StartAllBack+3.9.25.5386.zip/file"
+    start "" "https://www.mediafire.com/file/ul0h4wutdix2mhj/StartAllBack+3.9.28.5423.zip/file"
     goto Extra
 )
 if "%extraChoice%"=="17" (
-    start "" "https://www.mediafire.com/file/su817g6k97xyv1w/Hard+Disk+Sentinel+Pro+6.40.4.zip/file"
+    start "" "https://www.mediafire.com/file/axjhuwd9ncfb8a4/Hard+Disk+Sentinel+Pro+6.40.6+Beta.zip/file"
     goto Extra
 )
 if "%extraChoice%"=="18" (
@@ -1718,7 +1718,7 @@ if "%extraChoice%"=="18" (
     goto Extra
 )
 if "%extraChoice%"=="19" (
-    start "" "https://www.mediafire.com/file/w9wjlj6vpzzbekl/AIDA64+v8.35.8400+(All+Editions).zip/file"
+    start "" "https://www.mediafire.com/file/ig61rknzuj7tbnn/AIDA64+v8.40.8500+(All+Editions).zip/file"
     goto Extra
 )
 if "%extraChoice%"=="20" (
@@ -1726,7 +1726,7 @@ if "%extraChoice%"=="20" (
     goto Extra
 )
 if "%extraChoice%"=="21" (
-    start "" "https://www.mediafire.com/file/diw7b8ajm8ld4as/Revo+Uninstaller+Pro+Portable+5.5.2.zip/file"
+    start "" "https://www.mediafire.com/file/f8j332shmkdezwb/Revo+Uninstaller+Pro+Portable+5.5.4.rar/file"
     goto Extra
 )
 if "%extraChoice%"=="22" (
@@ -1734,11 +1734,11 @@ if "%extraChoice%"=="22" (
     goto Extra
 )
 if "%extraChoice%"=="23" (
-    start "" "https://www.mediafire.com/file/5gmyyc2pp60mo1s/WinPE11_10_Sergei_Strelec_x64_2026.09.08_English.zip/file"
+    start "" "https://www.mediafire.com/file/r9fvb0urez0nbk4/WinPE11_10_8_Sergei_Strelec_x86_x64_2026.11.06_English.rar/file?action=check"
     goto Extra
 )
 if "%extraChoice%"=="24" (
-    start "" "https://www.mediafire.com/file/kyh57a5mhj1x1l2/BorisFXVEGASPro2026.0.3.189x64.7z/file"
+    start "" "https://www.mediafire.com/file/h77t1j3khnmp1w0/BorisFXVEGASPro2027.0.0.31x64.7z/file"
     goto Extra
 )
 if "%extraChoice%"=="25" (
@@ -1749,7 +1749,11 @@ if "%extraChoice%"=="26" (
     goto Extra
 )
 if "%extraChoice%"=="27" (
-    start "" "https://www.mediafire.com/file/v9pc5hc9wfy82wn/WandEnhancer+2.2.0.zip/file"
+    start "" "https://www.mediafire.com/file/fkz5t3z5e3r06gp/WandEnhancer_2.2.1.0.zip/file"
+    goto Extra
+)
+if "%extraChoice%"=="28" (
+    start "" "https://www.mediafire.com/file/vhuegdybqi21jzm/NitroPDF26.2.6.0Enterprisex64.7z/file"
     goto Extra
 )
 
@@ -1865,7 +1869,7 @@ if "%LANG%"=="EN" (
 if "%softwareChoice%"=="0" goto :MainMenu
 
 if "%softwareChoice%"=="1" (
-    start "" "https://www.7-zip.org/a/7z2501-x64.exe"
+    start "" "https://github.com/ip7z/7zip/releases/download/26.06/7z2606-x64.exe"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="2" (
@@ -1877,15 +1881,15 @@ if "%softwareChoice%"=="3" (
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="4" (
-    start "" "https://get.videolan.org/vlc/3.0.23/win32/vlc-3.0.23-win32.exe"
+    start "" "https://get.videolan.org/vlc/3.0.23/win64/vlc-3.0.23-win64.exe"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="5" (
-    start "" "https://winrar.it/prelievo_ok.php?url=prelievo/WinRAR-x64-720b2it.exe"
+    start "" "https://www.rarlab.com/rar/winrar-x64-723.exe"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="6" (
-    start "" "https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.9.2/npp.8.9.2.Installer.x64.exe"
+    start "" "https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.9.9/npp.8.9.9.Installer.x64.exe"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="7" (
@@ -1893,19 +1897,19 @@ if "%softwareChoice%"=="7" (
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="8" (
-    start "" "https://cdn-fastly.obsproject.com/downloads/OBS-Studio-32.0.4-Windows-x64-Installer.exe"
+    start "" "https://cdn-fastly.obsproject.com/downloads/OBS-Studio-33.0.1-Windows-x64-Installer.exe"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="9" (
-    start "" "https://www.python.org/ftp/python/3.14.3/python-3.14.3-amd64.exe"
+    start "" "https://www.python.org/downloads/latest/python3.16/"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="10" (
-    start "" "https://download.cpuid.com/cpu-z/cpu-z_2.18-en.exe"
+    start "" "https://www.cpuid.com/downloads/cpu-z/cpu-z_3.02-en.exe"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="11" (
-    start "" "https://www.guru3d.com/getdownload/2c1b2414f56a6594ffef91236a87c0e976d52e0518b4303846bab016c2f20c7c4d6ce7dfe19a0bc843da8d448bbb670058b0c9ee9a26f5cf49bc39c97da070e6eb314629af3da2d24ab0413917f73b946419b5af447da45cefb517a0840ad3003abff4f9d5fe7828bbbb910ee270b40528035fb17c6b4c80012cb4bd3140fa764f68932d48b5bb53887b044417f16e18cb59c8aca2a366e80787b52d8a915d2bf3ecdac9dae6c8bf601ba1d54d0d644f20e6189ac57e"
+    start "" "https://de1-dl.techpowerup.com/files/WkRJlzev0uVvAhVO_G8I9A/1794429675/GPU-Z.2.71.0.exe"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="12" (
@@ -1941,7 +1945,7 @@ if "%softwareChoice%"=="19" (
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="20" (
-    start "" "https://www.hwinfo.com/files/hwi64_834.exe"
+    start "" "https://www.hwinfo.com/files/hwi64_860.exe"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="21" (
@@ -1965,19 +1969,19 @@ if "%softwareChoice%"=="25" (
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="26" (
-    start "" "https://handbrake.fr/rotation.php?file=HandBrake-1.10.2-x86_64-Win_GUI.exe"
+    start "" "https://github.com/HandBrake/HandBrake/releases/download/1.11.2/HandBrake-1.11.2-x86_64-Win_GUI.exe"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="27" (
-    start "" "https://sourceforge.net/projects/keepass/files/KeePass%202.x/2.61/KeePass-2.61-Setup.exe/download"
+    start "" "https://sourceforge.net/projects/keepass/files/KeePass%202.x/2.62/KeePass-2.62-Setup.exe/download"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="28" (
-    start "" "https://sourceforge.net/projects/openofficeorg.mirror/files/4.1.16/binaries/it/Apache_OpenOffice_4.1.16_Win_x86_install_it.exe/download"
+    start "" "https://sourceforge.net/projects/openofficeorg.mirror/files/4.1.17/binaries/it/Apache_OpenOffice_4.1.17_Win_x86_install_it.exe/download"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="29" (
-    start "" "https://it.libreoffice.org/donazioni/dl/win-x86_64/26.2.1/it/LibreOffice_26.2.1_Win_x86-64.msi"
+    start "" "https://tdf.mirror.garr.it/libreoffice/stable/26.8.2/win/x86_64/LibreOffice_26.8.2_Win_x86-64.msi"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="30" (
@@ -1985,15 +1989,15 @@ if "%softwareChoice%"=="30" (
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="31" (
-    start "" "https://get.adobe.com/it/reader/download?os=Windows+10&name=Reader+2025.001.20997+Italian+for+Windows+%28Recommended%29&lang=it&nativeOs=Windows+10&accepted=cr&declined=mss%2Chrm&preInstalled=&site=landing"
+    start "" "https://get.adobe.com/it/reader/download?os=Windows+10&name=Reader+2026.002.21931+Italian+for+Windows+%28Recommended%29&lang=it&nativeOs=Windows+10&accepted=cr&declined=hrm&preInstalled=&site=landing"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="32" (
-    start "" "https://www.guru3d.com/getdownload/2c1b2414f56a6594ffef91236a87c0e976d52e0519bd313846bab016c2f20c7c4d6ce7dfe19a0bc843da8d448bbb670058b0c9ee9a26f5cf49bc39c97da070e6eb314629af3da2d24ab0413917f73b946419b5af447da45cefb517a0840ad3003abff4f9d5fe7828bbbb910ee270b704333a0283584211b2623dc4ca585fe82d4774d04b4af4b257b930215e13b2364fde129ef8d1f274e01f97997bd9cd142bafb4819bb6a291e23d01ac99"
+    start "" "https://www.guru3d.com/getdownload/2c1b2414f56a6594ffef91236a87c0e976d52e0519bd313846bab016c2f20c7c4d6ce7dfe19a0bc843da8d448bbb670058b0c9ee9a26f5cf49bc39c97da070e6eb314629af3da2d24ab0413917f73b946419b5af447da45cefb517a0840ad3003abff4f9d5fe7828bbbb910ee270b704333a0283584211b2623dc4ca585fe82d4774d04b4af4b257b930215e13b2364fde129ef8d1f274e01f97997bd9cd142bafb48195b1a199e43409aa99"
     goto SoftwareUtili
 )
 if "%softwareChoice%"=="33" (
-    start "" "https://github.com/lostindark/DriverStoreExplorer/releases/download/v0.12.145/DriverStoreExplorer.v0.12.145.zip"
+    start "" "https://github.com/lostindark/DriverStoreExplorer/releases/download/v1.0.75/DriverStoreExplorer-v1.0.75.zip"
     goto SoftwareUtili
 )
 goto :SoftwareUtili
